@@ -15,7 +15,7 @@ public class LicenciaDTO {
     
     private Calendar fechaVencimiento;
     
-    private Calendar fehcaExpedicion;
+    private Calendar fechaExpedicion;
     
     private int vigencia;
     
@@ -26,18 +26,18 @@ public class LicenciaDTO {
     public LicenciaDTO() {
     }
 
-    public LicenciaDTO(int idLicencia, Calendar fechaVencimiento, Calendar fehcaExpedicion, int vigencia, double costo, String tipo) {
+    public LicenciaDTO(int idLicencia, Calendar fechaVencimiento, Calendar fechaExpedicion, int vigencia, double costo, String tipo) {
         this.idLicencia = idLicencia;
         this.fechaVencimiento = fechaVencimiento;
-        this.fehcaExpedicion = fehcaExpedicion;
+        this.fechaExpedicion = fechaExpedicion;
         this.vigencia = vigencia;
         this.costo = costo;
         this.tipo = tipo;
     }
 
-    public LicenciaDTO(Calendar fechaVencimiento, Calendar fehcaExpedicion, int vigencia, double costo, String tipo) {
+    public LicenciaDTO(Calendar fechaVencimiento, Calendar fechaExpedicion, String tipo, int vigencia, double costo) {
         this.fechaVencimiento = fechaVencimiento;
-        this.fehcaExpedicion = fehcaExpedicion;
+        this.fechaExpedicion = fechaExpedicion;
         this.vigencia = vigencia;
         this.costo = costo;
         this.tipo = tipo;
@@ -59,12 +59,12 @@ public class LicenciaDTO {
         this.fechaVencimiento = fechaVencimiento;
     }
 
-    public Calendar getFehcaExpedicion() {
-        return fehcaExpedicion;
+    public Calendar getFechaExpedicion() {
+        return fechaExpedicion;
     }
 
-    public void setFehcaExpedicion(Calendar fehcaExpedicion) {
-        this.fehcaExpedicion = fehcaExpedicion;
+    public void setFechaExpedicion(Calendar fechaExpedicion) {
+        this.fechaExpedicion = fechaExpedicion;
     }
 
     public int getVigencia() {
@@ -93,6 +93,6 @@ public class LicenciaDTO {
 
     @Override
     public String toString() {
-        return "Licencia{" + "idLicencia=" + idLicencia + ", fechaVencimiento=" + fechaVencimiento + ", fehcaExpedicion=" + fehcaExpedicion + ", vigencia=" + vigencia + ", costo=" + costo + ", tipo=" + tipo + '}';
+        return "Licencia{" + "idLicencia=" + idLicencia + ", fechaVencimiento=" + fechaVencimiento + ", fechaExpedicion=" + fechaExpedicion + ", vigencia=" + vigencia + ", costo=" + costo + ", tipo=" + tipo + '}';
     }
 }

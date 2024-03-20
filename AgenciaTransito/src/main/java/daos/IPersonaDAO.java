@@ -4,10 +4,12 @@
  */
 package daos;
 
+import entidadesJPA.Persona;
+
 /**
  *
  * @author crist
  */
 public interface IPersonaDAO {
-    
+        public void registrarPersona(Persona persona);
 }

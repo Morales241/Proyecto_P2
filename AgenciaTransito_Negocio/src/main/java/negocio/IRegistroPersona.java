@@ -11,5 +11,5 @@ import dto.PersonaDTO;
  * @author crist
  */
 public interface IRegistroPersona {
-     public void registrarPersona(PersonaDTO personaDTO);
+    public void registrarPersona(PersonaDTO personaDTO) ;
 }

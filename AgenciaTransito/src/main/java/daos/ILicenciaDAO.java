@@ -4,10 +4,13 @@
  */
 package daos;
 
+import entidadesJPA.Licencia;
+
 /**
  *
  * @author crist
  */
 public interface ILicenciaDAO {
-    
+     public void registrarLicencia(Licencia licencia);
+
 }
