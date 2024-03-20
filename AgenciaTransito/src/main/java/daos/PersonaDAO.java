@@ -10,7 +10,7 @@ import java.util.Calendar;
  *
  * @author crist
  */
-public class Persona {
+public class PersonaDAO {
     
    private int idPersona;
     
@@ -26,10 +26,10 @@ public class Persona {
 
    private String telefono;
 
-    public Persona() {
+    public PersonaDAO() {
     }
 
-    public Persona(Calendar fechaNaci, String rfc, String nombre, String apellidoP, String apellidoM, String telefono) {
+    public PersonaDAO(Calendar fechaNaci, String rfc, String nombre, String apellidoP, String apellidoM, String telefono) {
         this.fechaNaci = fechaNaci;
         this.rfc = rfc;
         this.nombre = nombre;
@@ -38,7 +38,7 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    public Persona(int idPersona, Calendar fechaNaci, String rfc, String nombre, String apellidoP, String apellidoM, String telefono) {
+    public PersonaDAO(int idPersona, Calendar fechaNaci, String rfc, String nombre, String apellidoP, String apellidoM, String telefono) {
         this.idPersona = idPersona;
         this.fechaNaci = fechaNaci;
         this.rfc = rfc;

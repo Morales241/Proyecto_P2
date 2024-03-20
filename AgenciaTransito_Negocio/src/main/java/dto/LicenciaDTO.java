@@ -2,18 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package daos;
+package dto;
 
 import java.util.Calendar;
-import java.util.logging.Logger;
 
 /**
  *
  * @author crist
  */
-public class Licencia {
-    
-    private int idLicencia;
+public class LicenciaDTO {
+      private int idLicencia;
     
     private Calendar fechaVencimiento;
     
@@ -25,10 +23,10 @@ public class Licencia {
     
     private String tipo;
 
-    public Licencia() {
+    public LicenciaDTO() {
     }
 
-    public Licencia(int idLicencia, Calendar fechaVencimiento, Calendar fehcaExpedicion, int vigencia, double costo, String tipo) {
+    public LicenciaDTO(int idLicencia, Calendar fechaVencimiento, Calendar fehcaExpedicion, int vigencia, double costo, String tipo) {
         this.idLicencia = idLicencia;
         this.fechaVencimiento = fechaVencimiento;
         this.fehcaExpedicion = fehcaExpedicion;
@@ -37,7 +35,7 @@ public class Licencia {
         this.tipo = tipo;
     }
 
-    public Licencia(Calendar fechaVencimiento, Calendar fehcaExpedicion, int vigencia, double costo, String tipo) {
+    public LicenciaDTO(Calendar fechaVencimiento, Calendar fehcaExpedicion, int vigencia, double costo, String tipo) {
         this.fechaVencimiento = fechaVencimiento;
         this.fehcaExpedicion = fehcaExpedicion;
         this.vigencia = vigencia;
@@ -97,7 +95,4 @@ public class Licencia {
     public String toString() {
         return "Licencia{" + "idLicencia=" + idLicencia + ", fechaVencimiento=" + fechaVencimiento + ", fehcaExpedicion=" + fehcaExpedicion + ", vigencia=" + vigencia + ", costo=" + costo + ", tipo=" + tipo + '}';
     }
-   
-    
-    
 }
