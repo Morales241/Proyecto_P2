@@ -92,6 +92,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel4.setText("Documentación");
 
         jButton4.setBackground(new java.awt.Color(182, 0, 0));
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\tacot\\Documents\\GitHub\\agenciaTransito\\Proyecto_P2\\AgenciaTransito_Presentacion\\src\\main\\sources\\grupo.png")); // NOI18N
 
         licenciasBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/licenciaBoton.png"))); // NOI18N
         licenciasBoton.setText("jButton5");

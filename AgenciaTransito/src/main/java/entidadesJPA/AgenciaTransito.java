@@ -51,25 +51,25 @@ public class AgenciaTransito {
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionP");
     EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    IPersonaDAO personaDAO = new PersonaDAO(entityManager);
-    ILicenciaDAO licenciaDAO = new LicenciaDAO(entityManager);
-
-    Calendar fechaNaci = Calendar.getInstance();
-    fechaNaci.set(2004, Calendar.MAY, 28);
-    Persona p = new Persona(fechaNaci, "1223jnfcncd", "Ana", "Castro", "Noriega", "6442282937");
-    personaDAO.registrarPersona(p);
-
-    Calendar fechaExp = Calendar.getInstance();
-    fechaExp.set(2024, Calendar.MARCH, 20);
-    Calendar fechaVig = Calendar.getInstance();
-    fechaVig.set(2027, Calendar.MARCH, 20);
-    Licencia l = new Licencia(fechaVig, fechaExp, "normal", 3, 1500.0);
-
-    
-    l.setPersona(p);
-    licenciaDAO.registrarLicencia(l);
-
-    entityManager.close();
-    entityManagerFactory.close();
+////    IPersonaDAO personaDAO = new PersonaDAO(entityManager);
+//    ILicenciaDAO licenciaDAO = new LicenciaDAO(entityManager);
+//
+//    Calendar fechaNaci = Calendar.getInstance();
+//    fechaNaci.set(2004, Calendar.MAY, 28);
+//    Persona p = new Persona(fechaNaci, "1223jnfcncd", "Ana", "Castro", "Noriega", "6442282937");
+//    personaDAO.registrarPersona(p);
+//
+//    Calendar fechaExp = Calendar.getInstance();
+//    fechaExp.set(2024, Calendar.MARCH, 20);
+//    Calendar fechaVig = Calendar.getInstance();
+//    fechaVig.set(2027, Calendar.MARCH, 20);
+//    Licencia l = new Licencia(fechaVig, fechaExp, "normal", 3, 1500.0);
+//
+//    
+//    l.setPersona(p);
+//    licenciaDAO.registrarLicencia(l);
+//
+//    entityManager.close();
+//    entityManagerFactory.close();
     }
 }

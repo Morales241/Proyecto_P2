@@ -17,8 +17,7 @@ import javax.persistence.Persistence;
 public class PersonaDAO implements IPersonaDAO{
      private EntityManager entityManager;
 
-    public PersonaDAO(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public PersonaDAO() {
     } 
     
   @Override
@@ -26,6 +25,7 @@ public class PersonaDAO implements IPersonaDAO{
         entityManager.getTransaction().begin();
         entityManager.persist(persona);
         entityManager.getTransaction().commit();
+        entityManager.close();
     }
     
 }

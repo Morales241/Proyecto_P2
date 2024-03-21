@@ -18,41 +18,17 @@ import javax.persistence.*;
  */
 public class RegistroPersonaBO implements IRegistroPersona, IconsultarLicencias{
 
-   private List<LicenciaDTO> licencias;
    
-   private EntityManagerFactory emf;
-   
-   private EntityManager em;
    
     @Override
     public void registrarPersona(PersonaDTO personaDTO, LicenciaDTO licenciaDTO) {
      
-        emf = Persistence.createEntityManagerFactory("ConexionPU");
         
-        em = emf.createEntityManager();
-        
-        em.getTransaction().begin();
-        
-        em.persist(personaDTO);
-        
-        em.getTransaction().commit();
-        
-        em.close();
-        
-        emf.close();
     }
 
     @Override
     public List<LicenciaDTO> cunsltarLicencias(Long ID) {
-        emf = Persistence.createEntityManagerFactory("ConexionPU");
         
-        em = emf.createEntityManager();
-        
-//        Criteria 
-        
-        em.close();
-        
-        emf.close();
         return null;
     }
 

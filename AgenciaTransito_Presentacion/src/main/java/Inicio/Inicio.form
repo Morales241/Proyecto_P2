@@ -225,6 +225,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="b6" type="rgb"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\tacot\Documents\GitHub\agenciaTransito\Proyecto_P2\AgenciaTransito_Presentacion\src\main\sources\grupo.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="licenciasBoton">

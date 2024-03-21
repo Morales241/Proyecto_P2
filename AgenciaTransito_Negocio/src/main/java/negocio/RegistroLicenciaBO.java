@@ -19,19 +19,7 @@ public class RegistroLicenciaBO implements IRegistroLicencia {
     @Override
     public void registrarLicencia(LicenciaDTO licenciaDTO) {
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU");
-
-        EntityManager em = emf.createEntityManager();
-
-        em.getTransaction().begin();
-
-        em.persist(licenciaDTO);
-
-        em.getTransaction().commit();
-
-        em.close();
         
-        emf.close();
     }
 
 }
