@@ -5,6 +5,7 @@
 package negocio;
 
 import dto.LicenciaDTO;
+import dto.PersonaDTO;
 
 
 
@@ -13,5 +14,5 @@ import dto.LicenciaDTO;
  * @author crist
  */
 public interface IRegistroLicencia {
-  public void registrarLicencia(LicenciaDTO licenciaDTO);
+  public void registrarLicencia(LicenciaDTO licenciaDTO, PersonaDTO personaDTO);
 }

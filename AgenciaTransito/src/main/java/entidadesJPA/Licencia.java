@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,7 +34,7 @@ public class Licencia implements Serializable {
     @Column(name = "fechaExpedicion", nullable = false)
     private Calendar fechaExpedicion;
     
-     @Column(name = "fechaVencimiento", nullable = false)
+    @Column(name = "fechaVencimiento", nullable = false)
     private Calendar fechaVencimiento;
 
     @Column(name = "tipo", nullable = false, length = 150)
@@ -45,7 +46,7 @@ public class Licencia implements Serializable {
     @Column(name = "costo", nullable = false, length = 150)
     private Double costo;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToOne
     @JoinColumn(name = "idPersona")
     private Persona persona;
 

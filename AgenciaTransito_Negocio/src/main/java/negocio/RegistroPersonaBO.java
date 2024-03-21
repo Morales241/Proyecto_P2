@@ -6,6 +6,7 @@ package negocio;
 
 import dto.PersonaDTO;
 import entidadesJPA.Persona;
+import javax.persistence.*;
 
 
 
@@ -23,29 +24,15 @@ public class RegistroPersonaBO implements IRegistroPersona{
 
     @Override
     public void registrarPersona(PersonaDTO personaDTO) {
-     // Aquí podrías agregar lógica de negocio si fuera necesario
-
-        // Convertir PersonaDTO a Persona
-        Persona persona = new Persona();
-        persona.setFechaNaci(personaDTO.getFechaNaci());
-        persona.setRfc(personaDTO.getRfc());
-        persona.setNombre(personaDTO.getNombre());
-        persona.setApellidoP(personaDTO.getApellidoP());
-        persona.setApellidoM(personaDTO.getApellidoM());
-        persona.setTelefono(personaDTO.getTelefono());
+     
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU");
         
-         PersonaDTO nuevaPersonaDTO = new PersonaDTO();
-        nuevaPersonaDTO.setFechaNaci(persona.getFechaNaci());
-        nuevaPersonaDTO.setRfc(persona.getRfc());
-        nuevaPersonaDTO.setNombre(persona.getNombre());
-        nuevaPersonaDTO.setApellidoP(persona.getApellidoP());
-        nuevaPersonaDTO.setApellidoM(persona.getApellidoM());
-        nuevaPersonaDTO.setTelefono(persona.getTelefono());
-
-        // Llamar a la capa de persistencia para registrar la persona
-        registroPersona.registrarPersona(nuevaPersonaDTO);
+        EntityManager em = emf.createEntityManager();
+        
+        em.getTransaction().begin();
+        
+        em.persist(personaDTO);
+        
     }
 
-   
-    
 }

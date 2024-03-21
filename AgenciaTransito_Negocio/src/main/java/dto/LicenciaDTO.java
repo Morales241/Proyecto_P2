@@ -11,7 +11,6 @@ import java.util.Calendar;
  * @author crist
  */
 public class LicenciaDTO {
-      private int idLicencia;
     
     private Calendar fechaVencimiento;
     
@@ -22,12 +21,13 @@ public class LicenciaDTO {
     private double costo;
     
     private String tipo;
+    
+    private PersonaDTO persona;
 
     public LicenciaDTO() {
     }
 
-    public LicenciaDTO(int idLicencia, Calendar fechaVencimiento, Calendar fechaExpedicion, int vigencia, double costo, String tipo) {
-        this.idLicencia = idLicencia;
+    public LicenciaDTO(Calendar fechaVencimiento, Calendar fechaExpedicion, int vigencia, double costo, String tipo) {
         this.fechaVencimiento = fechaVencimiento;
         this.fechaExpedicion = fechaExpedicion;
         this.vigencia = vigencia;
@@ -43,13 +43,6 @@ public class LicenciaDTO {
         this.tipo = tipo;
     }
 
-    public int getIdLicencia() {
-        return idLicencia;
-    }
-
-    public void setIdLicencia(int idLicencia) {
-        this.idLicencia = idLicencia;
-    }
 
     public Calendar getFechaVencimiento() {
         return fechaVencimiento;
@@ -93,6 +86,6 @@ public class LicenciaDTO {
 
     @Override
     public String toString() {
-        return "Licencia{" + "idLicencia=" + idLicencia + ", fechaVencimiento=" + fechaVencimiento + ", fechaExpedicion=" + fechaExpedicion + ", vigencia=" + vigencia + ", costo=" + costo + ", tipo=" + tipo + '}';
+        return "Licencia{ fechaVencimiento=" + fechaVencimiento + ", fechaExpedicion=" + fechaExpedicion + ", vigencia=" + vigencia + ", costo=" + costo + ", tipo=" + tipo + '}';
     }
 }

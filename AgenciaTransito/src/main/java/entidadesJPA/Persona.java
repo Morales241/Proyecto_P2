@@ -7,6 +7,7 @@ package entidadesJPA;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,7 @@ public class Persona implements Serializable {
      @Column(name = "telefono", nullable = false, length = 20)
     private String telefono;
 
-     @OneToMany(mappedBy = "persona")
+    @OneToMany(mappedBy = "persona", cascade= {CascadeType.PERSIST})
     private List<Licencia> licencias;
 
     public Persona() {
