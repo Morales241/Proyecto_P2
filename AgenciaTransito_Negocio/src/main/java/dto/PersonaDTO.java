@@ -12,8 +12,6 @@ import java.util.Calendar;
  */
 public class PersonaDTO {
        
-   private int idPersona;
-    
    private Calendar fechaNaci;
    
    private String rfc;

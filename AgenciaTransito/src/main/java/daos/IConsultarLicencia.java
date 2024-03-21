@@ -4,6 +4,9 @@
  */
 package daos;
 
+import entidadesJPA.Licencia;
+import java.util.List;
+
 /**
  *
  * @author jesus

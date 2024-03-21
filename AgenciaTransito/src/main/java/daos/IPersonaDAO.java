@@ -14,5 +14,5 @@ public interface IPersonaDAO {
     
     public void registrarPersona(Persona persona);
     
-    public boolean validarPersona(Long id);
+    public boolean validarPersona(String rfc, String nombre, String apellidoM, String apellidoP);
 }
