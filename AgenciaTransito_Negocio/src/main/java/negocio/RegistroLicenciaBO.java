@@ -5,39 +5,33 @@
 package negocio;
 
 import dto.LicenciaDTO;
+import dto.PersonaDTO;
 import entidadesJPA.Licencia;
+import javax.persistence.*;
 
 /**
+ * aqui lo que hacemos es que pedimos una licencia y una persona, mandamos a pedir si tiene Licencias
  *
  * @author crist
  */
-public class RegistroLicenciaBO implements IRegistroLicencia{
-    private IRegistroLicencia registroLicencia;
+public class RegistroLicenciaBO implements IRegistroLicencia {
 
-    public RegistroLicenciaBO(IRegistroLicencia registroLicencia) {
-        this.registroLicencia = registroLicencia;
-    }
+    @Override
     public void registrarLicencia(LicenciaDTO licenciaDTO) {
-            
-    Licencia licencia = new Licencia();
-    licencia.setFechaExpedicion(licenciaDTO.getFechaExpedicion());
-    licencia.setFechaVencimiento(licenciaDTO.getFechaVencimiento());
-    licencia.setTipo(licenciaDTO.getTipo());
-    licencia.setVigencia(licenciaDTO.getVigencia());
-    licencia.setCosto(licenciaDTO.getCosto());
 
-    // Convertir Licencia a LicenciaDTO
-    LicenciaDTO nuevaLicenciaDTO = new LicenciaDTO();
-    nuevaLicenciaDTO.setFechaExpedicion(licencia.getFechaExpedicion());
-    nuevaLicenciaDTO.setFechaVencimiento(licencia.getFechaVencimiento());
-    nuevaLicenciaDTO.setTipo(licencia.getTipo());
-    nuevaLicenciaDTO.setVigencia(licencia.getVigencia());
-    nuevaLicenciaDTO.setCosto(licencia.getCosto());
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU");
 
-    // Llamar a la capa de persistencia para registrar la licencia
-    registroLicencia.registrarLicencia(licenciaDTO);
-}
+        EntityManager em = emf.createEntityManager();
 
+        em.getTransaction().begin();
 
-    
+        em.persist(licenciaDTO);
+
+        em.getTransaction().commit();
+
+        em.close();
+        
+        emf.close();
+    }
+
 }

@@ -4,8 +4,10 @@
  */
 package negocio;
 
+import dto.LicenciaDTO;
 import dto.PersonaDTO;
 import entidadesJPA.Persona;
+import java.util.List;
 import javax.persistence.*;
 
 
@@ -14,25 +16,44 @@ import javax.persistence.*;
  *
  * @author crist
  */
-public class RegistroPersonaBO implements IRegistroPersona{
+public class RegistroPersonaBO implements IRegistroPersona, IconsultarLicencias{
 
-    private IRegistroPersona registroPersona;
-
-    public RegistroPersonaBO(IRegistroPersona registroPersona) {
-        this.registroPersona = registroPersona;
-    }
-
+   private List<LicenciaDTO> licencias;
+   
+   private EntityManagerFactory emf;
+   
+   private EntityManager em;
+   
     @Override
-    public void registrarPersona(PersonaDTO personaDTO) {
+    public void registrarPersona(PersonaDTO personaDTO, LicenciaDTO licenciaDTO) {
      
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU");
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
         
-        EntityManager em = emf.createEntityManager();
+        em = emf.createEntityManager();
         
         em.getTransaction().begin();
         
         em.persist(personaDTO);
         
+        em.getTransaction().commit();
+        
+        em.close();
+        
+        emf.close();
+    }
+
+    @Override
+    public List<LicenciaDTO> cunsltarLicencias(Long ID) {
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
+        
+        em = emf.createEntityManager();
+        
+//        Criteria 
+        
+        em.close();
+        
+        emf.close();
+        return null;
     }
 
 }

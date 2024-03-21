@@ -5,13 +5,12 @@
 package negocio;
 
 import dto.LicenciaDTO;
-
-
+import java.util.List;
 
 /**
  *
- * @author crist
+ * @author tacot
  */
-public interface IRegistroLicencia {
-  public void registrarLicencia(LicenciaDTO licenciaDTO);
+public interface IconsultarLicencias {
+    public List<LicenciaDTO> cunsltarLicencias(Long ID);
 }
