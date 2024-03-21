@@ -65,7 +65,7 @@ public class AgenciaTransito {
     fechaVig.set(2027, Calendar.MARCH, 20);
     Licencia l = new Licencia(fechaVig, fechaExp, "normal", 3, 1500.0);
 
-    // Asignar la persona a la licencia
+    
     l.setPersona(p);
     licenciaDAO.registrarLicencia(l);
 
