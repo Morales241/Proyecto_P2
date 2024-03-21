@@ -4,8 +4,10 @@
  */
 package daos;
 
+import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,17 +17,24 @@ import javax.persistence.Persistence;
  * @author crist
  */
 public class PersonaDAO implements IPersonaDAO{
-     private EntityManager entityManager;
 
     public PersonaDAO() {
     } 
     
   @Override
     public void registrarPersona(Persona persona) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(persona);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        
     }
     
+    @Override
+    public boolean validarPersona(Long id){
+        List<Licencia> licencias = null;
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU");
+        
+        
+        
+        return licencias.isEmpty();
+    }
+
 }

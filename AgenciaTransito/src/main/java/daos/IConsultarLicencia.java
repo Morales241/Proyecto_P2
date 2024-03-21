@@ -4,15 +4,10 @@
  */
 package daos;
 
-import entidadesJPA.Persona;
-
 /**
  *
- * @author crist
+ * @author jesus
  */
-public interface IPersonaDAO {
-    
-    public void registrarPersona(Persona persona);
-    
-    public boolean validarPersona(Long id);
+public interface IConsultarLicencia {
+    public List<Licencia> consultarLicencias(Long id);
 }
