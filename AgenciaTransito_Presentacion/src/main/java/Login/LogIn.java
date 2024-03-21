@@ -4,6 +4,8 @@
  */
 package Login;
 
+import Inicio.Inicio;
+
 /**
  *
  * @author tacot
@@ -87,6 +89,11 @@ public class LogIn extends javax.swing.JFrame {
         entrar.setForeground(new java.awt.Color(102, 102, 102));
         entrar.setText("ENTRAR");
         entrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        entrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -149,6 +156,13 @@ public class LogIn extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarActionPerformed
+        // TODO add your handling code here:
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_entrarActionPerformed
 
     /**
      * @param args the command line arguments
