@@ -33,7 +33,7 @@ public class LogIn extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         txtContra = new javax.swing.JTextField();
-        entrar = new javax.swing.JButton();
+        entrarBoton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,14 +84,14 @@ public class LogIn extends javax.swing.JFrame {
         txtContra.setToolTipText("contraseña");
         txtContra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        entrar.setBackground(new java.awt.Color(204, 204, 204));
-        entrar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        entrar.setForeground(new java.awt.Color(102, 102, 102));
-        entrar.setText("ENTRAR");
-        entrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
-        entrar.addActionListener(new java.awt.event.ActionListener() {
+        entrarBoton.setBackground(new java.awt.Color(204, 204, 204));
+        entrarBoton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        entrarBoton.setForeground(new java.awt.Color(102, 102, 102));
+        entrarBoton.setText("ENTRAR");
+        entrarBoton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        entrarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                entrarActionPerformed(evt);
+                entrarBotonActionPerformed(evt);
             }
         });
 
@@ -119,7 +119,7 @@ public class LogIn extends javax.swing.JFrame {
                                 .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(53, 53, 53))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(102, 102, 102))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,7 +137,7 @@ public class LogIn extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
-                .addComponent(entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(entrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -145,9 +145,7 @@ public class LogIn extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,14 +153,15 @@ public class LogIn extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarActionPerformed
+    private void entrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarBotonActionPerformed
         // TODO add your handling code here:
         Inicio inicio = new Inicio();
         inicio.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_entrarActionPerformed
+    }//GEN-LAST:event_entrarBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,7 +199,7 @@ public class LogIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton entrar;
+    private javax.swing.JButton entrarBoton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
