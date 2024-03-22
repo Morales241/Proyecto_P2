@@ -6,9 +6,21 @@ package dlg;
 
 import dto.LicenciaDTO;
 import dto.PersonaDTO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.ConsultarLicenciasBO;
+import negocio.RegistroPersonaBO;
+<<<<<<< HEAD
 <<<<<<< HEAD
 import entidadesJPA.Licencia;
 import java.text.ParseException;
+=======
+import static entidadesJPA.Licencia_.fechaExpedicion;
+>>>>>>> 0f4ccde0587068fe2ed7a8d76e567c186878ec59
 =======
 import static entidadesJPA.Licencia_.fechaExpedicion;
 >>>>>>> 0f4ccde0587068fe2ed7a8d76e567c186878ec59
@@ -17,11 +29,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.ConsultarLicenciasBO;
 import negocio.RegistroPersonaBO;
+=======
+>>>>>>> 0f4ccde0587068fe2ed7a8d76e567c186878ec59
 =======
 >>>>>>> 0f4ccde0587068fe2ed7a8d76e567c186878ec59
 
@@ -356,7 +371,7 @@ public class LicenciaDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_txtApellidoMaternoActionPerformed
 
     private void siDiscapacidadBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siDiscapacidadBotonActionPerformed
-<<<<<<< HEAD
+
             try {
             // TODO add your handling code here:
             String fechaNacimientoTexto = txtFechaNaci.getText();
@@ -408,9 +423,7 @@ public class LicenciaDlg extends javax.swing.JDialog {
             Logger.getLogger(LicenciaDlg.class.getName()).log(Level.SEVERE, "No se pudo guardar", ex);
         }
 
-=======
-        // TODO add your handling code here:
->>>>>>> 0f4ccde0587068fe2ed7a8d76e567c186878ec59
+
     }//GEN-LAST:event_siDiscapacidadBotonActionPerformed
 
     private void noDiscapacidadBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noDiscapacidadBotonActionPerformed
