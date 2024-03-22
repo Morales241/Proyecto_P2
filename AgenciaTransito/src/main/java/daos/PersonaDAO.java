@@ -50,7 +50,7 @@ public class PersonaDAO implements IPersonaDAO, IConsultarLicencia {
     @Override
     public boolean validarPersona(String rfc, String nombre, String apellidoM, String apellidoP) {
 
-        Persona persona = null;
+        List<Persona> personas = null;
 
         emf = Persistence.createEntityManagerFactory("ConexionPU");
 
@@ -69,13 +69,13 @@ public class PersonaDAO implements IPersonaDAO, IConsultarLicencia {
 
         query.where(prepre);
 
-        persona = em.createQuery(query).getSingleResult();
+        personas = em.createQuery(query).getResultList();
 
         em.close();
         
         emf.close();
         
-        return persona == null;
+        return personas.size() != 0;
     }
 
     @Override

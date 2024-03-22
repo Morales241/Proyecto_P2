@@ -15,19 +15,31 @@ import javax.persistence.Persistence;
  *
  * @author crist
  */
-public class LicenciaDAO implements ILicenciaDAO{
-     private EntityManager entityManager;
+public class LicenciaDAO implements ILicenciaDAO {
 
-    public LicenciaDAO(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    } 
-   @Override
-    public void registrarLicencia(Licencia licencia) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(licencia);
-        entityManager.getTransaction().commit();
+    EntityManagerFactory emf;
+
+    EntityManager em;
+
+    public LicenciaDAO() {
+
     }
-   
-    
-    
+
+    @Override
+    public void registrarLicencia(Licencia licencia) {
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
+
+        em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+
+        em.persist(licencia);
+
+        em.getTransaction().commit();
+
+        em.close();
+
+        emf.close();
+    }
+
 }
