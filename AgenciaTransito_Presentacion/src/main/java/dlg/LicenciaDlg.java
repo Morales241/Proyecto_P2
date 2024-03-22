@@ -330,6 +330,7 @@ public class LicenciaDlg extends javax.swing.JDialog {
         Calendar fechaVencimiento = Calendar.getInstance();
         
         
+        
 
         fechaNaci.setTime(fechaNacimientoDate);
         LicenciaDTO licencia = new LicenciaDTO(fechaVencimiento, fechaExpedicion txtVigencia.getText() , txtPrecio.getText());
