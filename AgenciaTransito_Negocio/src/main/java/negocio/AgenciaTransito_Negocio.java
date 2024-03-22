@@ -5,16 +5,7 @@
 
 package negocio;
 
-import daos.LicenciaDAO;
-import daos.PersonaDAO;
-import dto.LicenciaDTO;
-import dto.PersonaDTO;
-import entidadesJPA.Licencia;
-import entidadesJPA.Persona;
-import java.util.Calendar;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 
 /**
  *

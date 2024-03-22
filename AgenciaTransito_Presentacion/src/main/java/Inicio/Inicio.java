@@ -205,7 +205,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void licenciasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_licenciasBotonActionPerformed
         // TODO add your handling code here:
-        LicenciaDlg licenciadlg = new LicenciaDlg(this, false);
+        LicenciaDlg licenciadlg = new LicenciaDlg(this, true);
         licenciadlg.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_licenciasBotonActionPerformed
