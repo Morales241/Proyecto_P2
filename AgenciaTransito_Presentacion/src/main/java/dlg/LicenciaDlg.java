@@ -6,6 +6,7 @@ package dlg;
 
 import dto.LicenciaDTO;
 import dto.PersonaDTO;
+import static entidadesJPA.Licencia_.fechaExpedicion;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;

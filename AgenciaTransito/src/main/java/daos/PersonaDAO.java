@@ -20,7 +20,7 @@ import javax.persistence.criteria.Root;
  *
  * @author crist
  */
-public class PersonaDAO implements IPersonaDAO, IConsultarLicencia {
+public class PersonaDAO implements IPersonaDAO {
 
     EntityManagerFactory emf;
 
@@ -79,30 +79,9 @@ public class PersonaDAO implements IPersonaDAO, IConsultarLicencia {
     }
 
     @Override
-    public List<Licencia> consultarLicencias(Long id) {
-        List<Licencia> licencias = null;
+    public void actualizarPersona(Persona persona) {
 
-        emf = Persistence.createEntityManagerFactory("ConexionPU");
-
-        em = emf.createEntityManager();
-
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-
-        CriteriaQuery<Licencia> query = cb.createQuery(Licencia.class);
-
-        Root<Licencia> licenciaRoot = query.from(Licencia.class);
-
-        Predicate prepre = cb.equal(licenciaRoot.get("persona").get("id"), id);
-
-        query.where(prepre);
-
-        licencias = em.createQuery(query).getResultList();
-        
-        em.close();
-        
-        emf.close();
-        
-        return licencias;
     }
 
+    
 }
