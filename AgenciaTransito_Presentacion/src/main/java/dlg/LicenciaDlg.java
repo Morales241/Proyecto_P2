@@ -6,9 +6,14 @@ package dlg;
 
 import dto.LicenciaDTO;
 import dto.PersonaDTO;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.ConsultarLicenciasBO;
+import negocio.RegistroPersonaBO;
 
 /**
  *
@@ -89,6 +94,8 @@ public class LicenciaDlg extends javax.swing.JDialog {
         jLabel2.setText("Apellido Materno:");
 
         txtNombre.setBackground(new java.awt.Color(182, 0, 0));
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,9 +110,13 @@ public class LicenciaDlg extends javax.swing.JDialog {
         jLabel4.setText("Apellido Paterno:");
 
         txtApellidoPaterno.setBackground(new java.awt.Color(182, 0, 0));
+        txtApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtApellidoPaterno.setForeground(new java.awt.Color(255, 255, 255));
         txtApellidoPaterno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         txtApellidoMaterno.setBackground(new java.awt.Color(182, 0, 0));
+        txtApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtApellidoMaterno.setForeground(new java.awt.Color(255, 255, 255));
         txtApellidoMaterno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         txtApellidoMaterno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +128,8 @@ public class LicenciaDlg extends javax.swing.JDialog {
         jLabel5.setText("Fecha de nacimiento:");
 
         txtFechaNaci.setBackground(new java.awt.Color(182, 0, 0));
+        txtFechaNaci.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFechaNaci.setForeground(new java.awt.Color(255, 255, 255));
         txtFechaNaci.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
@@ -124,24 +137,36 @@ public class LicenciaDlg extends javax.swing.JDialog {
 
         txtTelefono.setEditable(false);
         txtTelefono.setBackground(new java.awt.Color(182, 0, 0));
+        txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTelefono.setForeground(new java.awt.Color(255, 255, 255));
         txtTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         jLabel7.setText("RFC:");
 
         txtRFC.setBackground(new java.awt.Color(182, 0, 0));
+        txtRFC.setForeground(new java.awt.Color(255, 255, 255));
         txtRFC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         jLabel8.setText("Vigencia:");
 
         txtVigencia.setBackground(new java.awt.Color(182, 0, 0));
+        txtVigencia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtVigencia.setForeground(new java.awt.Color(255, 255, 255));
         txtVigencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        txtVigencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVigenciaActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         jLabel9.setText("Precio:");
 
         txtPrecio.setBackground(new java.awt.Color(182, 0, 0));
+        txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
         txtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
@@ -309,31 +334,7 @@ public class LicenciaDlg extends javax.swing.JDialog {
 
     private void aceptarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBotonActionPerformed
         // TODO add your handling code here:
-        String fechaNacimientoTexto = txtFechaNaci.getText();
-
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
-
-        Date fechaNacimientoDate = formatoFecha.parse(fechaNacimientoTexto);
-
-        Calendar fechaNaci = Calendar.getInstance();
-
-        fechaNaci.setTime(fechaNacimientoDate);
-
-        PersonaDTO persona = new PersonaDTO(fechaNaci, txtRFC.getText(), txtNombre.getText(), txtApellidoPaterno.getText(), txtApellidoMaterno.getText(), txtTelefono.getText());
-        
-        String fechaVigenciaTexto = txtVigencia.getText();
-
-
-        Date fechaVigenciaDate = formatoFecha.parse(fechaNacimientoTexto);
-
-        Calendar fechaVencimiento = Calendar.getInstance();
-        
-        
-
-        fechaNaci.setTime(fechaNacimientoDate);
-        LicenciaDTO licencia = new LicenciaDTO(fechaVencimiento, fechaExpedicion txtVigencia.getText() , txtPrecio.getText());
-    
-        
+       
     }//GEN-LAST:event_aceptarBotonActionPerformed
 
     private void txtApellidoMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMaternoActionPerformed
@@ -341,12 +342,96 @@ public class LicenciaDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_txtApellidoMaternoActionPerformed
 
     private void siDiscapacidadBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siDiscapacidadBotonActionPerformed
-        // TODO add your handling code here:
+            try {
+            // TODO add your handling code here:
+            String fechaNacimientoTexto = txtFechaNaci.getText();
+            
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            
+            Date fechaNacimientoDate = formatoFecha.parse(fechaNacimientoTexto);
+            
+            Calendar fechaNaci = Calendar.getInstance();
+            
+            fechaNaci.setTime(fechaNacimientoDate);
+            
+            PersonaDTO persona = new PersonaDTO(fechaNaci, txtRFC.getText(), txtNombre.getText(), txtApellidoPaterno.getText(), txtApellidoMaterno.getText(), txtTelefono.getText());
+            
+            Calendar fechaExpedicion = Calendar.getInstance();
+            
+            fechaNaci.setTime(fechaNacimientoDate);
+            
+            int vigenciaAnios = Integer.parseInt(txtVigencia.getText());
+            
+            Calendar fechaActual = Calendar.getInstance();
+            
+            Calendar fechaVencimiento = (Calendar) fechaActual.clone();
+            
+            fechaVencimiento.add(Calendar.YEAR, vigenciaAnios);
+            
+            LicenciaDTO licencia = new LicenciaDTO(fechaVencimiento, fechaExpedicion, "Discapacidad", vigenciaAnios, Double.parseDouble(txtPrecio.getText()));
+            
+            RegistroPersonaBO pc = new RegistroPersonaBO();
+
+            ConsultarLicenciasBO cl = new ConsultarLicenciasBO();
+            
+            if (pc.validarPersona(persona)) {
+            licencia.setPersona(persona);
+            licencias.add(licencia);
+            persona.setLicencias(licencias);
+            
+            pD.registrarPersona(per);
+        }else{
+            
+            licencias = cl.cunsltarLicencias(lic.getId());
+            lic.setPersona(per);
+            licencias.add(lic);
+            per.setLicencias(licencias);
+            pD.registrarPersona(per);
+            
+        }
+        } catch (ParseException ex) {
+            Logger.getLogger(LicenciaDlg.class.getName()).log(Level.SEVERE, "No se pudo guardar", ex);
+        }
+
     }//GEN-LAST:event_siDiscapacidadBotonActionPerformed
 
     private void noDiscapacidadBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noDiscapacidadBotonActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String fechaNacimientoTexto = txtFechaNaci.getText();
+            
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            
+            Date fechaNacimientoDate = formatoFecha.parse(fechaNacimientoTexto);
+            
+            Calendar fechaNaci = Calendar.getInstance();
+            
+            fechaNaci.setTime(fechaNacimientoDate);
+            
+            PersonaDTO persona = new PersonaDTO(fechaNaci, txtRFC.getText(), txtNombre.getText(), txtApellidoPaterno.getText(), txtApellidoMaterno.getText(), txtTelefono.getText());
+            
+            Calendar fechaExpedicion = Calendar.getInstance();
+            
+            fechaNaci.setTime(fechaNacimientoDate);
+            
+            int vigenciaAnios = Integer.parseInt(txtVigencia.getText());
+            
+            Calendar fechaActual = Calendar.getInstance();
+            
+            Calendar fechaVencimiento = (Calendar) fechaActual.clone();
+            
+            fechaVencimiento.add(Calendar.YEAR, vigenciaAnios);
+            
+            LicenciaDTO licencia = new LicenciaDTO(fechaVencimiento, fechaExpedicion, "Normal", vigenciaAnios, Double.parseDouble(txtPrecio.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(LicenciaDlg.class.getName()).log(Level.SEVERE, "No se pudo guardar", ex);
+        }
+
     }//GEN-LAST:event_noDiscapacidadBotonActionPerformed
+
+    private void txtVigenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVigenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVigenciaActionPerformed
 
     
 

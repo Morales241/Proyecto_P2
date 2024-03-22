@@ -5,6 +5,7 @@
 package negocio;
 
 
+import dto.PersonaDTO;
 import entidadesJPA.Persona;
 
 /**
@@ -12,5 +13,5 @@ import entidadesJPA.Persona;
  * @author crist
  */
 public interface IRegistroPersona {
-    public boolean validarPersona(Persona persona);
+    public boolean validarPersona(PersonaDTO persona);
 }

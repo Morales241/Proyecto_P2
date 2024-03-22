@@ -26,7 +26,7 @@ EntityManagerFactory emf;
     EntityManager em;
     
     @Override
-    public boolean validarPersona(Persona persona) {
+    public boolean validarPersona(PersonaDTO persona) {
          List<Persona> personas = null;
 
         emf = Persistence.createEntityManagerFactory("ConexionPU");
@@ -54,6 +54,8 @@ EntityManagerFactory emf;
         
         return personas.size() != 0;
     }
+
+    
 
     
    
