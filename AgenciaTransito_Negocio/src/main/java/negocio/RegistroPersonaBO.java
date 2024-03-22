@@ -9,6 +9,10 @@ import dto.PersonaDTO;
 import entidadesJPA.Persona;
 import java.util.List;
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 
 
@@ -16,20 +20,44 @@ import javax.persistence.*;
  *
  * @author crist
  */
-public class RegistroPersonaBO implements IRegistroPersona, IconsultarLicencias{
+public class RegistroPersonaBO implements IRegistroPersona{
+EntityManagerFactory emf;
 
-   
-   
+    EntityManager em;
+    
     @Override
-    public void registrarPersona(PersonaDTO personaDTO, LicenciaDTO licenciaDTO) {
-     
+    public boolean validarPersona(Persona persona) {
+         List<Persona> personas = null;
+
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
+
+        em = emf.createEntityManager();
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Persona> query = cb.createQuery(Persona.class);
+
+        Root<Persona> personaRoot = query.from(Persona.class);
+
+        Predicate prepre = cb.and((cb.equal(personaRoot.get("rfc"), persona.getRfc())),
+                (cb.equal(personaRoot.get("nombre"), persona.getNombre())),
+                (cb.equal(personaRoot.get("apellidoM"), persona.getApellidoM())),
+                (cb.equal(personaRoot.get("apellidoP"), persona.getApellidoP())));
+
+        query.where(prepre);
+
+        personas = em.createQuery(query).getResultList();
+
+        em.close();
         
+        emf.close();
+        
+        return personas.size() != 0;
     }
 
-    @Override
-    public List<LicenciaDTO> cunsltarLicencias(Long ID) {
-        
-        return null;
-    }
+    
+   
+   
+  
 
 }

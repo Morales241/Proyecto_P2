@@ -4,7 +4,8 @@
  */
 package negocio;
 
-import dto.LicenciaDTO;
+
+import entidadesJPA.Licencia;
 import java.util.List;
 
 /**
@@ -12,5 +13,5 @@ import java.util.List;
  * @author tacot
  */
 public interface IconsultarLicencias {
-    public List<LicenciaDTO> cunsltarLicencias(Long ID);
+    public List<Licencia> cunsltarLicencias(Long ID);
 }

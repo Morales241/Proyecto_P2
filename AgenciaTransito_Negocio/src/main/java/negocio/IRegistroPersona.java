@@ -4,13 +4,13 @@
  */
 package negocio;
 
-import dto.LicenciaDTO;
-import dto.PersonaDTO;
+
+import entidadesJPA.Persona;
 
 /**
  *
  * @author crist
  */
 public interface IRegistroPersona {
-    public void registrarPersona(PersonaDTO personaDTO, LicenciaDTO licenciaDTO) ;
+    public boolean validarPersona(Persona persona);
 }
