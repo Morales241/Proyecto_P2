@@ -20,7 +20,7 @@ import java.util.List;
  * @author crist
  */
 public class AgenciaTransito_Negocio {
-
+/*
     public static void main(String[] args) {
         System.out.println("Hello World!");
          List<Licencia> licencias = new ArrayList<>();
@@ -57,5 +57,5 @@ public class AgenciaTransito_Negocio {
             
         }
    
-    }
+    }*/
 }
