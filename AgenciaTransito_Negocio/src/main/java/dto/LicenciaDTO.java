@@ -27,13 +27,7 @@ public class LicenciaDTO {
     public LicenciaDTO() {
     }
 
-    public LicenciaDTO(Calendar fechaVencimiento, Calendar fechaExpedicion, int vigencia, double costo, String tipo) {
-        this.fechaVencimiento = fechaVencimiento;
-        this.fechaExpedicion = fechaExpedicion;
-        this.vigencia = vigencia;
-        this.costo = costo;
-        this.tipo = tipo;
-    }
+    
 
     public LicenciaDTO(Calendar fechaVencimiento, Calendar fechaExpedicion, String tipo, int vigencia, double costo) {
         this.fechaVencimiento = fechaVencimiento;

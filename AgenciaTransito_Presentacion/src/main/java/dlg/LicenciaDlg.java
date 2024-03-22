@@ -4,6 +4,12 @@
  */
 package dlg;
 
+import dto.LicenciaDTO;
+import dto.PersonaDTO;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author crist
@@ -303,8 +309,31 @@ public class LicenciaDlg extends javax.swing.JDialog {
 
     private void aceptarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBotonActionPerformed
         // TODO add your handling code here:
+        String fechaNacimientoTexto = txtFechaNaci.getText();
+
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date fechaNacimientoDate = formatoFecha.parse(fechaNacimientoTexto);
+
+        Calendar fechaNaci = Calendar.getInstance();
+
+        fechaNaci.setTime(fechaNacimientoDate);
+
+        PersonaDTO persona = new PersonaDTO(fechaNaci, txtRFC.getText(), txtNombre.getText(), txtApellidoPaterno.getText(), txtApellidoMaterno.getText(), txtTelefono.getText());
         
-        String nombre = txtNombre.getText();
+        String fechaVigenciaTexto = txtVigencia.getText();
+
+
+        Date fechaVigenciaDate = formatoFecha.parse(fechaNacimientoTexto);
+
+        Calendar fechaVencimiento = Calendar.getInstance();
+        
+        
+
+        fechaNaci.setTime(fechaNacimientoDate);
+        LicenciaDTO licencia = new LicenciaDTO(fechaVencimiento, fechaExpedicion txtVigencia.getText() , txtPrecio.getText());
+    
+        
     }//GEN-LAST:event_aceptarBotonActionPerformed
 
     private void txtApellidoMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMaternoActionPerformed
