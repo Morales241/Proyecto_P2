@@ -75,7 +75,7 @@ public class PersonaDAO implements IPersonaDAO, IConsultarLicencia {
         
         emf.close();
         
-        return persona != null;
+        return persona == null;
     }
 
     @Override

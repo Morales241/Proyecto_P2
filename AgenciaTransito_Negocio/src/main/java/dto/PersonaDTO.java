@@ -36,23 +36,6 @@ public class PersonaDTO {
         this.telefono = telefono;
     }
 
-    public PersonaDTO(int idPersona, Calendar fechaNaci, String rfc, String nombre, String apellidoP, String apellidoM, String telefono) {
-        this.idPersona = idPersona;
-        this.fechaNaci = fechaNaci;
-        this.rfc = rfc;
-        this.nombre = nombre;
-        this.apellidoP = apellidoP;
-        this.apellidoM = apellidoM;
-        this.telefono = telefono;
-    }
-
-    public int getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
-    }
 
     public Calendar getFechaNaci() {
         return fechaNaci;
@@ -104,6 +87,6 @@ public class PersonaDTO {
 
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", fechaNaci=" + fechaNaci + ", rfc=" + rfc + ", nombre=" + nombre + ", apellidoP=" + apellidoP + ", apellidoM=" + apellidoM + ", telefono=" + telefono + '}';
+        return "Persona{" + " fechaNaci=" + fechaNaci + ", rfc=" + rfc + ", nombre=" + nombre + ", apellidoP=" + apellidoP + ", apellidoM=" + apellidoM + ", telefono=" + telefono + '}';
     }
 }

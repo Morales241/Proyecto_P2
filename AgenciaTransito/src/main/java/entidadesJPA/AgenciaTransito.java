@@ -11,6 +11,7 @@ import daos.PersonaDAO;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -22,54 +23,30 @@ import javax.persistence.Persistence;
 public class AgenciaTransito {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        //hola quiero ver el mapeo ylm
-         /*EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionP");
+        List<Licencia> licencias = null;
         
-         EntityManager entityManager = entityManagerFactory.createEntityManager();
-         entityManager.getTransaction().begin();
-         
-         Calendar fechaNaci = Calendar.getInstance();
-         fechaNaci.set(2004, Calendar.MAY, 28);
-         Persona p = new Persona( fechaNaci, "1223jnfcncd", "Ana", "Castro", "Noriega", "6442282937");
-         
-         Calendar fechaExp = Calendar.getInstance();
-         fechaExp.set(2024, Calendar.MARCH, 20);
-         Calendar fechaVig = Calendar.getInstance();
-         fechaVig.set(2027, Calendar.MARCH, 20);
-         
-         Licencia l = new Licencia(fechaVig, fechaExp, "normal", 3, 1500.0);
-         
-         l.setPersona(p);
-         entityManager.persist(p);
-         entityManager.persist(l);
-         
-         entityManager.getTransaction().commit();
-        entityManager.close();
-        entityManagerFactory.close();
-*/
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionP");
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-////    IPersonaDAO personaDAO = new PersonaDAO(entityManager);
-//    ILicenciaDAO licenciaDAO = new LicenciaDAO(entityManager);
-//
-//    Calendar fechaNaci = Calendar.getInstance();
-//    fechaNaci.set(2004, Calendar.MAY, 28);
-//    Persona p = new Persona(fechaNaci, "1223jnfcncd", "Ana", "Castro", "Noriega", "6442282937");
-//    personaDAO.registrarPersona(p);
-//
-//    Calendar fechaExp = Calendar.getInstance();
-//    fechaExp.set(2024, Calendar.MARCH, 20);
-//    Calendar fechaVig = Calendar.getInstance();
-//    fechaVig.set(2027, Calendar.MARCH, 20);
-//    Licencia l = new Licencia(fechaVig, fechaExp, "normal", 3, 1500.0);
-//
-//    
-//    l.setPersona(p);
-//    licenciaDAO.registrarLicencia(l);
-//
-//    entityManager.close();
-//    entityManagerFactory.close();
+        Calendar fecha = Calendar.getInstance();
+        fecha.set(2024, 3, 21);
+        
+        Calendar fecha2 = Calendar.getInstance();
+        fecha.set(2024, 2, 21);
+        
+        Calendar fecha3 = Calendar.getInstance();
+        fecha.set(2027, 3, 21);
+        
+        PersonaDAO pc = new PersonaDAO();
+        
+        Persona per = new Persona(fecha,"MORJ040221SA3", "jesus", "Morales", "Rojas", "6441494951");
+        Licencia lic = new Licencia(fecha2, fecha3, "discapasitado", 3, 700.00);
+        
+        if (pc.validarPersona(per.getRfc(), per.getNombre(), per.getApellidoP(), per.getApellidoM())) {
+            licencias.add(lic);
+            per.setLicencias(licencias);
+            pc.registrarPersona(per);
+        }else{
+            
+            
+            
+        }
     }
 }
