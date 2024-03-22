@@ -5,6 +5,7 @@
 package daos;
 
 import entidadesJPA.Licencia;
+import java.util.List;
 
 /**
  *
@@ -12,5 +13,7 @@ import entidadesJPA.Licencia;
  */
 public interface ILicenciaDAO {
      public void registrarLicencia(Licencia licencia);
+     
+     public List<Licencia> consultarLicencias(Long id);
 
 }
