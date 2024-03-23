@@ -6,17 +6,46 @@ package dlg;
 
 import dto.LicenciaDTO;
 import dto.PersonaDTO;
-import static entidadesJPA.Licencia_.fechaExpedicion;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.ConsultarLicenciasBO;
+import negocio.RegistroPersonaBO;
+<<<<<<< HEAD
+<<<<<<< HEAD
+import entidadesJPA.Licencia;
+import java.text.ParseException;
+=======
+import static entidadesJPA.Licencia_.fechaExpedicion;
+>>>>>>> 0f4ccde0587068fe2ed7a8d76e567c186878ec59
+=======
+import static entidadesJPA.Licencia_.fechaExpedicion;
+>>>>>>> 0f4ccde0587068fe2ed7a8d76e567c186878ec59
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+<<<<<<< HEAD
+<<<<<<< HEAD
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.ConsultarLicenciasBO;
+import negocio.RegistroPersonaBO;
+=======
+>>>>>>> 0f4ccde0587068fe2ed7a8d76e567c186878ec59
+=======
+>>>>>>> 0f4ccde0587068fe2ed7a8d76e567c186878ec59
 
 /**
  *
  * @author crist
  */
 public class LicenciaDlg extends javax.swing.JDialog {
-
+ List<LicenciaDTO> licencias = new ArrayList<>();
     /**
      * Creates new form LicenciaDlg
      */
@@ -343,7 +372,59 @@ public class LicenciaDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_txtApellidoMaternoActionPerformed
 
     private void siDiscapacidadBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siDiscapacidadBotonActionPerformed
-        // TODO add your handling code here:
+
+            try {
+            // TODO add your handling code here:
+            String fechaNacimientoTexto = txtFechaNaci.getText();
+            
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            
+            Date fechaNacimientoDate = formatoFecha.parse(fechaNacimientoTexto);
+            
+            Calendar fechaNaci = Calendar.getInstance();
+            
+            fechaNaci.setTime(fechaNacimientoDate);
+            
+            PersonaDTO persona = new PersonaDTO(fechaNaci, txtRFC.getText(), txtNombre.getText(), txtApellidoPaterno.getText(), txtApellidoMaterno.getText(), txtTelefono.getText());
+            
+            Calendar fechaExpedicion = Calendar.getInstance();
+            
+            fechaNaci.setTime(fechaNacimientoDate);
+            
+            int vigenciaAnios = Integer.parseInt(txtVigencia.getText());
+            
+            Calendar fechaActual = Calendar.getInstance();
+            
+            Calendar fechaVencimiento = (Calendar) fechaActual.clone();
+            
+            fechaVencimiento.add(Calendar.YEAR, vigenciaAnios);
+            
+            LicenciaDTO licencia = new LicenciaDTO(fechaVencimiento, fechaExpedicion, "Discapacidad", vigenciaAnios, Double.parseDouble(txtPrecio.getText()));
+            
+            RegistroPersonaBO pc = new RegistroPersonaBO();
+
+            ConsultarLicenciasBO cl = new ConsultarLicenciasBO();
+            
+            if (pc.validarPersona(persona)) {
+            licencia.setPersona(persona);
+            licencias.add(licencia);
+            persona.setLicencias(licencias);
+            
+            pD.registrarPersona(persona);
+        }else{
+            
+            licencias = cl.cunsltarLicencias(licencia.getId());
+            licencia.setPersona(persona);
+            licencias.add(licencia);
+            persona.setLicencias(licencias);
+            pD.registrarPersona(persona);
+            
+        }
+        } catch (ParseException ex) {
+            Logger.getLogger(LicenciaDlg.class.getName()).log(Level.SEVERE, "No se pudo guardar", ex);
+        }
+
+
     }//GEN-LAST:event_siDiscapacidadBotonActionPerformed
 
     private void noDiscapacidadBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noDiscapacidadBotonActionPerformed

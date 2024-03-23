@@ -6,7 +6,7 @@ package negocio;
 
 import dto.LicenciaDTO;
 import entidadesJPA.Licencia;
-import static entidadesJPA.Licencia_.id;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

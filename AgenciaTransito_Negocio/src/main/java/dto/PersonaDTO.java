@@ -5,6 +5,7 @@
 package dto;
 
 import java.util.Calendar;
+import java.util.List;
 
 /**
  *
@@ -23,6 +24,8 @@ public class PersonaDTO {
    private String apellidoM;     
 
    private String telefono;
+   
+   private List<LicenciaDTO> licencias;
 
     public PersonaDTO() {
     }
@@ -34,6 +37,14 @@ public class PersonaDTO {
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
         this.telefono = telefono;
+    }
+
+    public List<LicenciaDTO> getLicencias() {
+        return licencias;
+    }
+
+    public void setLicencias(List<LicenciaDTO> licencias) {
+        this.licencias = licencias;
     }
 
 

@@ -78,6 +78,14 @@ public class LicenciaDTO {
         this.tipo = tipo;
     }
 
+    public PersonaDTO getPersona() {
+        return persona;
+    }
+
+    public void setPersona(PersonaDTO persona) {
+        this.persona = persona;
+    }
+
     @Override
     public String toString() {
         return "Licencia{ fechaVencimiento=" + fechaVencimiento + ", fechaExpedicion=" + fechaExpedicion + ", vigencia=" + vigencia + ", costo=" + costo + ", tipo=" + tipo + '}';
