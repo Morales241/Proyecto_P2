@@ -6,11 +6,13 @@ package daos;
 
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -22,6 +24,8 @@ import javax.persistence.criteria.Root;
  */
 public class PersonaDAO implements IPersonaDAO {
 
+    LicenciaDAO LD = new LicenciaDAO();
+    
     EntityManagerFactory emf;
 
     EntityManager em;
@@ -30,28 +34,34 @@ public class PersonaDAO implements IPersonaDAO {
     }
 
     @Override
-    public void registrarPersona(Persona persona) {
+    public void registrarPersona(Persona persona, Licencia licencia) {
+        List<Licencia> licencias = new ArrayList<>();
+        
         emf = Persistence.createEntityManagerFactory("ConexionPU");
 
         em = emf.createEntityManager();
 
         em.getTransaction().begin();
+
+        licencias.add(licencia);
+        
+        persona.setLicencias(licencias);
         
         em.persist(persona);
-        
+
         em.getTransaction().commit();
 
         em.close();
-        
+
         emf.close();
-        
+
     }
 
     @Override
-    public boolean validarPersona(String rfc, String nombre, String apellidoM, String apellidoP) {
+    public boolean validarPersona(String rfc, String nombre, String apellidoP, String apellidoM) {
 
-        List<Persona> personas = null;
-
+        List<Persona> personas = new ArrayList<>();
+        
         emf = Persistence.createEntityManagerFactory("ConexionPU");
 
         em = emf.createEntityManager();
@@ -72,16 +82,32 @@ public class PersonaDAO implements IPersonaDAO {
         personas = em.createQuery(query).getResultList();
 
         em.close();
-        
+
         emf.close();
-        
-        return personas.size() != 0;
+
+        return personas.isEmpty();
     }
 
     @Override
-    public void actualizarPersona(Persona persona) {
+    public void actualizarPersona(Persona persona, Licencia licencia) {
 
+        persona.setLicencias(LD.consultarLicencias(persona.getId()));
+        
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
+
+        em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+
+        licencia.setPersona(persona);
+        persona.getLicencias().add(licencia);
+        em.merge(persona);
+        
+        em.getTransaction().commit();
+
+        em.close();
+
+        emf.close();
     }
 
-    
 }

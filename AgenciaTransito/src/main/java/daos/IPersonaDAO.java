@@ -4,6 +4,7 @@
  */
 package daos;
 
+import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 
 /**
@@ -12,9 +13,9 @@ import entidadesJPA.Persona;
  */
 public interface IPersonaDAO {
     
-    public void registrarPersona(Persona persona);
+    public void registrarPersona(Persona persona, Licencia licencias);
     
-    public boolean validarPersona(String rfc, String nombre, String apellidoM, String apellidoP);
+    public boolean validarPersona(String rfc, String nombre, String apellidoP, String apellidoM);
     
-    public void actualizarPersona(Persona persona);
+    public void actualizarPersona(Persona persona, Licencia licencias);
 }

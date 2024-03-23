@@ -121,7 +121,7 @@ public class Licencia implements Serializable {
 
     @Override
     public String toString() {
-        return "Licencia{" + "id=" + id + ", fechaExpedicion=" + fechaExpedicion + ", fechaVencimiento=" + fechaVencimiento + ", tipo=" + tipo + ", vigencia=" + vigencia + ", costo=" + costo + '}';
+        return "Licencia{" + "id=" + id + ", fechaExpedicion=" + fechaExpedicion.getTime() + ", fechaVencimiento=" + fechaVencimiento.getTime() + ", tipo=" + tipo + ", vigencia=" + vigencia + ", costo=" + costo + '}';
     }
 
    

@@ -47,7 +47,7 @@ public class Persona implements Serializable {
      @Column(name = "telefono", nullable = false, length = 20)
     private String telefono;
 
-    @OneToMany(mappedBy = "persona", cascade= {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "persona", cascade= {CascadeType.PERSIST,CascadeType.MERGE})
     private List<Licencia> licencias;
 
     public Persona() {
@@ -130,11 +130,13 @@ public class Persona implements Serializable {
         this.telefono = telefono;
     }
 
-
     @Override
     public String toString() {
-        return "Persona{" + "id=" + id + ", fechaNaci=" + fechaNaci + ", rfc=" + rfc + ", nombre=" + nombre + ", apellidoP=" + apellidoP + ", apellidoM=" + apellidoM + ", telefono=" + telefono + '}';
+        return "Persona{" + "fechaNaci=" + fechaNaci.getTime() + ", rfc=" + rfc + ", nombre=" + nombre + ", apellidoP=" + apellidoP + ", apellidoM=" + apellidoM + ", telefono=" + telefono + ", licencias=" + licencias + '}';
     }
+
+
+    
 
     
     

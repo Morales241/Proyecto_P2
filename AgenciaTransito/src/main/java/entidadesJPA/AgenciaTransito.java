@@ -33,29 +33,27 @@ public class AgenciaTransito {
         fecha.set(2024, 2, 21);
         
         Calendar fecha3 = Calendar.getInstance();
-        fecha.set(2025, 3, 21);
+        fecha.set(2027, 3, 21);
         
         PersonaDAO pc = new PersonaDAO();
         
         LicenciaDAO lc = new LicenciaDAO();
         
         Persona per = new Persona(fecha,"MORJ040221SA3", "jesus", "Morales", "Rojas", "6441494951");
-        Licencia lic = new Licencia(fecha2, fecha3, "normal", 1, 300.00);
+        Licencia lic = new Licencia(fecha2, fecha3, "normal", 3, 700.00);
         
         if (pc.validarPersona(per.getRfc(), per.getNombre(), per.getApellidoP(), per.getApellidoM())) {
             lic.setPersona(per);
             licencias.add(lic);
             per.setLicencias(licencias);
             
-            pc.registrarPersona(per);
+            pc.registrarPersona(per,lic);
         }else{
             
-            licencias = lc.consultarLicencias(per.getId());
-            lic.setPersona(per);
-            licencias.add(lic);
-            per.setLicencias(licencias);
-            pc.registrarPersona(per);
+            pc.actualizarPersona(per, lic);
             
         }
+        
+        System.out.println(per.toString());
     }
 }
