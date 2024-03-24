@@ -187,7 +187,7 @@ public class LicenciasDlg extends javax.swing.JFrame {
             }
         });
 
-        años.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        años.setModel(new javax.swing.DefaultComboBoxModel<>(new Integer[] { "1", "2", "3" }));
         años.setBackground(new java.awt.Color(182, 0, 0));
         años.setForeground(new java.awt.Color(255, 255, 255));
         años.addActionListener(new java.awt.event.ActionListener() {
