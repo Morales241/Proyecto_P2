@@ -5,10 +5,13 @@
 package dlg;
 
 import Inicio.Inicio;
+import Licencias.ISolicitud_Licencia;
+import Licencias.Solicitud_Licencia;
 import dto.LicenciaDTO;
 import dto.PersonaDTO;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -18,8 +21,9 @@ import javax.swing.JOptionPane;
  */
 public class LicenciasDlg extends javax.swing.JFrame {
 
-    private double precio = 0;
+    private double precio = 600;
 
+    ISolicitud_Licencia SL = new Solicitud_Licencia();
     /**
      * Creates new form LicenciasDlg
      */
@@ -338,77 +342,25 @@ public class LicenciasDlg extends javax.swing.JFrame {
 
     private void aceptarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBotonActionPerformed
         PersonaDTO persona = new PersonaDTO();
-        LicenciaDTO licencia = new LicenciaDTO();
+        
+        
+        
+        LicenciaDTO licencia = new LicenciaDTO(SL.fechaDeExpiracion(Integer.parseInt(String.valueOf(this.años.getSelectedItem()))),
+                Calendar.getInstance(),SL.tipo(si), Integer.parseInt(String.valueOf(this.años.getSelectedItem())), this.precio );
     }//GEN-LAST:event_aceptarBotonActionPerformed
 
     private void noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noActionPerformed
         this.si.setSelected(false);
         
-        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
-            this.txtPrecio.setText("200");
-            this.precio = 200;
-
-        }
-        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected() || (!this.si.isSelected() && !this.no.isSelected())) {
-            this.txtPrecio.setText("600");
-            this.precio = 600;
-
-        }
-        if (2 == Integer.parseInt(String.valueOf( años.getSelectedItem())) && this.si.isSelected()) {
-            this.txtPrecio.setText("500");
-            this.precio = 500;
-
-        }
-        if (2 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
-            this.txtPrecio.setText("900");
-            this.precio = 900;
-
-        }
-        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
-            this.txtPrecio.setText("700");
-            this.precio = 700;
-
-        }
-        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
-            this.txtPrecio.setText("1100");
-
-            this.precio = 1100;
-        }
+        this.txtPrecio.setText(SL.CalcularPrecio(si, no, años));
+        this.precio = Double.parseDouble(SL.CalcularPrecio(si, no, años));
     }//GEN-LAST:event_noActionPerformed
 
     private void siActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siActionPerformed
         this.no.setSelected(false);
         
-        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
-            this.txtPrecio.setText("200");
-            this.precio = 200;
-
-        }
-        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected() || (!this.si.isSelected() && !this.no.isSelected())) {
-            this.txtPrecio.setText("600");
-            this.precio = 600;
-
-        }
-        if (2 == Integer.parseInt(String.valueOf( años.getSelectedItem())) && this.si.isSelected()) {
-            this.txtPrecio.setText("500");
-            this.precio = 500;
-
-        }
-        if (2 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
-            this.txtPrecio.setText("900");
-            this.precio = 900;
-
-        }
-        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
-            this.txtPrecio.setText("700");
-            this.precio = 700;
-
-        }
-        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
-            this.txtPrecio.setText("1100");
-
-            this.precio = 1100;
-        }
+        this.txtPrecio.setText(SL.CalcularPrecio(si, no, años));
+        this.precio = Double.parseDouble(SL.CalcularPrecio(si, no, años));
     }//GEN-LAST:event_siActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -418,36 +370,9 @@ public class LicenciasDlg extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void añosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añosActionPerformed
-        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
-            this.txtPrecio.setText("200");
-            this.precio = 200;
-
-        }
-        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected() || (!this.si.isSelected() && !this.no.isSelected())) {
-            this.txtPrecio.setText("600");
-            this.precio = 600;
-
-        }
-        if (2 == Integer.parseInt(String.valueOf( años.getSelectedItem())) && this.si.isSelected()) {
-            this.txtPrecio.setText("500");
-            this.precio = 500;
-
-        }
-        if (2 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
-            this.txtPrecio.setText("900");
-            this.precio = 900;
-
-        }
-        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
-            this.txtPrecio.setText("700");
-            this.precio = 700;
-
-        }
-        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
-            this.txtPrecio.setText("1100");
-
-            this.precio = 1100;
-        }
+        
+        this.txtPrecio.setText(SL.CalcularPrecio(si, no, años));
+        this.precio = Double.parseDouble(SL.CalcularPrecio(si, no, años));
     }//GEN-LAST:event_añosActionPerformed
 
 //    /**
@@ -488,7 +413,7 @@ public class LicenciasDlg extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.github.lgooddatepicker.components.DatePicker FechaN;
     private javax.swing.JButton aceptarBoton;
-    private javax.swing.JComboBox<String> años;
+    private javax.swing.JComboBox<Integer> años;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -6,6 +6,9 @@ package Licencias;
 
 import dto.LicenciaDTO;
 import dto.PersonaDTO;
+import java.util.Calendar;
+import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -16,4 +19,9 @@ public interface ISolicitud_Licencia {
     
     public boolean SolicitarLicencia(LicenciaDTO licencia, PersonaDTO persona);
     
+    public Calendar fechaDeExpiracion(int op);
+    
+    public String tipo(JRadioButton si);
+    
+    public String CalcularPrecio(JRadioButton si,JRadioButton no, JComboBox años);
 }
