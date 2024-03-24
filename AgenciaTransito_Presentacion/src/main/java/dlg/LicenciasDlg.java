@@ -5,6 +5,11 @@
 package dlg;
 
 import Inicio.Inicio;
+import dto.LicenciaDTO;
+import dto.PersonaDTO;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,11 +18,14 @@ import javax.swing.JOptionPane;
  */
 public class LicenciasDlg extends javax.swing.JFrame {
 
+    private double precio = 0;
+
     /**
      * Creates new form LicenciasDlg
      */
     public LicenciasDlg() {
         initComponents();
+        this.txtPrecio.setText(String.valueOf(precio));
     }
 
     /**
@@ -46,9 +54,9 @@ public class LicenciasDlg extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         aceptarBoton = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        si = new javax.swing.JRadioButton();
+        no = new javax.swing.JRadioButton();
+        años = new javax.swing.JComboBox<>();
         FechaN = new com.github.lgooddatepicker.components.DatePicker();
         jButton1 = new javax.swing.JButton();
 
@@ -157,27 +165,32 @@ public class LicenciasDlg extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton1.setText("SI");
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton1.setToolTipText("");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        si.setText("SI");
+        si.setBackground(new java.awt.Color(255, 255, 255));
+        si.setForeground(new java.awt.Color(0, 0, 0));
+        si.setToolTipText("");
+        si.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                siActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("NO");
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        no.setText("NO");
+        no.setForeground(new java.awt.Color(0, 0, 0));
+        no.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                noActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-        jComboBox1.setBackground(new java.awt.Color(182, 0, 0));
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
+        años.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        años.setBackground(new java.awt.Color(182, 0, 0));
+        años.setForeground(new java.awt.Color(255, 255, 255));
+        años.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                añosActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\tacot\\Documents\\GitHub\\agenciaTransito\\Proyecto_P2\\AgenciaTransito_Presentacion\\src\\main\\imagenes\\regresar.png")); // NOI18N
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
@@ -230,13 +243,13 @@ public class LicenciasDlg extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(años, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton1)
+                        .addComponent(si)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)))
+                        .addComponent(no)))
                 .addGap(40, 40, 40))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,8 +287,8 @@ public class LicenciasDlg extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jRadioButton1)
-                                .addComponent(jRadioButton2))
+                                .addComponent(si)
+                                .addComponent(no))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -294,7 +307,7 @@ public class LicenciasDlg extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1))
+                            .addComponent(años))
                         .addGap(170, 170, 170)))
                 .addComponent(aceptarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 45, Short.MAX_VALUE))
@@ -324,26 +337,118 @@ public class LicenciasDlg extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidoMaternoActionPerformed
 
     private void aceptarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBotonActionPerformed
-        if (this.FechaN.getDate() == null) {
-            JOptionPane.showMessageDialog(null, "sin fecha");
-        }else{
-        JOptionPane.showMessageDialog(null, this.FechaN.getDate());
-        }
+        PersonaDTO persona = new PersonaDTO();
+        LicenciaDTO licencia = new LicenciaDTO();
     }//GEN-LAST:event_aceptarBotonActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        this.jRadioButton1.setSelected(false);
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noActionPerformed
+        this.si.setSelected(false);
+        
+        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
+            this.txtPrecio.setText("200");
+            this.precio = 200;
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        this.jRadioButton2.setSelected(false);
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+        }
+        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected() || (!this.si.isSelected() && !this.no.isSelected())) {
+            this.txtPrecio.setText("600");
+            this.precio = 600;
+
+        }
+        if (2 == Integer.parseInt(String.valueOf( años.getSelectedItem())) && this.si.isSelected()) {
+            this.txtPrecio.setText("500");
+            this.precio = 500;
+
+        }
+        if (2 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
+            this.txtPrecio.setText("900");
+            this.precio = 900;
+
+        }
+        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
+            this.txtPrecio.setText("700");
+            this.precio = 700;
+
+        }
+        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
+            this.txtPrecio.setText("1100");
+
+            this.precio = 1100;
+        }
+    }//GEN-LAST:event_noActionPerformed
+
+    private void siActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siActionPerformed
+        this.no.setSelected(false);
+        
+        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
+            this.txtPrecio.setText("200");
+            this.precio = 200;
+
+        }
+        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected() || (!this.si.isSelected() && !this.no.isSelected())) {
+            this.txtPrecio.setText("600");
+            this.precio = 600;
+
+        }
+        if (2 == Integer.parseInt(String.valueOf( años.getSelectedItem())) && this.si.isSelected()) {
+            this.txtPrecio.setText("500");
+            this.precio = 500;
+
+        }
+        if (2 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
+            this.txtPrecio.setText("900");
+            this.precio = 900;
+
+        }
+        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
+            this.txtPrecio.setText("700");
+            this.precio = 700;
+
+        }
+        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
+            this.txtPrecio.setText("1100");
+
+            this.precio = 1100;
+        }
+    }//GEN-LAST:event_siActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Inicio ini = new Inicio();
         ini.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void añosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añosActionPerformed
+        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
+            this.txtPrecio.setText("200");
+            this.precio = 200;
+
+        }
+        if (1 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected() || (!this.si.isSelected() && !this.no.isSelected())) {
+            this.txtPrecio.setText("600");
+            this.precio = 600;
+
+        }
+        if (2 == Integer.parseInt(String.valueOf( años.getSelectedItem())) && this.si.isSelected()) {
+            this.txtPrecio.setText("500");
+            this.precio = 500;
+
+        }
+        if (2 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
+            this.txtPrecio.setText("900");
+            this.precio = 900;
+
+        }
+        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.si.isSelected()) {
+            this.txtPrecio.setText("700");
+            this.precio = 700;
+
+        }
+        if (3 == Integer.parseInt(String.valueOf(años.getSelectedItem())) && this.no.isSelected()|| (!this.si.isSelected() && !this.no.isSelected())) {
+            this.txtPrecio.setText("1100");
+
+            this.precio = 1100;
+        }
+    }//GEN-LAST:event_añosActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -383,8 +488,8 @@ public class LicenciasDlg extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.github.lgooddatepicker.components.DatePicker FechaN;
     private javax.swing.JButton aceptarBoton;
+    private javax.swing.JComboBox<String> años;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -397,8 +502,8 @@ public class LicenciasDlg extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton no;
+    private javax.swing.JRadioButton si;
     private javax.swing.JTextField txtApellidoMaterno;
     private javax.swing.JTextField txtApellidoPaterno;
     private javax.swing.JTextField txtNombre;
