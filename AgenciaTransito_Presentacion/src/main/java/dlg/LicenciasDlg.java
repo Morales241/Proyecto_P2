@@ -9,9 +9,11 @@ import Licencias.ISolicitud_Licencia;
 import Licencias.Solicitud_Licencia;
 import dto.LicenciaDTO;
 import dto.PersonaDTO;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -24,6 +26,7 @@ public class LicenciasDlg extends javax.swing.JFrame {
     private double precio = 600;
 
     ISolicitud_Licencia SL = new Solicitud_Licencia();
+
     /**
      * Creates new form LicenciasDlg
      */
@@ -341,24 +344,39 @@ public class LicenciasDlg extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidoMaternoActionPerformed
 
     private void aceptarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBotonActionPerformed
-        PersonaDTO persona = new PersonaDTO();
+        LocalDate fecha = this.FechaN.getDate();
+
+        Calendar fechaNanimiento = Calendar.getInstance();
+
+        fechaNanimiento.set(fecha.getYear(), fecha.getMonthValue() - 1, fecha.getDayOfMonth());
         
-        
-        
-        LicenciaDTO licencia = new LicenciaDTO(SL.fechaDeExpiracion(Integer.parseInt(String.valueOf(this.años.getSelectedItem()))),
-                Calendar.getInstance(),SL.tipo(si), Integer.parseInt(String.valueOf(this.años.getSelectedItem())), this.precio );
+        Calendar ahora = Calendar.getInstance();
+
+        PersonaDTO persona = new PersonaDTO(fechaNanimiento, this.txtRFC.getText(), this.txtNombre.getText(),
+                this.txtApellidoPaterno.getText(), this.txtApellidoMaterno.getText(), this.txtTelefono.getText());
+
+        LicenciaDTO licencia = new LicenciaDTO(
+                SL.fechaDeExpiracion(Integer.parseInt(String.valueOf(this.años.getSelectedItem()))),
+                ahora, SL.tipo(si),
+                Integer.parseInt(String.valueOf(this.años.getSelectedItem())), this.precio);
+        SL.SolicitarLicencia(licencia, persona);
+        JOptionPane.showMessageDialog(null, "Se ha tramitado con exito la licen");
+        Inicio ini = new Inicio();
+        ini.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_aceptarBotonActionPerformed
 
     private void noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noActionPerformed
         this.si.setSelected(false);
-        
+
         this.txtPrecio.setText(SL.CalcularPrecio(si, no, años));
         this.precio = Double.parseDouble(SL.CalcularPrecio(si, no, años));
     }//GEN-LAST:event_noActionPerformed
 
     private void siActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siActionPerformed
         this.no.setSelected(false);
-        
+
         this.txtPrecio.setText(SL.CalcularPrecio(si, no, años));
         this.precio = Double.parseDouble(SL.CalcularPrecio(si, no, años));
     }//GEN-LAST:event_siActionPerformed
@@ -370,8 +388,9 @@ public class LicenciasDlg extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void añosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añosActionPerformed
-        
+
         this.txtPrecio.setText(SL.CalcularPrecio(si, no, años));
+
         this.precio = Double.parseDouble(SL.CalcularPrecio(si, no, años));
     }//GEN-LAST:event_añosActionPerformed
 

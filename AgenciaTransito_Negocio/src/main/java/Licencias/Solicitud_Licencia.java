@@ -90,7 +90,7 @@ public class Solicitud_Licencia implements ISolicitud_Licencia {
     @Override
     public String CalcularPrecio(JRadioButton si, JRadioButton no, JComboBox años) {
         
-        int op = Integer.parseInt(String.valueOf(años.getSelectedItem()));
+        int op = (int) años.getSelectedItem();
         
         if (1 ==  op && si.isSelected()) {
             return "200.00";
