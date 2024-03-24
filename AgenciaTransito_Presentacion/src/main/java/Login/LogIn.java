@@ -161,7 +161,7 @@ public class LogIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         Inicio inicio = new Inicio();
         inicio.setVisible(true);
-        
+        this.dispose();
     }//GEN-LAST:event_entrarBotonActionPerformed
 
     /**
