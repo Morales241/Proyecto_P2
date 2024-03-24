@@ -6,6 +6,8 @@ package Login;
 
 import Inicio.Inicio;
 
+
+
 /**
  *
  * @author tacot
@@ -159,7 +161,7 @@ public class LogIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         Inicio inicio = new Inicio();
         inicio.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_entrarBotonActionPerformed
 
     /**

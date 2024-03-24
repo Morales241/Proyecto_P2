@@ -100,9 +100,14 @@ public class PersonaDAO implements IPersonaDAO {
         em.getTransaction().begin();
 
         licencia.setPersona(persona);
-        persona.getLicencias().add(licencia);
-        em.merge(persona);
         
+        em.remove(persona);
+        
+        persona.getLicencias().add(licencia);
+        
+        em.persist(persona);
+        
+        persona.getLicencias().add(licencia);
         em.getTransaction().commit();
 
         em.close();
