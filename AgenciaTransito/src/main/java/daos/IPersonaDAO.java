@@ -18,4 +18,6 @@ public interface IPersonaDAO {
     public boolean validarPersona(String rfc, String nombre, String apellidoP, String apellidoM);
     
     public void actualizarPersona(Persona persona, Licencia licencias);
+    
+    public Persona consultarPersona(String rfc, String nombre, String apellidoP, String apellidoM);
 }

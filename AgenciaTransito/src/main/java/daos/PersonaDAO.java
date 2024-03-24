@@ -25,7 +25,7 @@ import javax.persistence.criteria.Root;
 public class PersonaDAO implements IPersonaDAO {
 
     LicenciaDAO LD = new LicenciaDAO();
-    
+
     EntityManagerFactory emf;
 
     EntityManager em;
@@ -36,7 +36,7 @@ public class PersonaDAO implements IPersonaDAO {
     @Override
     public void registrarPersona(Persona persona, Licencia licencia) {
         List<Licencia> licencias = new ArrayList<>();
-        
+
         emf = Persistence.createEntityManagerFactory("ConexionPU");
 
         em = emf.createEntityManager();
@@ -44,9 +44,9 @@ public class PersonaDAO implements IPersonaDAO {
         em.getTransaction().begin();
 
         licencias.add(licencia);
-        
+
         persona.setLicencias(licencias);
-        
+
         em.persist(persona);
 
         em.getTransaction().commit();
@@ -61,7 +61,7 @@ public class PersonaDAO implements IPersonaDAO {
     public boolean validarPersona(String rfc, String nombre, String apellidoP, String apellidoM) {
 
         List<Persona> personas = new ArrayList<>();
-        
+
         emf = Persistence.createEntityManagerFactory("ConexionPU");
 
         em = emf.createEntityManager();
@@ -91,28 +91,80 @@ public class PersonaDAO implements IPersonaDAO {
     @Override
     public void actualizarPersona(Persona persona, Licencia licencia) {
 
-        persona.setLicencias(LD.consultarLicencias(persona.getId()));
-        
         emf = Persistence.createEntityManagerFactory("ConexionPU");
 
         em = emf.createEntityManager();
 
         em.getTransaction().begin();
 
-        licencia.setPersona(persona);
-        
-        em.remove(persona);
-        
-        persona.getLicencias().add(licencia);
-        
-        em.persist(persona);
-        
-        persona.getLicencias().add(licencia);
+        Persona personaBD = this.consultarPersona(persona.getRfc(), persona.getNombre(), persona.getApellidoP(), persona.getApellidoM());
+
+        licencia.setPersona(personaBD);
+
+        personaBD.getLicencias().add(licencia);
+
+        em.merge(personaBD);
+
         em.getTransaction().commit();
 
         em.close();
 
         emf.close();
+    }
+
+    @Override
+    public Persona consultarPersona(String rfc, String nombre, String apellidoP, String apellidoM) {
+        if (this.emf.isOpen() && this.em.isOpen()) {
+            Persona persona;
+
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+
+            CriteriaQuery<Persona> query = cb.createQuery(Persona.class);
+
+            Root<Persona> personaRoot = query.from(Persona.class);
+
+            Predicate prepre = cb.and((cb.equal(personaRoot.get("rfc"), rfc)),
+                    (cb.equal(personaRoot.get("nombre"), nombre)),
+                    (cb.equal(personaRoot.get("apellidoM"), apellidoM)),
+                    (cb.equal(personaRoot.get("apellidoP"), apellidoP)));
+
+            query.where(prepre);
+
+            persona = em.createQuery(query).getSingleResult();
+
+            persona.setLicencias(LD.consultarLicencias(persona.getId()));
+            return persona;
+
+        } else {
+            emf = Persistence.createEntityManagerFactory("ConexionPU");
+
+            em = emf.createEntityManager();
+            
+            Persona persona;
+
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+
+            CriteriaQuery<Persona> query = cb.createQuery(Persona.class);
+
+            Root<Persona> personaRoot = query.from(Persona.class);
+
+            Predicate prepre = cb.and((cb.equal(personaRoot.get("rfc"), rfc)),
+                    (cb.equal(personaRoot.get("nombre"), nombre)),
+                    (cb.equal(personaRoot.get("apellidoM"), apellidoM)),
+                    (cb.equal(personaRoot.get("apellidoP"), apellidoP)));
+
+            query.where(prepre);
+
+            persona = em.createQuery(query).getSingleResult();
+
+            persona.setLicencias(LD.consultarLicencias(persona.getId()));
+
+            em.close();
+
+            emf.close();
+            return persona;
+        }
+
     }
 
 }

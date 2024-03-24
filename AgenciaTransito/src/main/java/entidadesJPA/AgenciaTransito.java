@@ -54,6 +54,6 @@ public class AgenciaTransito {
             
         }
         
-        System.out.println(per.toString());
+        System.out.println(pc.consultarPersona(per.getRfc(), per.getNombre(), per.getApellidoP(), per.getApellidoM()));
     }
 }
