@@ -30,47 +30,52 @@ public class Solicitud_Licencia implements ISolicitud_Licencia {
     LicenciaDAO lc = new LicenciaDAO();
 
     @Override
-    public void validarDatos(LicenciaDTO licencia, PersonaDTO persona) throws ExcepcionesAT{
+    public void validarDatos(LicenciaDTO licencia, PersonaDTO persona) throws ExcepcionesAT {
         if (licencia == null) {
             throw new ExcepcionesAT("Los campos de la licencia estan vacíos");
         }
-        
+
         if (persona == null) {
             throw new ExcepcionesAT("Los campos de la persona estan vacíos");
         }
-        
-        
+
         Pattern patron = Pattern.compile("^[a-zA-Z\\s]{1,100}$");
-       
+
         Matcher validacion = patron.matcher(persona.getNombre());
-        
-        
+
         if (validacion.matches()) {
             throw new ExcepcionesAT("El nombre solo debe contener espacion, mayusculas y minusculas");
         }
-        
+
         validacion = patron.matcher(persona.getApellidoP());
-        
+
         if (validacion.matches()) {
             throw new ExcepcionesAT("El apellido paterno solo debe contener espacion, mayusculas y minusculas");
         }
-        
+
         validacion = patron.matcher(persona.getApellidoM());
-        
+
         if (validacion.matches()) {
             throw new ExcepcionesAT("El apellido materno solo debe contener espacion, mayusculas y minusculas");
         }
-        
+
         patron = Pattern.compile("^[a-zA-Z]{4}[0-9]{6}([a-zA-Z0-9]{3})?$");
-        
+
         validacion = patron.matcher(persona.getRfc());
-        
+
         if (validacion.matches()) {
             throw new ExcepcionesAT("El formato de RFC no es valido, cheque la imagen de referencia dando clic al boton"
-                    + "que dice ejemplo RFC abajo de la casilla RFC");
+                    + "con la letra F al lado de la casilla RFC");
+        }
+
+        patron = Pattern.compile("^[0-9]{10}$");
+
+        validacion = patron.matcher(persona.getTelefono());
+
+        if (validacion.matches()) {
+            throw new ExcepcionesAT("El telefono solo puede contener numeros");
         }
         
-       
     }
 
     @Override
@@ -112,17 +117,17 @@ public class Solicitud_Licencia implements ISolicitud_Licencia {
     public String tipo(JRadioButton si) {
         if (si.isSelected()) {
             return "Discapacitado";
-        }else{
+        } else {
             return "Normal";
         }
     }
 
     @Override
     public String CalcularPrecio(JRadioButton si, JRadioButton no, JComboBox años) {
-        
+
         int op = (int) años.getSelectedItem();
-        
-        if (1 ==  op && si.isSelected()) {
+
+        if (1 == op && si.isSelected()) {
             return "200.00";
 
         }
@@ -134,7 +139,7 @@ public class Solicitud_Licencia implements ISolicitud_Licencia {
             return "500.00";
 
         }
-        if (2 == op && no.isSelected()|| (!si.isSelected() && !no.isSelected())) {
+        if (2 == op && no.isSelected() || (!si.isSelected() && !no.isSelected())) {
             return "900.00";
 
         }
@@ -142,14 +147,11 @@ public class Solicitud_Licencia implements ISolicitud_Licencia {
             return "700.00";
 
         }
-        if (3 == op && no.isSelected()|| (!si.isSelected() && !no.isSelected())) {
+        if (3 == op && no.isSelected() || (!si.isSelected() && !no.isSelected())) {
             return "1100.00";
         }
-        
+
         return "0.00";
     }
-
-    
-   
 
 }
