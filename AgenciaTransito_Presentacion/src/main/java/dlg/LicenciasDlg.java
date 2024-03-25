@@ -65,7 +65,8 @@ public class LicenciasDlg extends javax.swing.JFrame {
         no = new javax.swing.JRadioButton();
         años = new javax.swing.JComboBox<>();
         FechaN = new com.github.lgooddatepicker.components.DatePicker();
-        jButton1 = new javax.swing.JButton();
+        Regresar = new javax.swing.JButton();
+        Formato = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -190,7 +191,7 @@ public class LicenciasDlg extends javax.swing.JFrame {
             }
         });
 
-        años.setModel(new javax.swing.DefaultComboBoxModel<>(new Integer[] { 1, 2, 3 }));
+        años.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
         años.setBackground(new java.awt.Color(182, 0, 0));
         años.setForeground(new java.awt.Color(255, 255, 255));
         años.addActionListener(new java.awt.event.ActionListener() {
@@ -199,16 +200,21 @@ public class LicenciasDlg extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\tacot\\Documents\\GitHub\\agenciaTransito\\Proyecto_P2\\AgenciaTransito_Presentacion\\src\\main\\imagenes\\regresar.png")); // NOI18N
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setBorder(null);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setFocusPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Regresar.setIcon(new javax.swing.ImageIcon("C:\\Users\\tacot\\Documents\\GitHub\\agenciaTransito\\Proyecto_P2\\AgenciaTransito_Presentacion\\src\\main\\imagenes\\regresar.png")); // NOI18N
+        Regresar.setBackground(new java.awt.Color(255, 255, 255));
+        Regresar.setBorder(null);
+        Regresar.setContentAreaFilled(false);
+        Regresar.setFocusPainted(false);
+        Regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                RegresarActionPerformed(evt);
             }
         });
+
+        Formato.setBackground(new java.awt.Color(182, 0, 0));
+        Formato.setForeground(new java.awt.Color(255, 255, 255));
+        Formato.setText("F");
+        Formato.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -236,13 +242,8 @@ public class LicenciasDlg extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTelefono)
                             .addComponent(FechaN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(51, 51, 51)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -256,8 +257,15 @@ public class LicenciasDlg extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(si)
                         .addGap(18, 18, 18)
-                        .addComponent(no)))
-                .addGap(40, 40, 40))
+                        .addComponent(no))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Formato)))
+                .addGap(11, 11, 11))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -265,7 +273,7 @@ public class LicenciasDlg extends javax.swing.JFrame {
                         .addComponent(aceptarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)))
+                        .addComponent(Regresar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -273,8 +281,8 @@ public class LicenciasDlg extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addComponent(Regresar)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,7 +290,8 @@ public class LicenciasDlg extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Formato))
                         .addGap(2, 2, 2)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -317,7 +326,7 @@ public class LicenciasDlg extends javax.swing.JFrame {
                             .addComponent(años))
                         .addGap(170, 170, 170)))
                 .addComponent(aceptarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 45, Short.MAX_VALUE))
+                .addGap(0, 39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -381,11 +390,11 @@ public class LicenciasDlg extends javax.swing.JFrame {
         this.precio = Double.parseDouble(SL.CalcularPrecio(si, no, años));
     }//GEN-LAST:event_siActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
         Inicio ini = new Inicio();
         ini.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_RegresarActionPerformed
 
     private void añosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añosActionPerformed
 
@@ -431,9 +440,10 @@ public class LicenciasDlg extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.github.lgooddatepicker.components.DatePicker FechaN;
+    private javax.swing.JButton Formato;
+    private javax.swing.JButton Regresar;
     private javax.swing.JButton aceptarBoton;
     private javax.swing.JComboBox<Integer> años;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

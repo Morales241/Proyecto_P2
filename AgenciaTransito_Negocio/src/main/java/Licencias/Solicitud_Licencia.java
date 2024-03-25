@@ -4,6 +4,7 @@
  */
 package Licencias;
 
+import Excepciones.ExcepcionesAT;
 import daos.LicenciaDAO;
 import daos.PersonaDAO;
 import dto.LicenciaDTO;
@@ -13,6 +14,8 @@ import entidadesJPA.Persona;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 
@@ -27,20 +30,47 @@ public class Solicitud_Licencia implements ISolicitud_Licencia {
     LicenciaDAO lc = new LicenciaDAO();
 
     @Override
-    public String validarDatos(LicenciaDTO licencia, PersonaDTO persona) {
-        if (licencia != null && persona != null) {
-
-            if (true) {
-
-            } else {
-
-            }
-        } else {
-
-            return "los datos de la persona o la licencia son nulos";
-
+    public void validarDatos(LicenciaDTO licencia, PersonaDTO persona) throws ExcepcionesAT{
+        if (licencia == null) {
+            throw new ExcepcionesAT("Los campos de la licencia estan vacíos");
         }
-        return "Algo salio terriblemente mal";
+        
+        if (persona == null) {
+            throw new ExcepcionesAT("Los campos de la persona estan vacíos");
+        }
+        
+        
+        Pattern patron = Pattern.compile("^[a-zA-Z\\s]{1,100}$");
+       
+        Matcher validacion = patron.matcher(persona.getNombre());
+        
+        
+        if (validacion.matches()) {
+            throw new ExcepcionesAT("El nombre solo debe contener espacion, mayusculas y minusculas");
+        }
+        
+        validacion = patron.matcher(persona.getApellidoP());
+        
+        if (validacion.matches()) {
+            throw new ExcepcionesAT("El apellido paterno solo debe contener espacion, mayusculas y minusculas");
+        }
+        
+        validacion = patron.matcher(persona.getApellidoM());
+        
+        if (validacion.matches()) {
+            throw new ExcepcionesAT("El apellido materno solo debe contener espacion, mayusculas y minusculas");
+        }
+        
+        patron = Pattern.compile("^[a-zA-Z]{4}[0-9]{6}([a-zA-Z0-9]{3})?$");
+        
+        validacion = patron.matcher(persona.getRfc());
+        
+        if (validacion.matches()) {
+            throw new ExcepcionesAT("El formato de RFC no es valido, cheque la imagen de referencia dando clic al boton"
+                    + "que dice ejemplo RFC abajo de la casilla RFC");
+        }
+        
+       
     }
 
     @Override
@@ -119,6 +149,7 @@ public class Solicitud_Licencia implements ISolicitud_Licencia {
         return "0.00";
     }
 
+    
    
 
 }

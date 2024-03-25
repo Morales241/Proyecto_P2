@@ -4,6 +4,7 @@
  */
 package Licencias;
 
+import Excepciones.ExcepcionesAT;
 import dto.LicenciaDTO;
 import dto.PersonaDTO;
 import java.util.Calendar;
@@ -15,7 +16,7 @@ import javax.swing.JRadioButton;
  * @author tacot
  */
 public interface ISolicitud_Licencia {
-    public String validarDatos(LicenciaDTO licencia, PersonaDTO persona);
+    public void validarDatos(LicenciaDTO licencia, PersonaDTO persona) throws ExcepcionesAT;
     
     public boolean SolicitarLicencia(LicenciaDTO licencia, PersonaDTO persona);
     
