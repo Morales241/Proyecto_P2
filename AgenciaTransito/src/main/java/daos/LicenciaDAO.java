@@ -74,4 +74,31 @@ public class LicenciaDAO implements ILicenciaDAO {
         return licencias;
     }
 
+    @Override
+    public boolean validarLicenciaVigente(Long id) {
+        Licencia licencia = null;
+
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
+
+        em = emf.createEntityManager();
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Licencia> query = cb.createQuery(Licencia.class);
+
+        Root<Licencia> licenciaRoot = query.from(Licencia.class);
+
+        Predicate prepre = cb.equal(licenciaRoot.get("persona").get("id"), id);
+
+        query.where(prepre);
+
+        licencia = em.createQuery(query).getSingleResult();
+        
+        em.close();
+        
+        emf.close();
+        
+        return true;
+    }
+
 }

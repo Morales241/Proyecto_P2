@@ -81,26 +81,37 @@ public class Solicitud_Licencia implements ISolicitud_Licencia {
     @Override
     public boolean SolicitarLicencia(LicenciaDTO lic, PersonaDTO per) {
         List<Licencia> licencias = new ArrayList<>();
+        
         Persona persona = new Persona(per.getFechaNaci(), per.getRfc(), per.getNombre(), per.getApellidoP(), per.getApellidoM(), per.getTelefono());
-        Licencia licencia = new Licencia(lic.getFechaExpedicion(), lic.getFechaVencimiento(), lic.getTipo(), lic.getVigencia(), lic.getCosto());
+        
+        Licencia licencia = new Licencia(lic.getFechaExpedicion(), 
+                lic.getFechaVencimiento(), lic.getTipo(), lic.getVigencia(), lic.getCosto());
 
         if (pc.validarPersona(per.getRfc(), per.getNombre(), per.getApellidoP(), per.getApellidoM())) {
+            
             licencia.setPersona(persona);
+            
             licencias.add(licencia);
+            
             persona.setLicencias(licencias);
 
             pc.registrarPersona(persona, licencia);
+            
             return true;
+            
         } else {
-
+            
+            
+            
             pc.actualizarPersona(persona, licencia);
-            return false;
+            return true;
         }
     }
 
     @Override
     public Calendar fechaDeExpiracion(int op) {
         Calendar fecha = Calendar.getInstance();
+        
         if (op == 1) {
             fecha.add(Calendar.YEAR, 1);
         }

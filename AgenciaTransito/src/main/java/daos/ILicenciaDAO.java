@@ -15,5 +15,7 @@ public interface ILicenciaDAO {
      public void registrarLicencia(Licencia licencia);
      
      public List<Licencia> consultarLicencias(Long id);
+     
+     public boolean validarLicenciaVigente(Long id);
 
 }

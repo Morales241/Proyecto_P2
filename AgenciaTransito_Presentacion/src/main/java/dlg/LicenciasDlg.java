@@ -373,12 +373,14 @@ public class LicenciasDlg extends javax.swing.JFrame {
 
             fechaNanimiento.set(fecha.getYear(), fecha.getMonthValue() - 1, fecha.getDayOfMonth());
 
-            Calendar ahora = Calendar.getInstance();
+            
 
             PersonaDTO persona = new PersonaDTO(fechaNanimiento, this.txtRFC.getText(), this.txtNombre.getText(),
                     this.txtApellidoPaterno.getText(), this.txtApellidoMaterno.getText(),
                     this.txtTelefono.getText());
-
+            
+            Calendar ahora = Calendar.getInstance();
+            
             LicenciaDTO licencia = new LicenciaDTO(
                     SL.fechaDeExpiracion(Integer.parseInt(String.valueOf(this.años.getSelectedItem()))),
                     ahora, SL.tipo(si),
@@ -387,6 +389,7 @@ public class LicenciasDlg extends javax.swing.JFrame {
             //validamos los datos
             SL.validarDatos(licencia, persona);
 
+            //una vez validados los datos hacemos la solicitud
             SL.SolicitarLicencia(licencia, persona);
 
             JOptionPane.showMessageDialog(null, "Se ha tramitado con exito la licencia");
