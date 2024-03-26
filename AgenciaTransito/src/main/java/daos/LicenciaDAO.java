@@ -5,6 +5,7 @@
 package daos;
 
 import entidadesJPA.Licencia;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Logger;
@@ -66,18 +67,19 @@ public class LicenciaDAO implements ILicenciaDAO {
         query.where(prepre);
 
         licencias = em.createQuery(query).getResultList();
-        
+
         em.close();
-        
+
         emf.close();
-        
+
         return licencias;
     }
 
     @Override
     public boolean validarLicenciaVigente(Long id) {
-        Licencia licencia = null;
+        Licencia licencia;
 
+        LocalDate fecha = LocalDate.now();
         emf = Persistence.createEntityManagerFactory("ConexionPU");
 
         em = emf.createEntityManager();
@@ -88,17 +90,26 @@ public class LicenciaDAO implements ILicenciaDAO {
 
         Root<Licencia> licenciaRoot = query.from(Licencia.class);
 
-        Predicate prepre = cb.equal(licenciaRoot.get("persona").get("id"), id);
+        //lo que hago aquí es que traigo la licencia que sea mayor a hoy 
+        //por lo tanto es la que todavía esta vigente
+        Predicate predicate = cb.and(
+                cb.equal(licenciaRoot.get("persona").get("id"), id),
+                cb.greaterThan(licenciaRoot.get("fechaVencimiento").get("YEAR"), fecha.getYear()),
+                cb.greaterThan(licenciaRoot.get("fechaVencimiento").get("MONTH"), fecha.getMonthValue()),
+                cb.greaterThan(licenciaRoot.get("fechaVencimiento").get("DAY"), fecha.getDayOfMonth())
+        );
 
-        query.where(prepre);
+        query.where(predicate);
 
         licencia = em.createQuery(query).getSingleResult();
-        
+
         em.close();
-        
+
         emf.close();
-        
-        return true;
+
+        //ahora si se ah guardado una licencia regresamos true para avisar que si 
+        //tiene una licencia vigente
+        return licencia!=null;
     }
 
 }
