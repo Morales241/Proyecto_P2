@@ -4,6 +4,8 @@
  */
 package Consultas;
 
+import Inicio.Inicio;
+
 /**
  *
  * @author tacot
