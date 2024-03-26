@@ -10,6 +10,7 @@ import Licencias.ISolicitud_Licencia;
 import Licencias.Solicitud_Licencia;
 import dto.LicenciaDTO;
 import dto.PersonaDTO;
+import dto.vigenciaDTO;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -383,8 +384,7 @@ public class LicenciasDlg extends javax.swing.JFrame {
             
             LicenciaDTO licencia = new LicenciaDTO(
                     SL.fechaDeExpiracion(Integer.parseInt(String.valueOf(this.años.getSelectedItem()))),
-                    ahora, SL.tipo(si),
-                    Integer.parseInt(String.valueOf(this.años.getSelectedItem())), this.precio);
+                    ahora, SL.tipo(si),vigenciaDTO.Vigente, this.precio);
 
             //validamos los datos
             SL.validarDatos(licencia, persona);

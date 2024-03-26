@@ -41,7 +41,7 @@ public class Licencia implements Serializable {
     private String tipo;
 
     @Column(name = "vigencia", nullable = false, length = 150)
-    private Integer vigencia;
+    private vigencia Vigencia;
 
     @Column(name = "costo", nullable = false, length = 150)
     private Double costo;
@@ -50,11 +50,11 @@ public class Licencia implements Serializable {
     @JoinColumn(name = "idPersona")
     private Persona persona;
 
-    public Licencia(Calendar fechaExpedicion, Calendar fechaVencimiento, String tipo, Integer vigencia, Double costo) {
+    public Licencia(Calendar fechaExpedicion, Calendar fechaVencimiento, String tipo, String vig, Double costo) {
         this.fechaExpedicion = fechaExpedicion;
         this.fechaVencimiento = fechaVencimiento;
         this.tipo = tipo;
-        this.vigencia = vigencia;
+        this.Vigencia = vigencia.valueOf(vig);
         this.costo = costo;
     }
 
@@ -103,12 +103,12 @@ public class Licencia implements Serializable {
         this.tipo = tipo;
     }
 
-    public Integer getVigencia() {
-        return vigencia;
+    public vigencia getVigencia() {
+        return Vigencia;
     }
 
-    public void setVigencia(Integer vigencia) {
-        this.vigencia = vigencia;
+    public void setVigencia(vigencia vigencia) {
+        this.Vigencia = vigencia;
     }
 
     public Double getCosto() {
@@ -121,7 +121,7 @@ public class Licencia implements Serializable {
 
     @Override
     public String toString() {
-        return "Licencia{" + "id=" + id + ", fechaExpedicion=" + fechaExpedicion.getTime() + ", fechaVencimiento=" + fechaVencimiento.getTime() + ", tipo=" + tipo + ", vigencia=" + vigencia + ", costo=" + costo + '}';
+        return "Licencia{" + "id=" + id + ", fechaExpedicion=" + fechaExpedicion.getTime() + ", fechaVencimiento=" + fechaVencimiento.getTime() + ", tipo=" + tipo + ", vigencia=" + Vigencia + ", costo=" + costo + '}';
     }
 
    

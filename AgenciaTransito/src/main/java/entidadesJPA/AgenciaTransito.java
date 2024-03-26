@@ -40,7 +40,7 @@ public class AgenciaTransito {
         LicenciaDAO lc = new LicenciaDAO();
         
         Persona per = new Persona(fecha,"MORJ040221SA3", "jesus", "Morales", "Rojas", "6441494951");
-        Licencia lic = new Licencia(fecha2, fecha3, "normal", 3, 900.00);
+        Licencia lic = new Licencia(fecha2, fecha3, "normal", vigencia.Vigente.name(), 900.00);
         
         if (pc.validarPersona(per.getRfc(), per.getNombre(), per.getApellidoP(), per.getApellidoM())) {
             lic.setPersona(per);

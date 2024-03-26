@@ -85,7 +85,7 @@ public class Solicitud_Licencia implements ISolicitud_Licencia {
         Persona persona = new Persona(per.getFechaNaci(), per.getRfc(), per.getNombre(), per.getApellidoP(), per.getApellidoM(), per.getTelefono());
         
         Licencia licencia = new Licencia(lic.getFechaExpedicion(), 
-                lic.getFechaVencimiento(), lic.getTipo(), lic.getVigencia(), lic.getCosto());
+                lic.getFechaVencimiento(), lic.getTipo(), lic.getVigencia().name(), lic.getCosto());
 
         if (pc.validarPersona(per.getRfc(), per.getNombre(), per.getApellidoP(), per.getApellidoM())) {
             

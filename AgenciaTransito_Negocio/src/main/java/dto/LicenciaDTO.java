@@ -16,7 +16,7 @@ public class LicenciaDTO {
     
     private Calendar fechaExpedicion;
     
-    private int vigencia;
+    private vigenciaDTO vigencia;
     
     private double costo;
     
@@ -29,7 +29,7 @@ public class LicenciaDTO {
 
     
 
-    public LicenciaDTO(Calendar fechaVencimiento, Calendar fechaExpedicion, String tipo, int vigencia, double costo) {
+    public LicenciaDTO(Calendar fechaVencimiento, Calendar fechaExpedicion, String tipo, vigenciaDTO vigencia, double costo) {
         this.fechaVencimiento = fechaVencimiento;
         this.fechaExpedicion = fechaExpedicion;
         this.vigencia = vigencia;
@@ -54,11 +54,11 @@ public class LicenciaDTO {
         this.fechaExpedicion = fechaExpedicion;
     }
 
-    public int getVigencia() {
+    public vigenciaDTO getVigencia() {
         return vigencia;
     }
 
-    public void setVigencia(int vigencia) {
+    public void setVigencia(vigenciaDTO vigencia) {
         this.vigencia = vigencia;
     }
 

@@ -15,5 +15,5 @@ public interface IconsultasDAO {
     
     public List<Object> consultarHistorialFechaN(String Nombre, String aP, String aM);
     
-    public List<Object> consultarHistorialRFC(String rfc);
+    public List<Object> consultarHistorialCURP(String curp);
 }
