@@ -5,6 +5,7 @@
 package entidadesJPA;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -28,22 +29,22 @@ public class Persona implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "fechaNacimiento", nullable = false)
-    private Calendar fechaNaci;
-   
-    @Column(name = "RFC", nullable = false, length = 150)
-    private String rfc;
     
     @Column(name = "nombre", nullable = false, length = 150)
     private String nombre;
     
     @Column(name = "apellidoPaterno", nullable = false, length = 150)
-    private String apellidoP;
+    private String apellidoPaterno;
    
     @Column(name = "apellidoMaterno", nullable = false, length = 150)
-    private String apellidoM;
-    
+    private String apellidoMaterno;
+
+    @Column(name = "fechaNacimiento", nullable = false)
+    private Calendar fechaNacimiento;
+   
+    @Column(name = "RFC", nullable = false, length = 150)
+    private String RFC;
+ 
      @Column(name = "telefono", nullable = false, length = 20)
     private String telefono;
 
@@ -53,41 +54,33 @@ public class Persona implements Serializable {
     public Persona() {
     }
 
-   
-     
+    public Persona(Long id, String nombre, String apellidoPaterno, String apellidoMaterno, Calendar fechaNacimiento, String RFC, String telefono, List<Licencia> licencias) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.fechaNacimiento = fechaNacimiento;
+        this.RFC = RFC;
+        this.telefono = telefono;
+        this.licencias = new ArrayList<>();
+    }
+
+    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, Calendar fechaNacimiento, String RFC, String telefono) {
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.fechaNacimiento = fechaNacimiento;
+        this.RFC = RFC;
+        this.telefono = telefono;
+        this.licencias = new ArrayList<>();
+    }
+
     public Long getId() {
         return id;
     }
 
-    public Persona(Calendar fechaNaci, String rfc, String nombre, String apellidoP, String apellidoM, String telefono) {
-        this.fechaNaci = fechaNaci;
-        this.rfc = rfc;
-        this.nombre = nombre;
-        this.apellidoP = apellidoP;
-        this.apellidoM = apellidoM;
-        this.telefono = telefono;
-    }
-
-   
-
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Calendar getFechaNaci() {
-        return fechaNaci;
-    }
-
-    public void setFechaNaci(Calendar fechaNaci) {
-        this.fechaNaci = fechaNaci;
-    }
-
-    public String getRfc() {
-        return rfc;
-    }
-
-    public void setRfc(String rfc) {
-        this.rfc = rfc;
     }
 
     public String getNombre() {
@@ -98,28 +91,36 @@ public class Persona implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getApellidoP() {
-        return apellidoP;
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
     }
 
-    public void setApellidoP(String apellidoP) {
-        this.apellidoP = apellidoP;
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
     }
 
-    public String getApellidoM() {
-        return apellidoM;
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
     }
 
-    public void setApellidoM(String apellidoM) {
-        this.apellidoM = apellidoM;
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
     }
 
-    public List<Licencia> getLicencias() {
-        return licencias;
+    public Calendar getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setLicencias(List<Licencia> licencias) {
-        this.licencias = licencias;
+    public void setFechaNacimiento(Calendar fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getRFC() {
+        return RFC;
+    }
+
+    public void setRFC(String RFC) {
+        this.RFC = RFC;
     }
 
     public String getTelefono() {
@@ -130,16 +131,28 @@ public class Persona implements Serializable {
         this.telefono = telefono;
     }
 
-    @Override
-    public String toString() {
-        return "Persona{" + "fechaNaci=" + fechaNaci.getTime() + ", rfc=" + rfc + ", nombre=" + nombre + ", apellidoP=" + apellidoP + ", apellidoM=" + apellidoM + ", telefono=" + telefono + ", licencias=" + licencias + '}';
+    public List<Licencia> getLicencias() {
+        return licencias;
     }
 
-
+    public void setLicencias(List<Licencia> licencias) {
+        this.licencias = licencias;
+    }
+    
+    public void agregarLicencia(Licencia licencia){
+        this.licencias.add(licencia);
+    }
+    
     
 
     
     
-        
+    
+    
+    
+    
+    
+
+   
     
 }

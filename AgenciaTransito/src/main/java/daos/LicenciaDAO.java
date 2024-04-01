@@ -5,6 +5,7 @@
 package daos;
 
 import entidadesJPA.Licencia;
+import entidadesJPA.Persona;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
@@ -24,35 +25,27 @@ import javax.persistence.criteria.Root;
 public class LicenciaDAO implements ILicenciaDAO {
 
     EntityManagerFactory emf;
-
     EntityManager em;
 
     public LicenciaDAO() {
-
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
     }
 
     @Override
     public void registrarLicencia(Licencia licencia) {
-        emf = Persistence.createEntityManagerFactory("ConexionPU");
-
         em = emf.createEntityManager();
-
         em.getTransaction().begin();
 
         em.persist(licencia);
 
         em.getTransaction().commit();
-
         em.close();
-
         emf.close();
     }
 
     @Override
-    public List<Licencia> consultarLicencias(Long id) {
+    public List<Licencia> consultarLicencias(Persona persona) {
         List<Licencia> licencias = null;
-
-        emf = Persistence.createEntityManagerFactory("ConexionPU");
 
         em = emf.createEntityManager();
 
@@ -62,7 +55,7 @@ public class LicenciaDAO implements ILicenciaDAO {
 
         Root<Licencia> licenciaRoot = query.from(Licencia.class);
 
-        Predicate prepre = cb.equal(licenciaRoot.get("persona").get("id"), id);
+        Predicate prepre = cb.equal(licenciaRoot.get("persona").get("id"), persona.getId());
 
         query.where(prepre);
 

@@ -26,8 +26,7 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "licencias")
 public class Licencia implements Serializable {
-
-    
+   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,35 +42,41 @@ public class Licencia implements Serializable {
     @Column(name = "tipo", nullable = false, length = 150)
     private String tipo;
 
-    @Column(name = "vigencia", nullable = false)
-    private vigencia Vigencia;
+    @Column(name = "vigencia", nullable = false, length = 150)
+    private String Vigencia;
 
     @Column(name = "costo", nullable = false, length = 150)
     private Double costo;
+    
+    @Column(name = "estado", nullable = false, length = 150)
+    private String estado;
 
     @ManyToOne
     @JoinColumn(name = "idPersona")
     private Persona persona;
 
-    public Licencia(Calendar fechaExpedicion, Calendar fechaVencimiento, String tipo, String vig, Double costo) {
+    public Licencia() {
+    }
+
+    public Licencia(Calendar fechaExpedicion, Calendar fechaVencimiento, String tipo, String Vigencia, Double costo, String estado, Persona persona) {
         this.fechaExpedicion = fechaExpedicion;
         this.fechaVencimiento = fechaVencimiento;
         this.tipo = tipo;
-        this.Vigencia = vigencia.valueOf(vig);
+        this.Vigencia = Vigencia;
         this.costo = costo;
-    }
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
+        this.estado = estado;
         this.persona = persona;
     }
-    
-    
-    
-    public Licencia() {
+
+    public Licencia(Long id, Calendar fechaExpedicion, Calendar fechaVencimiento, String tipo, String Vigencia, Double costo, String estado, Persona persona) {
+        this.id = id;
+        this.fechaExpedicion = fechaExpedicion;
+        this.fechaVencimiento = fechaVencimiento;
+        this.tipo = tipo;
+        this.Vigencia = Vigencia;
+        this.costo = costo;
+        this.estado = estado;
+        this.persona = persona;
     }
 
     public Long getId() {
@@ -106,12 +111,12 @@ public class Licencia implements Serializable {
         this.tipo = tipo;
     }
 
-    public vigencia getVigencia() {
+    public String getVigencia() {
         return Vigencia;
     }
 
-    public void setVigencia(vigencia vigencia) {
-        this.Vigencia = vigencia;
+    public void setVigencia(String Vigencia) {
+        this.Vigencia = Vigencia;
     }
 
     public Double getCosto() {
@@ -122,11 +127,27 @@ public class Licencia implements Serializable {
         this.costo = costo;
     }
 
-    @Override
-    public String toString() {
-        return "Licencia{" + "id=" + id + ", fechaExpedicion=" + fechaExpedicion.getTime() + ", fechaVencimiento=" + fechaVencimiento.getTime() + ", tipo=" + tipo + ", vigencia=" + Vigencia + ", costo=" + costo + '}';
+    public String getEstado() {
+        return estado;
     }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+    
+    
+    
+    
+
+    
    
     
 }

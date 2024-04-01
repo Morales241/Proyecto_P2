@@ -6,6 +6,8 @@ package daos;
 
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
+import excepciones.ExcepcionAT;
+import java.util.List;
 
 /**
  *
@@ -13,12 +15,14 @@ import entidadesJPA.Persona;
  */
 public interface IPersonaDAO {
     
-    public void registrarPersona(Persona persona, Licencia licencias);
+    public void registrarPersona(Persona persona) throws ExcepcionAT;
     
-    public boolean validarPersona(String rfc, String nombre, String apellidoP, String apellidoM);
+    public void actualizarPersona (Persona persona) throws ExcepcionAT;
     
-    public void actualizarPersona(Persona persona, Licencia licencias);
+    public List<Persona> buscarPersonaPorRFC(String RFC);
     
-    public Persona consultarPersona(String rfc, String nombre, String apellidoP, String apellidoM);
+    public boolean validarPersona(Persona persona);
+    
+    public void registrarListaPersonas(List<Persona> personas) throws ExcepcionAT;
     
 }
