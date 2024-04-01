@@ -4,6 +4,9 @@
  */
 package dto;
 
+import entidadesJPA.Licencia;
+import entidadesJPA.Persona;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -13,15 +16,15 @@ import java.util.List;
  */
 public class PersonaDTO {
        
-   private Calendar fechaNaci;
+   private Calendar fechaNacimiento;
    
-   private String rfc;
+   private String RFC;
    
    private String nombre;
    
-   private String apellidoP;
+   private String apellidoPaterno;
            
-   private String apellidoM;     
+   private String apellidoMaterno;     
 
    private String telefono;
    
@@ -30,38 +33,52 @@ public class PersonaDTO {
     public PersonaDTO() {
     }
 
-    public PersonaDTO(Calendar fechaNaci, String rfc, String nombre, String apellidoP, String apellidoM, String telefono) {
-        this.fechaNaci = fechaNaci;
-        this.rfc = rfc;
+    public PersonaDTO(Calendar fechaNacimiento, String RFC, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, List<LicenciaDTO> licencias) {
+        this.fechaNacimiento = fechaNacimiento;
+        this.RFC = RFC;
         this.nombre = nombre;
-        this.apellidoP = apellidoP;
-        this.apellidoM = apellidoM;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
         this.telefono = telefono;
-    }
-
-    public List<LicenciaDTO> getLicencias() {
-        return licencias;
-    }
-
-    public void setLicencias(List<LicenciaDTO> licencias) {
         this.licencias = licencias;
     }
 
-
-    public Calendar getFechaNaci() {
-        return fechaNaci;
+    public PersonaDTO(Persona persona) {
+        this.fechaNacimiento = persona.getFechaNacimiento();
+        this.RFC = persona.getRFC();
+        this.nombre = persona.getNombre()+" "+persona.getApellidoPaterno()+" "+persona.getApellidoMaterno();
+        this.apellidoPaterno = persona.getApellidoPaterno();
+        this.apellidoMaterno = persona.getApellidoMaterno();
+        this.telefono = persona.getTelefono();
+        
+        licencias= new ArrayList<>();
+        List<Licencia> licenciasPersona= persona.getLicencias();
+        for (Licencia licencia : licenciasPersona) {
+            LicenciaDTO licenciaAux= new LicenciaDTO();
+            licenciaAux.setCosto(licencia.getCosto());
+            licenciaAux.setFechaExpedicion(licencia.getFechaExpedicion());
+            licenciaAux.setFechaVencimiento(licencia.getFechaVencimiento());
+            licenciaAux.setPersona(this);
+            licenciaAux.setTipo(licencia.getTipo());
+            licenciaAux.setEstado(licencia.getEstado());
+            this.licencias.add(licenciaAux);
+        }
     }
 
-    public void setFechaNaci(Calendar fechaNaci) {
-        this.fechaNaci = fechaNaci;
+    public Calendar getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public String getRfc() {
-        return rfc;
+    public void setFechaNacimiento(Calendar fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
-    public void setRfc(String rfc) {
-        this.rfc = rfc;
+    public String getRFC() {
+        return RFC;
+    }
+
+    public void setRFC(String RFC) {
+        this.RFC = RFC;
     }
 
     public String getNombre() {
@@ -72,20 +89,20 @@ public class PersonaDTO {
         this.nombre = nombre;
     }
 
-    public String getApellidoP() {
-        return apellidoP;
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
     }
 
-    public void setApellidoP(String apellidoP) {
-        this.apellidoP = apellidoP;
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
     }
 
-    public String getApellidoM() {
-        return apellidoM;
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
     }
 
-    public void setApellidoM(String apellidoM) {
-        this.apellidoM = apellidoM;
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
     }
 
     public String getTelefono() {
@@ -96,8 +113,13 @@ public class PersonaDTO {
         this.telefono = telefono;
     }
 
-    @Override
-    public String toString() {
-        return "Persona{" + " fechaNaci=" + fechaNaci + ", rfc=" + rfc + ", nombre=" + nombre + ", apellidoP=" + apellidoP + ", apellidoM=" + apellidoM + ", telefono=" + telefono + '}';
+    public List<LicenciaDTO> getLicencias() {
+        return licencias;
     }
+
+    public void setLicencias(List<LicenciaDTO> licencias) {
+        this.licencias = licencias;
+    }
+    
+    
 }
