@@ -26,7 +26,7 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
 
     @Override
     public List<Licencia> cunsltarLicencias(Long ID) {
-     List<Licencia> licencias = null;
+    List<Licencia> licencias = null;
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU");
     EntityManager em = emf.createEntityManager();
 

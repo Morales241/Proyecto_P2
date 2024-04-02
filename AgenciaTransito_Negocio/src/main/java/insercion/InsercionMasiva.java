@@ -90,26 +90,31 @@ public class InsercionMasiva {
         PersonaDAO personaDAO= new PersonaDAO();
         
 //        personaDAO.registrarListaPersonas(personas);
-        personaDAO.registrarPersona(persona1);
-        personaDAO.registrarPersona(persona2);
-        personaDAO.registrarPersona(persona3);
-        personaDAO.registrarPersona(persona4);
-        personaDAO.registrarPersona(persona5);
-        personaDAO.registrarPersona(persona6);
-        personaDAO.registrarPersona(persona7);
-        personaDAO.registrarPersona(persona8);
-        personaDAO.registrarPersona(persona9);
-        personaDAO.registrarPersona(persona10);
-        personaDAO.registrarPersona(persona11);
-        personaDAO.registrarPersona(persona12);
-        personaDAO.registrarPersona(persona13);
-        personaDAO.registrarPersona(persona14);
-        personaDAO.registrarPersona(persona15);
-        personaDAO.registrarPersona(persona16);
-        personaDAO.registrarPersona(persona17);
-        personaDAO.registrarPersona(persona18);
-        personaDAO.registrarPersona(persona19);
-        personaDAO.registrarPersona(persona20);
+
+        for (Persona p : personas) {
+            personaDAO.registrarPersona(p);
+        }
+//        
+//        personaDAO.registrarPersona(persona1);
+//        personaDAO.registrarPersona(persona2);
+//        personaDAO.registrarPersona(persona3);
+//        personaDAO.registrarPersona(persona4);
+//        personaDAO.registrarPersona(persona5);
+//        personaDAO.registrarPersona(persona6);
+//        personaDAO.registrarPersona(persona7);
+//        personaDAO.registrarPersona(persona8);
+//        personaDAO.registrarPersona(persona9);
+//        personaDAO.registrarPersona(persona10);
+//        personaDAO.registrarPersona(persona11);
+//        personaDAO.registrarPersona(persona12);
+//        personaDAO.registrarPersona(persona13);
+//        personaDAO.registrarPersona(persona14);
+//        personaDAO.registrarPersona(persona15);
+//        personaDAO.registrarPersona(persona16);
+//        personaDAO.registrarPersona(persona17);
+//        personaDAO.registrarPersona(persona18);
+//        personaDAO.registrarPersona(persona19);
+//        personaDAO.registrarPersona(persona20);
     }    
     
 }
