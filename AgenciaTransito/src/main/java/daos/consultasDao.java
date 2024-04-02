@@ -29,7 +29,7 @@ public class consultasDao implements IconsultasDAO {
 
         em = emf.createEntityManager();
         
-        String jpql = "SELECT l FROM Licencia l WHERE l.persona.nombre = :nombre AND l.persona.apellidoP = :apellidoP AND l.persona.apellidoM = :apellidoM";
+        String jpql = "SELECT l FROM Licencia l WHERE l.persona.nombre = :nombre AND l.persona.apellidoPaterno = :apellidoP AND l.persona.apellidoMaterno = :apellidoM";
         TypedQuery<Object> query = em.createQuery(jpql, Object.class);
         query.setParameter("nombre", Nombre);
         query.setParameter("apellidoP", aP);

@@ -20,17 +20,14 @@ import javax.persistence.OneToMany;
 @Entity
 public class Automovil extends Vehiculo implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @OneToMany(mappedBy = "automovil")
     private List<Placas> placas;
 
 
-    public Automovil(Long id, List<Placas> placas, String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
+    public Automovil(List<Placas> placas, String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
         super(tipo, numeroSerie, marca, linea, modelo, color);
-        this.id = id;
+        
         this.placas = placas;
     }
 

@@ -143,16 +143,4 @@ public class Persona implements Serializable {
         this.licencias.add(licencia);
     }
     
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-   
-    
 }

@@ -87,9 +87,7 @@ public class LicenciaDAO implements ILicenciaDAO {
         //por lo tanto es la que todavía esta vigente
         Predicate predicate = cb.and(
                 cb.equal(licenciaRoot.get("persona").get("id"), id),
-                cb.greaterThan(licenciaRoot.get("fechaVencimiento").get("YEAR"), fecha.getYear()),
-                cb.greaterThan(licenciaRoot.get("fechaVencimiento").get("MONTH"), fecha.getMonthValue()),
-                cb.greaterThan(licenciaRoot.get("fechaVencimiento").get("DAY"), fecha.getDayOfMonth())
+                cb.greaterThan(licenciaRoot.get("fechaVencimiento"), fecha)
         );
 
         query.where(predicate);
