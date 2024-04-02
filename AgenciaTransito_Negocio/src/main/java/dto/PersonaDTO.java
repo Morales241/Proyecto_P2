@@ -51,6 +51,7 @@ public class PersonaDTO {
         this.apellidoMaterno = persona.getApellidoMaterno();
         this.telefono = persona.getTelefono();
         
+        if(!persona.getLicencias().isEmpty()){
         licencias= new ArrayList<>();
         List<Licencia> licenciasPersona= persona.getLicencias();
         for (Licencia licencia : licenciasPersona) {
@@ -62,6 +63,7 @@ public class PersonaDTO {
             licenciaAux.setTipo(licencia.getTipo());
             licenciaAux.setEstado(licencia.getEstado());
             this.licencias.add(licenciaAux);
+        }
         }
     }
 

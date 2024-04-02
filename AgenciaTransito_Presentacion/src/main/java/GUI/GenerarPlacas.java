@@ -47,7 +47,6 @@ public class GenerarPlacas extends javax.swing.JFrame implements ClipboardOwner 
         txtPlacas.setBackground(new java.awt.Color(182, 0, 0));
         txtPlacas.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         txtPlacas.setForeground(new java.awt.Color(255, 255, 255));
-        txtPlacas.setText("1234");
         txtPlacas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         txtPlacas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +55,6 @@ public class GenerarPlacas extends javax.swing.JFrame implements ClipboardOwner 
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Placas Generadas");
 
         botonCopiar.setBackground(new java.awt.Color(102, 102, 102));
@@ -77,12 +75,11 @@ public class GenerarPlacas extends javax.swing.JFrame implements ClipboardOwner 
         panelPlacasLayout.setHorizontalGroup(
             panelPlacasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlacasLayout.createSequentialGroup()
-                .addContainerGap(191, Short.MAX_VALUE)
+                .addContainerGap(192, Short.MAX_VALUE)
                 .addGroup(panelPlacasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(botonCopiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelPlacasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtPlacas)))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPlacas, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(190, 190, 190))
         );
         panelPlacasLayout.setVerticalGroup(
@@ -114,7 +111,7 @@ public class GenerarPlacas extends javax.swing.JFrame implements ClipboardOwner 
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlacasActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtPlacasActionPerformed
 
     private void botonCopiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCopiarActionPerformed

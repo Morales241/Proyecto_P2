@@ -97,5 +97,33 @@ public class PlacasDAO implements IPlacasDAO{
         //tiene una licencia vigente
         return placa!=null;
     }
+
+    @Override
+    public boolean validarPlacaExistente(String numero) {
+        Placas placa;
+
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Placas> query = cb.createQuery(Placas.class);
+
+        Root<Placas> placasRoot = query.from(Placas.class);
+
+        Predicate predicate = cb.and(
+                cb.equal(placasRoot.get("numero"), numero)
+        );
+
+        query.where(predicate);
+
+        placa = em.createQuery(query).getSingleResult();
+
+        em.close();
+
+        emf.close();
+
+        //ahora si se ah guardado una licencia regresamos true para avisar que si 
+        //tiene una licencia con ese numero
+        return placa!=null;
+    }
     
 }

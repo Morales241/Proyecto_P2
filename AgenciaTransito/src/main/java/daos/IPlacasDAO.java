@@ -18,4 +18,6 @@ public interface IPlacasDAO {
     public List<Placas> consultarPlacas(Automovil auto);
 
     public boolean validarPlacaVigente(Long id);
+    
+    public boolean validarPlacaExistente(String numero);
 }

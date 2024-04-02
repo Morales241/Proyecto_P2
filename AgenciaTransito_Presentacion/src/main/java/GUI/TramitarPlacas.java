@@ -218,7 +218,8 @@ public class TramitarPlacas extends javax.swing.JFrame {
         //validadores
         
         //generar placas 
-        
+        String plate = generateLicensePlate();
+        textField.setText(plate);
         //ver las placas generadas
         this.contenido.removeAll();
         GenerarPlacas placas = new GenerarPlacas();
@@ -265,6 +266,22 @@ public class TramitarPlacas extends javax.swing.JFrame {
                 new TramitarPlacas().setVisible(true);
             }
         });
+    }
+    
+     private String generateLicensePlate() {
+        StringBuilder sb = new StringBuilder();
+        // Generar 3 letras aleatorias
+        for (int i = 0; i < 3; i++) {
+            char letter = (char) ((int) (Math.random() * 26) + 'A');
+            sb.append(letter);
+        }
+        sb.append("-");
+        // Generar 3 dígitos aleatorios
+        for (int i = 0; i < 3; i++) {
+            int digit = (int) (Math.random() * 10);
+            sb.append(digit);
+        }
+        return sb.toString();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -53,7 +53,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="contenido" max="32767" attributes="0"/>
+                      <Component id="contenido" pref="582" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="botonRegresar" min="-2" pref="31" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
@@ -191,12 +191,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonRegresar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\tacot\Documents\GitHub\agenciaTransito\Proyecto_P2\AgenciaTransito_Presentacion\src\main\java\imagenes\regresar.png"/>
-            </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="focusPainted" type="boolean" value="false"/>
