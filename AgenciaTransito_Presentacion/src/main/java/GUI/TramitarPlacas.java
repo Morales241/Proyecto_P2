@@ -223,9 +223,11 @@ public class TramitarPlacas extends javax.swing.JFrame {
         this.contenido.removeAll();
         GenerarPlacas placas = new GenerarPlacas();
         this.contenido.add(placas.traerContenido());
-        
+        placas.posicion(this);
         this.contenido.revalidate();
         this.contenido.repaint();
+        
+        
         
     }//GEN-LAST:event_GenerarPlacasActionPerformed
 

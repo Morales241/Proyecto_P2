@@ -319,6 +319,7 @@ public class TramitarLicencia extends javax.swing.JFrame {
         getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 430));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
