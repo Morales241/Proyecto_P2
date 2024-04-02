@@ -57,6 +57,8 @@ public class RegistroLicenciaBO implements IRegistroLicencia {
             throw new ExcepcionAT("La persona buscada no existe en nuestros registros");
         }
         PersonaDTO personaDTO= new PersonaDTO(persona.get(0));
+        // aquí podemos poner un paso mas para demostrar que la licencia si esta activa, 
+        // recordemos que la persona puede tener muchas licencias
         if(personaDTO.getLicencias()!=null){
             throw new ExcepcionAT("La persona buscada ya cuenta con una licencia activa");
         }
