@@ -37,6 +37,7 @@ public class BusquedaRFC extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
         panelBlanco = new javax.swing.JPanel();
         panelRojo = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -211,10 +212,13 @@ public class BusquedaRFC extends javax.swing.JFrame {
             txtFieldNombre.setText("");
             txtFieldTelefono.setText("");
             txtFieldFecha.setText("");
+            
             personaDTO= registroLicenciaBO.buscarPersonaPorRFC(txtFieldRFC.getText());
+            
             txtFieldNombre.setText(personaDTO.getNombre());
             txtFieldTelefono.setText(personaDTO.getTelefono());
             txtFieldFecha.setText(personaDTO.getFechaNacimiento().getTime().toString());
+            
             botonSiguiente.setVisible(true);
         } catch (Exception ex) {
             botonSiguiente.setVisible(false);
@@ -289,6 +293,7 @@ public class BusquedaRFC extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel panelBlanco;
     private javax.swing.JPanel panelRojo;
     private javax.swing.JTextField txtFieldFecha;

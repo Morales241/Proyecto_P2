@@ -20,9 +20,6 @@ public class TramitarPlacas extends javax.swing.JFrame {
        
         initComponents();
         
-        this.botonAutoN.setContentAreaFilled(false);
-        
-        this.botonAutoU.setContentAreaFilled(false);
     }
     
 
@@ -36,12 +33,11 @@ public class TramitarPlacas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         panelRojo = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtLicencia = new javax.swing.JTextField();
-        botonValidar = new javax.swing.JButton();
         botonAutoU = new javax.swing.JButton();
         botonAutoN = new javax.swing.JButton();
         botonRegresar = new javax.swing.JButton();
+        contenido = new javax.swing.JPanel();
+        GenerarPlacas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -64,7 +60,7 @@ public class TramitarPlacas extends javax.swing.JFrame {
             .addGroup(panelRojoLayout.createSequentialGroup()
                 .addGap(117, 117, 117)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         panelRojoLayout.setVerticalGroup(
             panelRojoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,33 +69,6 @@ public class TramitarPlacas extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Licencia:");
-
-        txtLicencia.setBackground(new java.awt.Color(182, 0, 0));
-        txtLicencia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtLicencia.setForeground(new java.awt.Color(255, 255, 255));
-        txtLicencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        txtLicencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLicenciaActionPerformed(evt);
-            }
-        });
-
-        botonValidar.setBackground(new java.awt.Color(102, 102, 102));
-        botonValidar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        botonValidar.setForeground(new java.awt.Color(255, 255, 255));
-        botonValidar.setText("VALIDAR");
-        botonValidar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        botonValidar.setBorderPainted(false);
-        botonValidar.setFocusPainted(false);
-        botonValidar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonValidarActionPerformed(evt);
-            }
-        });
 
         botonAutoU.setBackground(new java.awt.Color(102, 102, 102));
         botonAutoU.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
@@ -139,6 +108,34 @@ public class TramitarPlacas extends javax.swing.JFrame {
             }
         });
 
+        contenido.setBackground(new java.awt.Color(255, 255, 255));
+        contenido.setForeground(new java.awt.Color(255, 255, 255));
+        contenido.setPreferredSize(new java.awt.Dimension(579, 297));
+
+        javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
+        contenido.setLayout(contenidoLayout);
+        contenidoLayout.setHorizontalGroup(
+            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        contenidoLayout.setVerticalGroup(
+            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 297, Short.MAX_VALUE)
+        );
+
+        GenerarPlacas.setBackground(new java.awt.Color(102, 102, 102));
+        GenerarPlacas.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        GenerarPlacas.setForeground(new java.awt.Color(255, 255, 255));
+        GenerarPlacas.setText("Aceptar");
+        GenerarPlacas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        GenerarPlacas.setBorderPainted(false);
+        GenerarPlacas.setFocusPainted(false);
+        GenerarPlacas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerarPlacasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,42 +144,34 @@ public class TramitarPlacas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(89, 89, 89))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(botonAutoN, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(75, 75, 75)
-                                .addComponent(botonAutoU, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(150, 150, 150))))
+                    .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(405, 405, 405))))
+                        .addGap(36, 36, 36)
+                        .addComponent(botonAutoN, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(botonAutoU, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(195, 195, 195)
+                .addComponent(GenerarPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(panelRojo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonAutoN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonAutoU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAutoU, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAutoN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(GenerarPlacas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -193,40 +182,29 @@ public class TramitarPlacas extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLicenciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLicenciaActionPerformed
-
-    private void botonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonValidarActionPerformed
-
-            JOptionPane.showMessageDialog(null, "Licencia validada con exito");
-        
-            this.botonAutoN.setContentAreaFilled(true);
-            this.botonAutoU.setContentAreaFilled(true);
-            this.LicenciaValida = true;
-        
-            
-    }//GEN-LAST:event_botonValidarActionPerformed
-
     private void botonAutoUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAutoUActionPerformed
-        if (LicenciaValida) {
-           
-            JOptionPane.showMessageDialog(null, "Logica de auto usado");
-        }
+        this.contenido.removeAll();
+        TramiteAutoUsado AutoU = new TramiteAutoUsado();
+        this.contenido.add(AutoU.traerContenido());
+        
+        this.contenido.revalidate();
+        this.contenido.repaint();
     }//GEN-LAST:event_botonAutoUActionPerformed
 
     private void botonAutoNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAutoNActionPerformed
-        if (LicenciaValida) {
-           
-            JOptionPane.showMessageDialog(null, "Logica de auto nuevo");
-        }
+        this.contenido.removeAll();
+        TramiteAutoNuevo AutoN = new TramiteAutoNuevo();
+        this.contenido.add(AutoN.traerContenido());
+        
+        this.contenido.revalidate();
+        this.contenido.repaint();
     }//GEN-LAST:event_botonAutoNActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
@@ -235,6 +213,21 @@ public class TramitarPlacas extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_botonRegresarActionPerformed
+
+    private void GenerarPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarPlacasActionPerformed
+        //validadores
+        
+        //generar placas 
+        
+        //ver las placas generadas
+        this.contenido.removeAll();
+        GenerarPlacas placas = new GenerarPlacas();
+        this.contenido.add(placas.traerContenido());
+        
+        this.contenido.revalidate();
+        this.contenido.repaint();
+        
+    }//GEN-LAST:event_GenerarPlacasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,14 +266,13 @@ public class TramitarPlacas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton GenerarPlacas;
     private javax.swing.JButton botonAutoN;
     private javax.swing.JButton botonAutoU;
     private javax.swing.JButton botonRegresar;
-    private javax.swing.JButton botonValidar;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel contenido;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelRojo;
-    private javax.swing.JTextField txtLicencia;
     // End of variables declaration//GEN-END:variables
 }
