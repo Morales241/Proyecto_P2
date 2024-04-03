@@ -4,6 +4,7 @@
  */
 package dto;
 
+import entidadesJPA.vigencia;
 import java.util.Calendar;
 
 /**
@@ -20,7 +21,7 @@ public class PlacasDTO {
    
     private Calendar fechaRecepcion;
     
-    private vigenciaDTO Vigencia;
+    private vigencia Vigencia;
 
     private AutomovilDTO automovil;
 
@@ -58,11 +59,11 @@ public class PlacasDTO {
         this.fechaRecepcion = fechaRecepcion;
     }
 
-    public vigenciaDTO getVigencia() {
+    public vigencia getVigencia() {
         return Vigencia;
     }
 
-    public void setVigencia(vigenciaDTO Vigencia) {
+    public void setVigencia(vigencia Vigencia) {
         this.Vigencia = Vigencia;
     }
 
@@ -82,7 +83,7 @@ public class PlacasDTO {
         this.persona = persona;
     }
 
-    public PlacasDTO(Long id, String numero, Calendar fechaExpedicion, Calendar fechaRecepcion, vigenciaDTO Vigencia, AutomovilDTO automovil, PersonaDTO persona) {
+    public PlacasDTO(Long id, String numero, Calendar fechaExpedicion, Calendar fechaRecepcion, vigencia Vigencia, AutomovilDTO automovil, PersonaDTO persona) {
         this.id = id;
         this.numero = numero;
         this.fechaExpedicion = fechaExpedicion;
@@ -92,11 +93,12 @@ public class PlacasDTO {
         this.persona = persona;
     }
 
-    public PlacasDTO(String numero, Calendar fechaExpedicion, Calendar fechaRecepcion, vigenciaDTO Vigencia, PersonaDTO persona) {
+    public PlacasDTO(String numero, Calendar fechaExpedicion, Calendar fechaRecepcion, vigencia Vigencia, AutomovilDTO automovil, PersonaDTO persona) {
         this.numero = numero;
         this.fechaExpedicion = fechaExpedicion;
         this.fechaRecepcion = fechaRecepcion;
         this.Vigencia = Vigencia;
+        this.automovil = automovil;
         this.persona = persona;
     }
 

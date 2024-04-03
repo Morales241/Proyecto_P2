@@ -78,8 +78,7 @@ public class PlacasDAO implements IPlacasDAO{
 
         Root<Placas> placasRoot = query.from(Placas.class);
 
-        //lo que hago aquí es que traigo la licencia que sea mayor a hoy 
-        //por lo tanto es la que todavía esta vigente
+        
         Predicate predicate = cb.and(
                 cb.equal(placasRoot.get("idAutomovil"), id),
                 cb.greaterThan(placasRoot.get("fechaRecepcion"), fecha)
@@ -93,8 +92,7 @@ public class PlacasDAO implements IPlacasDAO{
 
         emf.close();
 
-        //ahora si se ah guardado una licencia regresamos true para avisar que si 
-        //tiene una licencia vigente
+     
         return placa!=null;
     }
 
@@ -121,8 +119,7 @@ public class PlacasDAO implements IPlacasDAO{
 
         emf.close();
 
-        //ahora si se ah guardado una licencia regresamos true para avisar que si 
-        //tiene una licencia con ese numero
+        
         return placa!=null;
     }
     

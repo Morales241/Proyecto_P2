@@ -4,10 +4,18 @@
  */
 package negocio;
 
+import dto.AutomovilDTO;
+import dto.PlacasDTO;
+
+
 /**
  *
  * @author crist
  */
-public interface IRegistrarPlacas {
+public interface IRegistroPlacas {
     
+    public String generarPlacas();
+    
+    public void registrarPlacas(PlacasDTO placasDTO, AutomovilDTO automovilDTO);
+
 }

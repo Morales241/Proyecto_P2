@@ -56,6 +56,16 @@ public class Placas implements Serializable {
         this.persona = persona;
     }
 
+    public Placas(String numero, Calendar fechaExpedicion, Calendar fechaRecepcion, vigencia Vigencia, Persona persona) {
+        this.numero = numero;
+        this.fechaExpedicion = fechaExpedicion;
+        this.fechaRecepcion = fechaRecepcion;
+        this.Vigencia = Vigencia;
+        this.persona = persona;
+    }
+    
+    
+
     public String getNumero() {
         return numero;
     }
