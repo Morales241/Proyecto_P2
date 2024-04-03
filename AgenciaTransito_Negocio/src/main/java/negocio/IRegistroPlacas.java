@@ -4,8 +4,10 @@
  */
 package negocio;
 
-import dto.AutomovilDTO;
+
+import dto.PersonaDTO;
 import dto.PlacasDTO;
+import excepciones.ExcepcionAT;
 
 
 /**
@@ -16,6 +18,8 @@ public interface IRegistroPlacas {
     
     public String generarPlacas();
     
-    public void registrarPlacas(PlacasDTO placasDTO, AutomovilDTO automovilDTO);
+    public void registrarPlacas(PlacasDTO placasDTO, PersonaDTO personaDTO);
+    
+     public PersonaDTO buscarPersonaPorRFC(String RFC) throws ExcepcionAT;
 
 }

@@ -4,15 +4,15 @@
  */
 package negocio;
 
+import daos.PersonaDAO;
 import daos.PlacasDAO;
-import dto.AutomovilDTO;
+import dto.PersonaDTO;
 import dto.PlacasDTO;
-import entidadesJPA.Automovil;
+import entidadesJPA.Persona;
 import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
 import java.util.List;
 import java.util.Random;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 public class RegistroPlacasBO implements IRegistroPlacas{
     
     PlacasDAO placasDAO;
-    
+    PersonaDAO personaDAO;
 
     @Override
     public String generarPlacas() {
@@ -44,12 +44,26 @@ public class RegistroPlacasBO implements IRegistroPlacas{
 
         return placas.toString();
     }
-/*
+
     @Override
-    public void registrarPlacas(PlacasDTO placasDTO, AutomovilDTO automovilDTO) {
+    public void registrarPlacas(PlacasDTO placasDTO, PersonaDTO personaDTO){
+        
+        List<Persona> personaLista= personaDAO.buscarPersonaPorRFC(personaDTO.getRFC());
+        Persona persona= personaLista.get(0);
         Placas placas= new Placas(generarPlacas(), placasDTO.getFechaExpedicion(), placasDTO.getFechaRecepcion(),
-                placasDTO.getVigencia());
+                             placasDTO.getVigencia(), persona);
         placasDAO.registrarPlaca(placas);
     }
-    */
+    
+    @Override
+     public PersonaDTO buscarPersonaPorRFC(String RFC) throws ExcepcionAT {
+        List<Persona> persona= personaDAO.buscarPersonaPorRFC(RFC);
+        if(persona==null){
+            throw new ExcepcionAT("La persona buscada no existe en nuestros registros");
+        }
+        PersonaDTO personaDTO= new PersonaDTO(persona.get(0));
+        return personaDTO;
+    }
+    
+    
 }
