@@ -4,14 +4,14 @@
  */
 package negocio;
 
+import dto.AutomovilDTO;
 
-import dto.PersonaDTO;
-import entidadesJPA.Persona;
 
 /**
  *
  * @author crist
  */
-public interface IRegistroPersona {
-    public boolean validarPersona(PersonaDTO persona);
+public interface IRegistroAutomovil {
+    
+    public void registrarAutomovil(AutomovilDTO automovilDTO);
 }

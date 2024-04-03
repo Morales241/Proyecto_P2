@@ -4,12 +4,20 @@
  */
 package GUI;
 
+
+import dto.VehiculoDTO;
+
+
 /**
  *
  * @author tacot
  */
 public class TramiteAutoNuevo extends javax.swing.JFrame {
 
+    
+    VehiculoDTO vehiculoDTO;
+    
+    
     /**
      * Creates new form TramiteAutoNuevo
      */
@@ -17,6 +25,16 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         initComponents();
     }
     
+    public TramiteAutoNuevo(VehiculoDTO vehiculoDTO) {
+        initComponents();
+        this.vehiculoDTO = vehiculoDTO;
+        txtColor.setText(vehiculoDTO.getColor());
+        txtMarca.setText(vehiculoDTO.getMarca());
+        txtModelo.setText(vehiculoDTO.getModelo());
+        txtLinea.setText(vehiculoDTO.getLinea());
+        txtNSerie.setText(vehiculoDTO.getNumeroSerie());
+       
+    }
   
 
     /**
@@ -35,6 +53,8 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtNSerie = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        txtLinea = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,7 +62,6 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         panelAutoNuevo.setPreferredSize(new java.awt.Dimension(579, 297));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Numero de serie:");
 
         txtColor.setBackground(new java.awt.Color(182, 0, 0));
@@ -66,7 +85,6 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Marca:");
 
         txtModelo.setBackground(new java.awt.Color(182, 0, 0));
@@ -80,7 +98,6 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Modelo:");
 
         txtNSerie.setBackground(new java.awt.Color(182, 0, 0));
@@ -94,35 +111,52 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Color:");
+
+        txtLinea.setBackground(new java.awt.Color(182, 0, 0));
+        txtLinea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtLinea.setForeground(new java.awt.Color(255, 255, 255));
+        txtLinea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        txtLinea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLineaActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel9.setText("Linea:");
 
         javax.swing.GroupLayout panelAutoNuevoLayout = new javax.swing.GroupLayout(panelAutoNuevo);
         panelAutoNuevo.setLayout(panelAutoNuevoLayout);
         panelAutoNuevoLayout.setHorizontalGroup(
             panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAutoNuevoLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
+                .addGap(106, 106, 106)
                 .addGroup(panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelAutoNuevoLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(jLabel9)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAutoNuevoLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelAutoNuevoLayout.createSequentialGroup()
+                        .addGroup(panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAutoNuevoLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18))
                             .addGroup(panelAutoNuevoLayout.createSequentialGroup()
+                                .addGap(74, 74, 74)
                                 .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelAutoNuevoLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelAutoNuevoLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(21, 21, 21)))
+                        .addGroup(panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtModelo)
+                            .addComponent(txtNSerie, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
+                    .addGroup(panelAutoNuevoLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelAutoNuevoLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(171, Short.MAX_VALUE))
         );
         panelAutoNuevoLayout.setVerticalGroup(
@@ -138,13 +172,17 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addGroup(panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,7 +195,7 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAutoNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelAutoNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
         );
 
         pack();
@@ -179,6 +217,10 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNSerieActionPerformed
 
+    private void txtLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLineaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLineaActionPerformed
+
     public javax.swing.JPanel traerContenido(){
         return this.panelAutoNuevo;
     }
@@ -189,8 +231,10 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel panelAutoNuevo;
     private javax.swing.JTextField txtColor;
+    private javax.swing.JTextField txtLinea;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNSerie;

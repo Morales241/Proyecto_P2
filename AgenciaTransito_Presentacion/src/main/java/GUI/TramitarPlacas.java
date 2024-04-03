@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class TramitarPlacas extends javax.swing.JFrame {
 
     private boolean LicenciaValida;
+    
     /**
      * Creates new form TamitePlacas
      */
@@ -218,7 +219,7 @@ public class TramitarPlacas extends javax.swing.JFrame {
         //validadores
         
         //generar placas 
-     
+       
         //ver las placas generadas
         this.contenido.removeAll();
         GenerarPlacas placas = new GenerarPlacas();

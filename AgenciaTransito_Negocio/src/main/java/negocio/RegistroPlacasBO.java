@@ -55,6 +55,7 @@ public class RegistroPlacasBO implements IRegistroPlacas{
         placasDAO.registrarPlaca(placas);
     }
     
+    
     @Override
      public PersonaDTO buscarPersonaPorRFC(String RFC) throws ExcepcionAT {
         List<Persona> persona= personaDAO.buscarPersonaPorRFC(RFC);
