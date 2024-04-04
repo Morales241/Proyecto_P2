@@ -278,8 +278,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_botonInsercionPersonasActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
-        Inicio ini = new Inicio();
-        ini.setVisible(true);
+        
+        LogIn login = new LogIn();
+        login.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_botonRegresarActionPerformed

@@ -20,24 +20,12 @@ import javax.persistence.OneToMany;
 @Entity
 public class Automovil extends Vehiculo implements Serializable {
 
-
-    @OneToMany(mappedBy = "automovil")
-    private List<Placas> placas;
-
-
-    public Automovil(List<Placas> placas, String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
-        super(tipo, numeroSerie, marca, linea, modelo, color);
-        
-        this.placas = placas;
+    public Automovil() {
     }
 
-    public Automovil(String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
-        super(tipo, numeroSerie, marca, linea, modelo, color);
+    public Automovil(String tipo, String numeroSerie, String marca, String linea, String modelo, String color, List<Placas> placas, Persona persona) {
+        super(tipo, numeroSerie, marca, linea, modelo, color, placas, persona);
     }
-    
-    
-
-    
     
     
 }

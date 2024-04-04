@@ -73,7 +73,8 @@ public class RegistroLicenciaBO implements IRegistroLicencia {
             return "200.00";
 
         }
-        if (0 == op && no.isSelected()) {
+        
+        if ((0 == op && no.isSelected()) ) {
             return "600.00";
 
         }
@@ -81,7 +82,7 @@ public class RegistroLicenciaBO implements IRegistroLicencia {
             return "500.00";
 
         }
-        if (1 == op && no.isSelected()) {
+        if (1 == op && no.isSelected() ) {
             return "900.00";
 
         }
@@ -89,11 +90,11 @@ public class RegistroLicenciaBO implements IRegistroLicencia {
             return "700.00";
 
         }
-        if (2 == op && no.isSelected()) {
+        if (2 == op && no.isSelected() ) {
             return "1100.00";
         }
 
-        return "0.00";
+        return "600.00";
     }
 
 }

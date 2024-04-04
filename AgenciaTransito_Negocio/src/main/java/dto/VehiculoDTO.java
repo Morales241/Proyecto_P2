@@ -4,6 +4,8 @@
  */
 package dto;
 
+import java.util.List;
+
 /**
  *
  * @author crist
@@ -23,6 +25,33 @@ public class VehiculoDTO {
     private String modelo;
   
     private String color;
+    
+    private List<PlacasDTO> placas;
+    
+   private PersonaDTO persona;
+
+    public VehiculoDTO() {
+    }
+
+    public VehiculoDTO(String tipo, String numeroSerie, String marca, String linea, String modelo, String color, List<PlacasDTO> placas, PersonaDTO persona) {
+        this.tipo = tipo;
+        this.numeroSerie = numeroSerie;
+        this.marca = marca;
+        this.linea = linea;
+        this.modelo = modelo;
+        this.color = color;
+        this.placas = placas;
+        this.persona = persona;
+    }
+
+    public VehiculoDTO(String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
+        this.tipo = tipo;
+        this.numeroSerie = numeroSerie;
+        this.marca = marca;
+        this.linea = linea;
+        this.modelo = modelo;
+        this.color = color;
+    }
 
     public Long getId() {
         return id;
@@ -80,29 +109,21 @@ public class VehiculoDTO {
         this.color = color;
     }
 
-    public VehiculoDTO(String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
-        this.tipo = tipo;
-        this.numeroSerie = numeroSerie;
-        this.marca = marca;
-        this.linea = linea;
-        this.modelo = modelo;
-        this.color = color;
+    public List<PlacasDTO> getPlacas() {
+        return placas;
     }
 
-    public VehiculoDTO(Long id, String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
-        this.id = id;
-        this.tipo = tipo;
-        this.numeroSerie = numeroSerie;
-        this.marca = marca;
-        this.linea = linea;
-        this.modelo = modelo;
-        this.color = color;
+    public void setPlacas(List<PlacasDTO> placas) {
+        this.placas = placas;
     }
 
-    @Override
-    public String toString() {
-        return "VehiculoDTO{" + "id=" + id + ", tipo=" + tipo + ", numeroSerie=" + numeroSerie + ", marca=" + marca + ", linea=" + linea + ", modelo=" + modelo + ", color=" + color + '}';
+    public PersonaDTO getPersona() {
+        return persona;
     }
-    
+
+    public void setPersona(PersonaDTO persona) {
+        this.persona = persona;
+    }
+
     
 }

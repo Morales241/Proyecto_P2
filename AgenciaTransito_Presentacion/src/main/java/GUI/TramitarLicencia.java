@@ -323,8 +323,8 @@ public class TramitarLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
-        BusquedaRFC licencias = new BusquedaRFC();
-        licencias.setVisible(true);
+        Inicio ini = new Inicio();
+        ini.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 

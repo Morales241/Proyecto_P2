@@ -5,12 +5,21 @@
 package dto;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author crist
  */
-public class AutomovilDTO {
-    private List<PlacasDTO> placasDTO;
+public class AutomovilDTO extends VehiculoDTO implements Serializable{
+
+    public AutomovilDTO() {
+    }
+
+    public AutomovilDTO(Long id, String tipo, String numeroSerie, String marca, String linea, String modelo, String color, List<PlacasDTO> placas, PersonaDTO persona) {
+        super(id, tipo, numeroSerie, marca, linea, modelo, color, placas, persona);
+    }
+    
+    
 }

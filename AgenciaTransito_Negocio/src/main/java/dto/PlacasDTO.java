@@ -83,16 +83,8 @@ public class PlacasDTO {
         this.persona = persona;
     }
 
-    public PlacasDTO(Long id, String numero, Calendar fechaExpedicion, Calendar fechaRecepcion, vigencia Vigencia, AutomovilDTO automovil, PersonaDTO persona) {
-        this.id = id;
-        this.numero = numero;
-        this.fechaExpedicion = fechaExpedicion;
-        this.fechaRecepcion = fechaRecepcion;
-        this.Vigencia = Vigencia;
-        this.automovil = automovil;
-        this.persona = persona;
+    public PlacasDTO() {
     }
-
     public PlacasDTO(String numero, Calendar fechaExpedicion, Calendar fechaRecepcion, vigencia Vigencia, AutomovilDTO automovil, PersonaDTO persona) {
         this.numero = numero;
         this.fechaExpedicion = fechaExpedicion;
@@ -101,6 +93,15 @@ public class PlacasDTO {
         this.automovil = automovil;
         this.persona = persona;
     }
+
+    public PlacasDTO(String numero, Calendar fechaExpedicion, Calendar fechaRecepcion, vigencia Vigencia) {
+        this.numero = numero;
+        this.fechaExpedicion = fechaExpedicion;
+        this.fechaRecepcion = fechaRecepcion;
+        this.Vigencia = Vigencia;
+    }
+    
+    
 
     @Override
     public String toString() {

@@ -45,11 +45,14 @@ public class Persona implements Serializable {
     @Column(name = "RFC", nullable = false, length = 150)
     private String RFC;
  
-     @Column(name = "telefono", nullable = false, length = 20)
+    @Column(name = "telefono", nullable = false, length = 20)
     private String telefono;
 
-    @OneToMany(mappedBy = "persona", cascade= {CascadeType.PERSIST,CascadeType.MERGE})
+    @OneToMany(mappedBy = "persona", cascade= {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE})
     private List<Licencia> licencias;
+    
+    @OneToMany(mappedBy = "persona", cascade= {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Vehiculo> vehiculos;
 
     public Persona() {
     }
@@ -63,6 +66,7 @@ public class Persona implements Serializable {
         this.RFC = RFC;
         this.telefono = telefono;
         this.licencias = new ArrayList<>();
+        this.vehiculos = new ArrayList<>();
     }
 
     public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, Calendar fechaNacimiento, String RFC, String telefono) {
@@ -73,6 +77,15 @@ public class Persona implements Serializable {
         this.RFC = RFC;
         this.telefono = telefono;
         this.licencias = new ArrayList<>();
+        this.vehiculos = new ArrayList<>();
+    }
+
+    public List<Vehiculo> getVehiculos() {
+        return vehiculos;
+    }
+
+    public void setVehiculos(List<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
     }
 
     public Long getId() {
