@@ -6,8 +6,11 @@ package daos;
 
 import entidadesJPA.Automovil;
 import entidadesJPA.Placas;
+import entidadesJPA.vigencia;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -29,17 +32,6 @@ public class PlacasDAO implements IPlacasDAO{
         emf = Persistence.createEntityManagerFactory("ConexionPU");
     }
     
-    @Override
-    public void registrarPlaca(Placas placa) {
-        em = emf.createEntityManager();
-        em.getTransaction().begin();
-
-        em.persist(placa);
-
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
-    }
 
     @Override
     public List<Placas> consultarPlacas(Automovil auto) {
@@ -97,7 +89,7 @@ public class PlacasDAO implements IPlacasDAO{
     }
 
     @Override
-    public boolean validarPlacaExistente(String numero) {
+    public boolean validarPlacaExistente(String numero)  {
         Placas placa;
 
 
@@ -107,9 +99,7 @@ public class PlacasDAO implements IPlacasDAO{
 
         Root<Placas> placasRoot = query.from(Placas.class);
 
-        Predicate predicate = cb.and(
-                cb.equal(placasRoot.get("numero"), numero)
-        );
+        Predicate predicate = cb.equal(placasRoot.get("numero"), numero);
 
         query.where(predicate);
 
@@ -119,8 +109,68 @@ public class PlacasDAO implements IPlacasDAO{
 
         emf.close();
 
+        return placa==null;
+    }
+
+    @Override
+    public void cancelarPlaca(String numero) {
+        Placas placa;
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Placas> query = cb.createQuery(Placas.class);
+
+        Root<Placas> placasRoot = query.from(Placas.class);
+
+        Predicate predicate = cb.equal(placasRoot.get("numero"), numero);
+
+        query.where(predicate);
+
+        placa = em.createQuery(query).getSingleResult();
+
+        placa.setVigencia(vigencia.Expirada);
         
-        return placa!=null;
+        em.getTransaction().begin();
+        
+        em.merge(placa);
+        
+        em.getTransaction().commit();
+        
+        em.close();
+
+        emf.close();
+    }
+
+    @Override
+    public Placas generarPlaca() {
+        //primero ponemos nuestro dominio que son las letras del alfabeto
+        String Letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        
+        Random random = new Random();
+
+        String placa = "";
+
+        for (int i = 0; i < 3; i++) {
+            //aqui estamos sacando una posicion random de todas nuestras letras
+            int index = random.nextInt(Letras.length());
+            
+            //aqui simplemente agregamos a nuestra placa la letra de la posicion random
+            //que salió
+            placa += Letras.charAt(index);
+        }
+
+        placa += "-";
+
+        for (int i = 0; i < 3; i++) {
+            //aqui solo elegimos un numero entre el 0 al 9
+            int numero = random.nextInt(10);
+            
+            //y ya solo lo agregamos a nuestra placa
+            placa += numero;
+        }
+
+        
+        return new Placas(placa, Calendar.getInstance(), vigencia.Vigente);
     }
     
 }

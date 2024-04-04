@@ -31,7 +31,7 @@ public class Placas implements Serializable {
     @Column(name = "fechaExpedicion", nullable = false)
     private Calendar fechaExpedicion;
     
-    @Column(name = "fechaRecepcion", nullable = false)
+    @Column(name = "fechaRecepcion", nullable = true)
     private Calendar fechaRecepcion;
     
     @Column(name = "vigencia", nullable = false)
@@ -41,8 +41,6 @@ public class Placas implements Serializable {
     @JoinColumn(name = "idAutomovil")
     private Automovil automovil;
 
-    @ManyToOne
-    private Persona persona;
 
     public Placas() {
     }
@@ -53,19 +51,15 @@ public class Placas implements Serializable {
         this.fechaRecepcion = fechaRecepcion;
         this.Vigencia = Vigencia;
         this.automovil = automovil;
-        this.persona = persona;
     }
 
-    public Placas(String numero, Calendar fechaExpedicion, Calendar fechaRecepcion, vigencia Vigencia, Persona persona) {
+    public Placas(String numero, Calendar fechaExpedicion,  vigencia Vigencia) {
         this.numero = numero;
         this.fechaExpedicion = fechaExpedicion;
-        this.fechaRecepcion = fechaRecepcion;
         this.Vigencia = Vigencia;
-        this.persona = persona;
     }
     
     
-
     public String getNumero() {
         return numero;
     }
@@ -106,14 +100,6 @@ public class Placas implements Serializable {
         this.automovil = automovil;
     }
 
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-    
     
     
     public Long getId() {
@@ -126,7 +112,7 @@ public class Placas implements Serializable {
 
     @Override
     public String toString() {
-        return "Placas{" + "id=" + id + ", numero=" + numero + ", fechaExpedicion=" + fechaExpedicion + ", fechaRecepcion=" + fechaRecepcion + ", Vigencia=" + Vigencia + ", automovil=" + automovil + ", persona=" + persona + '}';
+        return "Placas{" + "id=" + id + ", numero=" + numero + ", fechaExpedicion=" + fechaExpedicion + ", fechaRecepcion=" + fechaRecepcion + ", Vigencia=" + Vigencia + ", automovil=" + automovil  + '}';
     }
  
     

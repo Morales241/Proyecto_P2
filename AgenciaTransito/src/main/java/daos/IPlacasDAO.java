@@ -6,6 +6,7 @@ package daos;
 
 import entidadesJPA.Automovil;
 import entidadesJPA.Placas;
+import excepciones.ExcepcionAT;
 import java.util.List;
 
 /**
@@ -13,11 +14,14 @@ import java.util.List;
  * @author tacot
  */
 public interface IPlacasDAO {
-    public void registrarPlaca(Placas placa);
 
     public List<Placas> consultarPlacas(Automovil auto);
 
     public boolean validarPlacaVigente(Long id);
     
     public boolean validarPlacaExistente(String numero);
+    
+    public void cancelarPlaca(String numero);
+    
+    public Placas generarPlaca();
 }

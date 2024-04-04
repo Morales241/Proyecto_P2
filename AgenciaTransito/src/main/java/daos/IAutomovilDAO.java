@@ -5,8 +5,10 @@
 package daos;
 
 import entidadesJPA.Automovil;
+import entidadesJPA.Persona;
 import entidadesJPA.Placas;
 import entidadesJPA.Vehiculo;
+import excepciones.ExcepcionAT;
 import java.util.List;
 
 /**
@@ -14,8 +16,11 @@ import java.util.List;
  * @author crist
  */
 public interface IAutomovilDAO {
+
+    public String registrarAutoNuevo(Automovil auto, Persona persona);
     
-     public void registrarAutomovil(Automovil automovil);
-     
-     public List<Placas> buscarAutoPorPlacas(String numero);
+    public List<Automovil> consultarAutos(Persona persona);
+    
+    public String registrarAutoUsado(Automovil auto, Persona persona, String placaAnterior) throws ExcepcionAT;
+
 }

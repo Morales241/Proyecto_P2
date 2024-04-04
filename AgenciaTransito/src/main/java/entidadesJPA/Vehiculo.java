@@ -43,7 +43,7 @@ public class Vehiculo implements Serializable {
     private List<Placas> placas;
     
    @ManyToOne
-   @JoinColumn(name = "vehiculo_id")
+   @JoinColumn(name = "idPersona")
    private Persona persona;
     
     public Vehiculo() {

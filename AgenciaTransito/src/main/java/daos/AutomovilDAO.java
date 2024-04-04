@@ -5,13 +5,19 @@
 package daos;
 
 import entidadesJPA.Automovil;
+import entidadesJPA.Persona;
 import entidadesJPA.Placas;
 import entidadesJPA.Vehiculo;
+import excepciones.ExcepcionAT;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -19,49 +25,84 @@ import javax.persistence.TypedQuery;
  */
 public class AutomovilDAO implements IAutomovilDAO {
 
+    PlacasDAO placasDao = new PlacasDAO();
+    
     EntityManagerFactory emf;
     EntityManager em;
 
     public AutomovilDAO() {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
-    }
-
-    @Override
-    public void registrarAutomovil(Automovil automovil) {
         em = emf.createEntityManager();
-        em.getTransaction().begin();
-
-        em.persist(automovil);
-
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
     }
 
     @Override
-    public List<Placas> buscarAutoPorPlacas(String numero) {
-       try {
-            em = emf.createEntityManager();
-            em.getTransaction().begin();
+    public String registrarAutoNuevo(Automovil auto, Persona persona) {
+        Placas placa = placasDao.generarPlaca();
+        
+        em.getTransaction().begin();
+        
+        auto.setPersona(persona);
+        
+        placa.setAutomovil(auto);
+        
+        auto.getPlacas().add(placa);
+        
+        persona.getVehiculos().add(auto);
+        
+        em.merge(persona);
+        
+        em.getTransaction().commit();
+        
+        return placa.getNumero();
+        
+    }
 
-            String jpql3 = "SELECT p FROM Persona p WHERE p.RFC = :rfc";
+    @Override
+    public List<Automovil> consultarAutos(Persona persona) {
 
-            TypedQuery<Placas> query = em.createQuery(jpql3, Placas.class);
-            query.setParameter("numero", numero);
-            List<Placas> placas = query.getResultList();
+        List<Automovil> autos;
+        
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        
+        CriteriaQuery<Automovil> cq = cb.createQuery(Automovil.class);
+        
+        Root<Automovil> autoRoot = cq.from(Automovil.class);
+        
+        Predicate autoPredicate = cb.equal(autoRoot.get("idPersona"), persona.getId());
+        
+        cq.where(autoPredicate);
+        
+        autos = em.createQuery(cq).getResultList();
+        
+        return autos;
+    }
 
-            em.getTransaction().commit();
-            em.close();
-            
-            if(!placas.isEmpty()){
-                return placas;
-            }else{
-                return null;
-            }
-        } catch (Exception e) {
-            System.out.println(e.getCause());
-            System.out.println(e.getLocalizedMessage());
-            return null;
-        }   }
+    @Override
+    public String registrarAutoUsado(Automovil auto, Persona persona, String placaAnterior) throws ExcepcionAT {
+        
+        if (placasDao.validarPlacaExistente(placaAnterior)) {
+            throw new ExcepcionAT("La placa ingresada no esta registrada en este automovil");
+        }
+        
+        Placas placa = placasDao.generarPlaca();
+        placasDao.cancelarPlaca(placaAnterior);
+        
+        em.getTransaction().begin();
+        
+        auto.setPersona(persona);
+        
+        placa.setAutomovil(auto);
+        
+        auto.getPlacas().add(placa);
+        
+        persona.getVehiculos().add(auto);
+        
+        em.merge(persona);
+        
+        em.getTransaction().commit();
+        
+        return placa.getNumero();
+    }
+
 
 }
