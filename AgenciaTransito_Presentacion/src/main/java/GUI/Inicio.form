@@ -212,6 +212,9 @@
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
@@ -253,7 +256,7 @@
               <Color blue="0" green="0" red="b6" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\tacot\Documents\GitHub\agenciaTransito\Proyecto_P2\AgenciaTransito_Presentacion\src\main\java\imagenes\grupo.png"/>
+              <Image iconType="3" name="/imagenes/grupo.png"/>
             </Property>
           </Properties>
           <Events>
@@ -263,7 +266,7 @@
         <Component class="javax.swing.JButton" name="licenciasBoton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\tacot\Documents\GitHub\agenciaTransito\Proyecto_P2\AgenciaTransito_Presentacion\src\main\java\imagenes\licenciaBoton.png"/>
+              <Image iconType="3" name="/imagenes/licenciaBoton.png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
@@ -274,7 +277,7 @@
         <Component class="javax.swing.JButton" name="placasBoton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\tacot\Documents\GitHub\agenciaTransito\Proyecto_P2\AgenciaTransito_Presentacion\src\main\java\imagenes\placasBoton.png"/>
+              <Image iconType="3" name="/imagenes/placasBoton.png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
@@ -285,7 +288,7 @@
         <Component class="javax.swing.JButton" name="tramitesBoton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\tacot\Documents\GitHub\agenciaTransito\Proyecto_P2\AgenciaTransito_Presentacion\src\main\java\imagenes\tramitesBoton.png"/>
+              <Image iconType="3" name="/imagenes/tramitesBoton.png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
@@ -295,9 +298,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
@@ -310,12 +310,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonRegresar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\tacot\Documents\GitHub\agenciaTransito\Proyecto_P2\AgenciaTransito_Presentacion\src\main\java\imagenes\regresar.png"/>
-            </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="focusPainted" type="boolean" value="false"/>

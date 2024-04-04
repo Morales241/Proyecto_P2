@@ -79,6 +79,11 @@ public class Inicio extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
@@ -95,14 +100,14 @@ public class Inicio extends javax.swing.JFrame {
         jLabel4.setText("Documentación");
 
         botonInsercionPersonas.setBackground(new java.awt.Color(182, 0, 0));
-        botonInsercionPersonas.setIcon(new javax.swing.ImageIcon("C:\\Users\\tacot\\Documents\\GitHub\\agenciaTransito\\Proyecto_P2\\AgenciaTransito_Presentacion\\src\\main\\java\\imagenes\\grupo.png")); // NOI18N
+        botonInsercionPersonas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/grupo.png"))); // NOI18N
         botonInsercionPersonas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonInsercionPersonasActionPerformed(evt);
             }
         });
 
-        licenciasBoton.setIcon(new javax.swing.ImageIcon("C:\\Users\\tacot\\Documents\\GitHub\\agenciaTransito\\Proyecto_P2\\AgenciaTransito_Presentacion\\src\\main\\java\\imagenes\\licenciaBoton.png")); // NOI18N
+        licenciasBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/licenciaBoton.png"))); // NOI18N
         licenciasBoton.setContentAreaFilled(false);
         licenciasBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +115,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        placasBoton.setIcon(new javax.swing.ImageIcon("C:\\Users\\tacot\\Documents\\GitHub\\agenciaTransito\\Proyecto_P2\\AgenciaTransito_Presentacion\\src\\main\\java\\imagenes\\placasBoton.png")); // NOI18N
+        placasBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/placasBoton.png"))); // NOI18N
         placasBoton.setContentAreaFilled(false);
         placasBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +123,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        tramitesBoton.setIcon(new javax.swing.ImageIcon("C:\\Users\\tacot\\Documents\\GitHub\\agenciaTransito\\Proyecto_P2\\AgenciaTransito_Presentacion\\src\\main\\java\\imagenes\\tramitesBoton.png")); // NOI18N
+        tramitesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tramitesBoton.png"))); // NOI18N
         tramitesBoton.setContentAreaFilled(false);
         tramitesBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +131,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setBorder(null);
         jButton5.setContentAreaFilled(false);
         jButton5.setFocusPainted(false);
@@ -136,8 +140,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
-        botonRegresar.setIcon(new javax.swing.ImageIcon("C:\\Users\\tacot\\Documents\\GitHub\\agenciaTransito\\Proyecto_P2\\AgenciaTransito_Presentacion\\src\\main\\java\\imagenes\\regresar.png")); // NOI18N
         botonRegresar.setBorderPainted(false);
         botonRegresar.setContentAreaFilled(false);
         botonRegresar.setFocusPainted(false);
@@ -284,6 +286,10 @@ public class Inicio extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_botonRegresarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
