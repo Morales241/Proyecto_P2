@@ -21,9 +21,10 @@ public class RegistroAutomovilBO implements IRegistroAutomovil{
     
     @Override
     public void registrarAutomovil(AutomovilDTO automovilDTO) {
-        Automovil automovil = new Automovil("Nuevo", vehiculoDTO.getNumeroSerie(), vehiculoDTO.getMarca(), vehiculoDTO.getLinea(),
-                vehiculoDTO.getModelo(), vehiculoDTO.getColor());
-        automovilDAO.registrarAutomovil(automovil); 
+        //mañana lo hago desde la raiz sjsjjs
+//        Automovil automovil = new Automovil("Nuevo", vehiculoDTO.getNumeroSerie(), vehiculoDTO.getMarca(), vehiculoDTO.getLinea(),
+//                vehiculoDTO.getModelo(), vehiculoDTO.getColor());
+//        automovilDAO.registrarAutomovil(automovil); 
     }
     
 }
