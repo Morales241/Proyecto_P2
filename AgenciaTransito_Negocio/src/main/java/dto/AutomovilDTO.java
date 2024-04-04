@@ -17,9 +17,13 @@ public class AutomovilDTO extends VehiculoDTO implements Serializable{
     public AutomovilDTO() {
     }
 
-    public AutomovilDTO(Long id, String tipo, String numeroSerie, String marca, String linea, String modelo, String color, List<PlacasDTO> placas, PersonaDTO persona) {
-        super(id, tipo, numeroSerie, marca, linea, modelo, color, placas, persona);
+    public AutomovilDTO(String tipo, String numeroSerie, String marca, String linea, String modelo, String color, List<PlacasDTO> placas, PersonaDTO persona) {
+        super(tipo, numeroSerie, marca, linea, modelo, color, placas, persona);
     }
-    
+
+    public AutomovilDTO(String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
+        super(tipo, numeroSerie, marca, linea, modelo, color);
+    }
+
     
 }
