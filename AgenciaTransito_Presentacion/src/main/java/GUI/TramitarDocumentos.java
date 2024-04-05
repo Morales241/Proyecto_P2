@@ -36,6 +36,7 @@ public class TramitarDocumentos extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         botonRegresar = new javax.swing.JButton();
+        BotonesSeleccion = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +85,9 @@ public class TramitarDocumentos extends javax.swing.JFrame {
         jButton1.setContentAreaFilled(false);
         jButton1.setFocusPainted(false);
 
+        contenido.setBackground(new java.awt.Color(255, 255, 255));
+        contenido.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
         contenido.setLayout(contenidoLayout);
         contenidoLayout.setHorizontalGroup(
@@ -114,6 +118,20 @@ public class TramitarDocumentos extends javax.swing.JFrame {
             }
         });
 
+        BotonesSeleccion.setBackground(new java.awt.Color(255, 255, 255));
+        BotonesSeleccion.setPreferredSize(new java.awt.Dimension(540, 55));
+
+        javax.swing.GroupLayout BotonesSeleccionLayout = new javax.swing.GroupLayout(BotonesSeleccion);
+        BotonesSeleccion.setLayout(BotonesSeleccionLayout);
+        BotonesSeleccionLayout.setHorizontalGroup(
+            BotonesSeleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        BotonesSeleccionLayout.setVerticalGroup(
+            BotonesSeleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 55, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -121,9 +139,6 @@ public class TramitarDocumentos extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(botonRegresar)
@@ -134,7 +149,12 @@ public class TramitarDocumentos extends javax.swing.JFrame {
                         .addGap(112, 112, 112)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotonesSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -153,7 +173,9 @@ public class TramitarDocumentos extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)))
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
+                .addComponent(BotonesSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 26, Short.MAX_VALUE))
         );
@@ -174,7 +196,17 @@ public class TramitarDocumentos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reportesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesBotonActionPerformed
-        // TODO add your handling code here:
+        
+        this.BotonesSeleccion.removeAll();
+        
+        ReporteSeleccionarBusqueda botonesBusqueda = new ReporteSeleccionarBusqueda();
+        
+        botonesBusqueda.posicion(this);
+        
+        this.BotonesSeleccion.add(botonesBusqueda.traerContenido());
+        
+        this.BotonesSeleccion.revalidate();
+        this.BotonesSeleccion.repaint();
     }//GEN-LAST:event_reportesBotonActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
@@ -220,8 +252,9 @@ public class TramitarDocumentos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BotonesSeleccion;
     private javax.swing.JButton botonRegresar;
-    private javax.swing.JPanel contenido;
+    public javax.swing.JPanel contenido;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

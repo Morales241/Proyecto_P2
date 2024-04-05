@@ -200,8 +200,8 @@ public class TramitarPlacas extends javax.swing.JFrame {
 
     private void botonAutoNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAutoNActionPerformed
         this.contenido.removeAll();
-        TramiteAutoNuevo AutoN = new TramiteAutoNuevo();
-        this.contenido.add(AutoN.traerContenido());
+        TramiteAutoNuevo autoN = new TramiteAutoNuevo();
+        this.contenido.add(autoN.traerContenido());
         
         this.contenido.revalidate();
         this.contenido.repaint();
