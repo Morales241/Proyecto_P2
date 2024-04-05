@@ -71,6 +71,8 @@ public class ConsultasNombre extends javax.swing.JFrame {
         jLabel2.setText("su existencia en los registros");
 
         txtNombre.setBackground(new java.awt.Color(182, 0, 0));
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         txtNombre.setCaretColor(new java.awt.Color(255, 255, 255));
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +165,6 @@ public class ConsultasNombre extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void buscarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBotonActionPerformed
-        
             
         try {
             // TODO add your handling code here:

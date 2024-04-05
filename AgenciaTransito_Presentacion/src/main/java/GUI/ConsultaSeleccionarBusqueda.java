@@ -71,12 +71,12 @@ public class ConsultaSeleccionarBusqueda extends javax.swing.JFrame {
         consultasBusquedaPanelLayout.setHorizontalGroup(
             consultasBusquedaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, consultasBusquedaPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(buscarNombreBoton)
-                .addGap(30, 30, 30)
+                .addGap(37, 37, 37)
                 .addComponent(buscarCurpBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                .addGap(28, 28, 28)
-                .addComponent(buscarFechaNBoton)
-                .addGap(15, 15, 15))
+                .addGap(30, 30, 30)
+                .addComponent(buscarFechaNBoton))
         );
         consultasBusquedaPanelLayout.setVerticalGroup(
             consultasBusquedaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +108,13 @@ public class ConsultaSeleccionarBusqueda extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarFechaNBotonActionPerformed
 
     private void buscarCurpBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarCurpBotonActionPerformed
-        // TODO add your handling code here:
+
+         principal.contenido.removeAll();
+        ConsultasCurp busquedaCurp = new ConsultasCurp();
+        principal.contenido.add(busquedaCurp.traerContenido());
+        
+        principal.contenido.revalidate();
+        principal.contenido.repaint();
     }//GEN-LAST:event_buscarCurpBotonActionPerformed
 
     private void buscarNombreBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNombreBotonActionPerformed
