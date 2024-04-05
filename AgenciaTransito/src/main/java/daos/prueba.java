@@ -14,7 +14,7 @@ public class prueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        consultasDao c = new consultasDao();
+        ConsultasDAO c = new ConsultasDAO();
         
         
         for (Object o: c.consultarHistorialNombre("Jesus", "Morales", "Rojas")){

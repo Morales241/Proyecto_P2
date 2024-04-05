@@ -4,9 +4,11 @@
  */
 package negocio;
 
-import dto.LicenciaDTO;
+import daos.ConsultasDAO;
 import entidadesJPA.Licencia;
-
+import entidadesJPA.Persona;
+import entidadesJPA.Placas;
+import excepciones.ExcepcionAT;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,8 +24,13 @@ import javax.persistence.criteria.Root;
  */
 public class ConsultarLicenciasBO implements IconsultarLicencias{
 
-  
+    ConsultasDAO consultasDAO;
 
+    public ConsultarLicenciasBO() {
+       consultasDAO = new ConsultasDAO();
+    }
+    
+    
     @Override
     public List<Licencia> cunsltarLicencias(Long ID) {
     List<Licencia> licencias = null;
@@ -49,6 +56,45 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
     }
 
     return licencias;
+    }
+
+    @Override
+    public List<Placas> obtenerPlacasDePersona(Persona persona) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Licencia> obtenerLicencias(Persona persona) throws ExcepcionAT {
+        try {
+            List<Licencia> licencias = consultasDAO.obtenerLicencias(persona);
+            if (licencias.isEmpty()) {
+                throw new ExcepcionAT("La persona buscada no tiene licencias registradas.");
+            }
+            return licencias;
+        } catch (Exception e) {
+            throw new ExcepcionAT("Error al obtener las licencias de la persona.", e);
+        }
+    }
+
+    @Override
+    public List<Persona> consultarPorNombre(String Nombre) throws ExcepcionAT  {
+        if (consultasDAO == null) {
+    throw new IllegalStateException("El objeto consultasDAO no ha sido inicializado correctamente.");
+}
+
+        if (this.consultasDAO == null) {
+            throw new IllegalStateException("El objeto consultasDAO no ha sido inicializado correctamente.");
+        }
+        try {
+            List<Persona> persona = consultasDAO.consultarPorNombre(Nombre);
+            if (persona.isEmpty()) {
+                throw new ExcepcionAT("La persona buscada no esta registradas.");
+            }
+            return persona;
+        } catch (Exception e) {
+             e.printStackTrace(); 
+            throw new ExcepcionAT("Error al obtener la persona.", e);
+        }  
     }
 
     

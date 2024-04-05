@@ -4,16 +4,25 @@
  */
 package daos;
 
+import entidadesJPA.Licencia;
+import entidadesJPA.Persona;
+import entidadesJPA.Placas;
 import java.util.List;
 
 /**
  *
  * @author tacot
  */
-public interface IconsultasDAO {
+public interface IConsultasDAO {
     public List<Object> consultarHistorialNombre(String Nombre, String aP, String aM);
     
     public List<Object> consultarHistorialFechaN(String Nombre, String aP, String aM);
     
     public List<Object> consultarHistorialCURP(String curp);
+    
+    public List<Placas> obtenerPlacasDePersona(Persona persona);
+    
+    public List<Licencia> obtenerLicencias(Persona persona);
+    
+    public List<Persona> consultarPorNombre(String Nombre);
 }

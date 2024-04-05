@@ -4,6 +4,9 @@
  */
 package daos;
 
+import entidadesJPA.Licencia;
+import entidadesJPA.Persona;
+import entidadesJPA.Placas;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,13 +17,13 @@ import javax.persistence.TypedQuery;
  *
  * @author tacot
  */
-public class consultasDao implements IconsultasDAO {
+public class ConsultasDAO implements IConsultasDAO {
 
     EntityManagerFactory emf;
 
     EntityManager em;
 
-    public consultasDao() {
+    public ConsultasDAO() {
     }
 
     @Override
@@ -62,4 +65,42 @@ public class consultasDao implements IconsultasDAO {
         query.setParameter("rfc", curp);
         return query.getResultList();
     }
+
+    @Override
+    public List<Placas> obtenerPlacasDePersona(Persona persona) {
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
+
+        em = emf.createEntityManager();
+        
+        String jpql = "SELECT p FROM Placas p WHERE p.automovil.propietario = :persona";
+        TypedQuery<Placas> query = em.createQuery(jpql, Placas.class);
+        query.setParameter("persona", persona);
+        return query.getResultList();
+
+    }
+
+    @Override
+    public List<Licencia> obtenerLicencias(Persona persona) {
+       emf = Persistence.createEntityManagerFactory("ConexionPU");
+
+        em = emf.createEntityManager();
+        
+        String jpql = "SELECT l FROM Licencia l WHERE l.persona = :persona";
+        TypedQuery<Licencia> query = em.createQuery(jpql, Licencia.class);
+        query.setParameter("persona", persona);
+        return query.getResultList();
+    }
+    
+     @Override
+    public List<Persona> consultarPorNombre(String Nombre) {
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
+
+        em = emf.createEntityManager();
+        
+        String jpql = "SELECT p FROM Persona p WHERE p.nombre LIKE :nombre";
+        TypedQuery<Persona> query = em.createQuery(jpql, Persona.class);
+        query.setParameter("nombre", "%" + Nombre + "%");
+        return query.getResultList();
+    }
+
 }

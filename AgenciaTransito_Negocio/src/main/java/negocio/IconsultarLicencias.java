@@ -5,7 +5,11 @@
 package negocio;
 
 
+import dto.PersonaDTO;
 import entidadesJPA.Licencia;
+import entidadesJPA.Persona;
+import entidadesJPA.Placas;
+import excepciones.ExcepcionAT;
 import java.util.List;
 
 /**
@@ -14,4 +18,10 @@ import java.util.List;
  */
 public interface IconsultarLicencias {
     public List<Licencia> cunsltarLicencias(Long ID);
+    
+    public List<Placas> obtenerPlacasDePersona(Persona persona);
+    
+    public List<Licencia> obtenerLicencias(Persona persona)throws ExcepcionAT;
+    
+    public List<Persona> consultarPorNombre(String Nombre)throws ExcepcionAT ;
 }
