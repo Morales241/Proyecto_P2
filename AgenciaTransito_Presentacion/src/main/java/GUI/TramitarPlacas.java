@@ -97,7 +97,6 @@ public class TramitarPlacas extends javax.swing.JFrame {
             }
         });
 
-        botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
         botonRegresar.setIcon(new javax.swing.ImageIcon("C:\\Users\\tacot\\Documents\\GitHub\\agenciaTransito\\Proyecto_P2\\AgenciaTransito_Presentacion\\src\\main\\java\\imagenes\\regresar.png")); // NOI18N
         botonRegresar.setBorderPainted(false);
         botonRegresar.setContentAreaFilled(false);
@@ -145,7 +144,7 @@ public class TramitarPlacas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)

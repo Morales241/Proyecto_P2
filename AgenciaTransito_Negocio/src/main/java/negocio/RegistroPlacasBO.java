@@ -48,11 +48,11 @@ public class RegistroPlacasBO implements IRegistroPlacas{
     @Override
     public void registrarPlacas(PlacasDTO placasDTO, PersonaDTO personaDTO){
         
-        List<Persona> personaLista= personaDAO.buscarPersonaPorRFC(personaDTO.getRFC());
-        Persona persona= personaLista.get(0);
-        Placas placas= new Placas(generarPlacas(), placasDTO.getFechaExpedicion(), placasDTO.getFechaRecepcion(),
-                             placasDTO.getVigencia(), persona);
-        placasDAO.registrarPlaca(placas);
+//        List<Persona> personaLista= personaDAO.buscarPersonaPorRFC(personaDTO.getRFC());
+//        Persona persona= personaLista.get(0);
+//        Placas placas= new Placas(generarPlacas(), placasDTO.getFechaExpedicion(), placasDTO.getFechaRecepcion(),
+//                             placasDTO.getVigencia(), persona);
+//        placasDAO.registrarPlaca(placas);
     }
     
     

@@ -191,6 +191,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonRegresar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\tacot\Documents\GitHub\agenciaTransito\Proyecto_P2\AgenciaTransito_Presentacion\src\main\java\imagenes\regresar.png"/>
+            </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="focusPainted" type="boolean" value="false"/>
