@@ -39,7 +39,8 @@ public class Placas implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idAutomovil")
-    private Automovil automovil;
+    private Vehiculo automovil;
+
 
 
     public Placas() {
@@ -92,7 +93,7 @@ public class Placas implements Serializable {
         this.Vigencia = Vigencia;
     }
 
-    public Automovil getAutomovil() {
+    public Vehiculo getAutomovil() {
         return automovil;
     }
 

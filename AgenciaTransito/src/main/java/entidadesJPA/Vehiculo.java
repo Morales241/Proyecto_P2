@@ -13,7 +13,7 @@ import javax.persistence.*;
  *
  * @author galan
  */
-@MappedSuperclass
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) 
 public class Vehiculo implements Serializable {
 
@@ -39,8 +39,9 @@ public class Vehiculo implements Serializable {
     @Column(name = "color", nullable = false, length = 150)
     private String color;
 
-    @OneToMany(mappedBy = "vehiculo", cascade= {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "automovil", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Placas> placas;
+
     
    @ManyToOne
    @JoinColumn(name = "idPersona")

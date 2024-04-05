@@ -163,6 +163,8 @@ public class ConsultasNombre extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void buscarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBotonActionPerformed
+        
+            
         try {
             // TODO add your handling code here:
             consultasBO.consultarPorNombre(txtNombre.getText());
@@ -170,6 +172,7 @@ public class ConsultasNombre extends javax.swing.JFrame {
         } catch (ExcepcionAT ex) {
             Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_buscarBotonActionPerformed
 
     public javax.swing.JPanel traerContenido(){
