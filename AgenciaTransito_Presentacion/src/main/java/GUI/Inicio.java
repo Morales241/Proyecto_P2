@@ -257,7 +257,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_placasBotonActionPerformed
 
     private void tramitesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tramitesBotonActionPerformed
-        // TODO add your handling code here:
+        TramitarDocumentos documentos = new TramitarDocumentos();
+        documentos.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_tramitesBotonActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
