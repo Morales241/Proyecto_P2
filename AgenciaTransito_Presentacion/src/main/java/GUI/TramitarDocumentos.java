@@ -5,6 +5,7 @@
 package GUI;
 
 /**
+ * 
  *
  * @author crist
  */
@@ -126,7 +127,7 @@ public class TramitarDocumentos extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(botonRegresar)
-                        .addGap(129, 129, 129)
+                        .addGap(99, 99, 99)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(reportesBoton)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
