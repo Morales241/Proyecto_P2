@@ -5,7 +5,6 @@
 package GUI;
 
 
-import daos.ConsultasDAO;
 import entidadesJPA.Persona;
 import excepciones.ExcepcionAT;
 import java.text.SimpleDateFormat;

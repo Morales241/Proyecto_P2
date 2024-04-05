@@ -20,12 +20,20 @@ public class BusquedaRFC extends javax.swing.JFrame {
     RegistroLicenciaBO registroLicenciaBO= new RegistroLicenciaBO();
     PersonaDTO personaDTO;
     
+    private int opcion=0;
+    
     /**
      * Creates new form BusquedaRFC
+     * @param opcion
      */
-    public BusquedaRFC() {
+    public BusquedaRFC(int opcion) {
+        this.opcion=opcion;
         initComponents();
         botonSiguiente.setVisible(false);
+    }
+
+    public BusquedaRFC() {
+        initComponents();
     }
 
     /**
@@ -228,9 +236,19 @@ public class BusquedaRFC extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
+        if (opcion == 1) {
+            
         TramitarLicencia tramiteLicencia= new TramitarLicencia(personaDTO);
         tramiteLicencia.setVisible(true);
         this.setVisible(false);
+        
+        }else if (opcion == 2) {
+            
+            TramitarPlacas tramitePlaca = new TramitarPlacas(personaDTO);
+            tramitePlaca.setVisible(true);
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed

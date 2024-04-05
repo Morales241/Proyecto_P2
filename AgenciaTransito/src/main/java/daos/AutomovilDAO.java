@@ -10,6 +10,8 @@ import entidadesJPA.Placas;
 import entidadesJPA.Vehiculo;
 import excepciones.ExcepcionAT;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -103,6 +105,8 @@ public class AutomovilDAO implements IAutomovilDAO {
         
         return placa.getNumero();
     }
+
+    
 
 
 }

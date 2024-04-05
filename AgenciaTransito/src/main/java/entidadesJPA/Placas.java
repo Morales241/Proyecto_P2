@@ -38,7 +38,6 @@ public class Placas implements Serializable {
     private vigencia Vigencia;
 
     @ManyToOne
-    @JoinColumn(name = "idAutomovil")
     private Automovil automovil;
 
 

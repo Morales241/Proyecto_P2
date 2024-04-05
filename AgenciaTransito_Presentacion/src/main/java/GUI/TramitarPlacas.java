@@ -4,6 +4,11 @@
  */
 package GUI;
 
+import dto.PersonaDTO;
+import excepciones.ExcepcionAT;
+import javax.swing.JOptionPane;
+import negocio.RegistroAutomovilBO;
+
 
 
 /**
@@ -14,13 +19,21 @@ public class TramitarPlacas extends javax.swing.JFrame {
 
     private boolean LicenciaValida;
     
+    RegistroAutomovilBO registroAuto = new RegistroAutomovilBO();
+    
+    private PersonaDTO persona;
+    
     /**
      * Creates new form TamitePlacas
      */
-    public TramitarPlacas() {
-       
+    public TramitarPlacas(PersonaDTO personaDTO) {
+       this.persona = personaDTO;
         initComponents();
         
+    }
+
+    public TramitarPlacas() {
+        initComponents();
     }
     
 
@@ -215,9 +228,13 @@ public class TramitarPlacas extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void GenerarPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarPlacasActionPerformed
-        //validadores
+        TramiteAutoNuevo tramiteAuto= new TramiteAutoNuevo();
         
+        //validadores
+        try{
+        registroAuto.validarAuto( tramiteAuto.traerVehiculoNuevo());
         //generar placas 
+        registroAuto.registrarAutomovil(tramiteAuto.traerVehiculoNuevo(), persona);
        
         //ver las placas generadas
         this.contenido.removeAll();
@@ -226,7 +243,9 @@ public class TramitarPlacas extends javax.swing.JFrame {
         placas.posicion(this);
         this.contenido.revalidate();
         this.contenido.repaint();
-        
+        }catch(ExcepcionAT ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
         
         
     }//GEN-LAST:event_GenerarPlacasActionPerformed

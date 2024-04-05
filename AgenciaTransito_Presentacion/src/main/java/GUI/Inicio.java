@@ -244,14 +244,14 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void licenciasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_licenciasBotonActionPerformed
-        BusquedaRFC licencias = new BusquedaRFC();
+        BusquedaRFC licencias = new BusquedaRFC(1);
         licencias.setVisible(true);
         this.dispose();
                 
     }//GEN-LAST:event_licenciasBotonActionPerformed
 
     private void placasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placasBotonActionPerformed
-        BusquedaRFC licencias = new BusquedaRFC();
+        BusquedaRFC licencias = new BusquedaRFC(2);
         licencias.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_placasBotonActionPerformed

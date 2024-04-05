@@ -5,6 +5,9 @@
 package negocio;
 
 import dto.AutomovilDTO;
+import dto.PersonaDTO;
+import entidadesJPA.Automovil;
+import excepciones.ExcepcionAT;
 
 
 /**
@@ -13,5 +16,8 @@ import dto.AutomovilDTO;
  */
 public interface IRegistroAutomovil {
     
-    public void registrarAutomovil(AutomovilDTO automovilDTO);
+    public String registrarAutomovil(AutomovilDTO automovilDTO, PersonaDTO persona);
+    
+    public void validarAuto(AutomovilDTO auto)throws ExcepcionAT;
+
 }

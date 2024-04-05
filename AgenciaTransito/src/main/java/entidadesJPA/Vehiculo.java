@@ -39,44 +39,19 @@ public class Vehiculo implements Serializable {
     @Column(name = "color", nullable = false, length = 150)
     private String color;
 
-    @OneToMany(mappedBy = "vehiculo", cascade= {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE})
-    private List<Placas> placas;
-    
-   @ManyToOne
-   @JoinColumn(name = "idPersona")
-   private Persona persona;
     
     public Vehiculo() {
     }
 
-    public Vehiculo(String tipo, String numeroSerie, String marca, String linea, String modelo, String color, List<Placas> placas, Persona persona) {
+    public Vehiculo(String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
         this.tipo = tipo;
         this.numeroSerie = numeroSerie;
         this.marca = marca;
         this.linea = linea;
         this.modelo = modelo;
         this.color = color;
-        this.placas = placas;
-        this.persona = persona;
     }
 
-    public List<Placas> getPlacas() {
-        return placas;
-    }
-
-    public void setPlacas(List<Placas> placas) {
-        this.placas = placas;
-    }
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-    
-    
     public Long getId() {
         return id;
     }

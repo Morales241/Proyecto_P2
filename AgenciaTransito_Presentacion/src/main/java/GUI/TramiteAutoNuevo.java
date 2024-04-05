@@ -5,6 +5,7 @@
 package GUI;
 
 
+import dto.AutomovilDTO;
 import dto.VehiculoDTO;
 
 
@@ -225,6 +226,11 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         return this.panelAutoNuevo;
     }
     
+    public AutomovilDTO traerVehiculoNuevo(){
+        AutomovilDTO auto = new AutomovilDTO("Automovil", this.txtNSerie.getText(), this.txtMarca.getText(),
+        this.txtLinea.getText(), this.txtModelo.getText(), this.txtColor.getText());
+        return auto;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel5;

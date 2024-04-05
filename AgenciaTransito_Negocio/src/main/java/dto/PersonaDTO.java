@@ -4,6 +4,7 @@
  */
 package dto;
 
+import entidadesJPA.Automovil;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
@@ -72,10 +73,10 @@ public class PersonaDTO {
         
         if (!persona.getVehiculos().isEmpty()) {
             vehiculos = new ArrayList<>();
-            List<Vehiculo> vehiculosPersona = persona.getVehiculos();
+            List<Automovil> autosPersona = persona.getAutos();
             
-            for (Vehiculo v : vehiculosPersona ) {
-                VehiculoDTO vehiculoAux = new VehiculoDTO(v.getTipo(), v.getNumeroSerie(), v.getMarca(), 
+            for (Automovil v : autosPersona ) {
+                AutomovilDTO autoAux = new AutomovilDTO(v.getTipo(), v.getNumeroSerie(), v.getMarca(), 
                 v.getLinea(), v.getModelo(), v.getColor());
                 
                 List<PlacasDTO> placas = new ArrayList<>();
@@ -91,7 +92,7 @@ public class PersonaDTO {
                         placas.add(placaAux);
                     }
                     
-                    vehiculoAux.setPlacas(placas);
+                    autoAux.setPlacas(placas);
                 }
             }
         }

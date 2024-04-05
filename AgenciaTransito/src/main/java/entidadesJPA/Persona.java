@@ -51,9 +51,11 @@ public class Persona implements Serializable {
     private List<Licencia> licencias;
     
     @OneToMany(mappedBy = "persona", cascade= {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REMOVE})
-    private List<Vehiculo> vehiculos;
+    private List<Automovil> autos;
 
     public Persona() {
+        this.licencias = new ArrayList<>();
+        this.autos = new ArrayList<>();
     }
 
     public Persona(Long id, String nombre, String apellidoPaterno, String apellidoMaterno, Calendar fechaNacimiento, String RFC, String telefono, List<Licencia> licencias) {
@@ -65,7 +67,7 @@ public class Persona implements Serializable {
         this.RFC = RFC;
         this.telefono = telefono;
         this.licencias = new ArrayList<>();
-        this.vehiculos = new ArrayList<>();
+        this.autos = new ArrayList<>();
     }
 
     public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, Calendar fechaNacimiento, String RFC, String telefono) {
@@ -76,15 +78,15 @@ public class Persona implements Serializable {
         this.RFC = RFC;
         this.telefono = telefono;
         this.licencias = new ArrayList<>();
-        this.vehiculos = new ArrayList<>();
+        this.autos = new ArrayList<>();
     }
 
-    public List<Vehiculo> getVehiculos() {
-        return vehiculos;
+    public List<Automovil> getVehiculos() {
+        return autos;
     }
 
-    public void setVehiculos(List<Vehiculo> vehiculos) {
-        this.vehiculos = vehiculos;
+    public void setVehiculos(List<Automovil> Autos) {
+        this.autos = Autos;
     }
 
     public Long getId() {
@@ -153,6 +155,14 @@ public class Persona implements Serializable {
     
     public void agregarLicencia(Licencia licencia){
         this.licencias.add(licencia);
+    }
+
+    public List<Automovil> getAutos() {
+        return autos;
+    }
+
+    public void setAutos(List<Automovil> autos) {
+        this.autos = autos;
     }
     
 }

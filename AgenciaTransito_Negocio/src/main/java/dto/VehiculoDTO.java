@@ -26,22 +26,8 @@ public class VehiculoDTO {
   
     private String color;
     
-    private List<PlacasDTO> placas;
     
-   private PersonaDTO persona;
-
     public VehiculoDTO() {
-    }
-
-    public VehiculoDTO(String tipo, String numeroSerie, String marca, String linea, String modelo, String color, List<PlacasDTO> placas, PersonaDTO persona) {
-        this.tipo = tipo;
-        this.numeroSerie = numeroSerie;
-        this.marca = marca;
-        this.linea = linea;
-        this.modelo = modelo;
-        this.color = color;
-        this.placas = placas;
-        this.persona = persona;
     }
 
     public VehiculoDTO(String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
@@ -52,6 +38,7 @@ public class VehiculoDTO {
         this.modelo = modelo;
         this.color = color;
     }
+
 
     public Long getId() {
         return id;
@@ -109,21 +96,4 @@ public class VehiculoDTO {
         this.color = color;
     }
 
-    public List<PlacasDTO> getPlacas() {
-        return placas;
-    }
-
-    public void setPlacas(List<PlacasDTO> placas) {
-        this.placas = placas;
-    }
-
-    public PersonaDTO getPersona() {
-        return persona;
-    }
-
-    public void setPersona(PersonaDTO persona) {
-        this.persona = persona;
-    }
-
-    
 }
