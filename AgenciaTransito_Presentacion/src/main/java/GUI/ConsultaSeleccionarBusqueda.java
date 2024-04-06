@@ -104,15 +104,20 @@ public class ConsultaSeleccionarBusqueda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarFechaNBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarFechaNBotonActionPerformed
-        // TODO add your handling code here:
+        principal.contenido.removeAll();
+        ConsultasNacimiento busquedaNacimiento = new ConsultasNacimiento();
+        principal.contenido.add(busquedaNacimiento.traerContenido());
+
+        principal.contenido.revalidate();
+        principal.contenido.repaint();
     }//GEN-LAST:event_buscarFechaNBotonActionPerformed
 
     private void buscarCurpBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarCurpBotonActionPerformed
 
-         principal.contenido.removeAll();
+        principal.contenido.removeAll();
         ConsultasCurp busquedaCurp = new ConsultasCurp();
         principal.contenido.add(busquedaCurp.traerContenido());
-        
+
         principal.contenido.revalidate();
         principal.contenido.repaint();
     }//GEN-LAST:event_buscarCurpBotonActionPerformed

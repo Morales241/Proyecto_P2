@@ -96,7 +96,11 @@ public class ConsultasNombre extends javax.swing.JFrame {
         ));
         tablaPersonas.setViewportView(jTable1);
 
-        buscarBoton.setText("Buscar");
+        buscarBoton.setBackground(new java.awt.Color(102, 102, 102));
+        buscarBoton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        buscarBoton.setForeground(new java.awt.Color(255, 255, 255));
+        buscarBoton.setText("BUSCAR");
+        buscarBoton.setPreferredSize(new java.awt.Dimension(65, 26));
         buscarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBotonActionPerformed(evt);
@@ -124,7 +128,7 @@ public class ConsultasNombre extends javax.swing.JFrame {
                 .addGap(52, 52, 52))
             .addGroup(contenidoLayout.createSequentialGroup()
                 .addGap(205, 205, 205)
-                .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         contenidoLayout.setVerticalGroup(
@@ -141,8 +145,8 @@ public class ConsultasNombre extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(tablaPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(buscarBoton)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

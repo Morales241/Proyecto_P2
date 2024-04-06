@@ -10,6 +10,7 @@ import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -24,4 +25,8 @@ public interface IconsultarLicencias {
     public List<Licencia> obtenerLicencias(Persona persona)throws ExcepcionAT;
     
     public List<Persona> consultarPorNombre(String Nombre)throws ExcepcionAT ;
+    
+    public List<Persona> consultarHistorialFechaN(Calendar fechaNacimiento) throws ExcepcionAT;
+    
+    public List<Persona> consultarPorCURP(String curp)throws ExcepcionAT;
 }

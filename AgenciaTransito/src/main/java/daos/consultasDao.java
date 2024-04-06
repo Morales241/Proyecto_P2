@@ -7,6 +7,8 @@ package daos;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -41,18 +43,20 @@ public class ConsultasDAO implements IConsultasDAO {
     }
 
     @Override
-    public List<Object> consultarHistorialFechaN(String Nombre, String aP, String aM) {
+    public List<Persona> consultarHistorialFechaN(Calendar fechaNacimiento) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
-
         em = emf.createEntityManager();
-        
-        String jpql = "SELECT l FROM Licencia l WHERE l.persona.nombre = :nombre AND l.persona.apellidoP = :apellidoP AND l.persona.apellidoM = :apellidoM";
-        TypedQuery<Object> query = em.createQuery(jpql, Object.class);
-        query.setParameter("nombre", Nombre);
-        query.setParameter("apellidoP", aP);
-        query.setParameter("apellidoM", aM);
+
+        // Convertir el Calendar a un String en el formato "yyyy-MM-dd"
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaNacimientoStr = sdf.format(fechaNacimiento.getTime());
+
+        String jpql = "SELECT p FROM Persona p WHERE p.fechaNacimiento LIKE :fechaNacimiento";
+        TypedQuery<Persona> query = em.createQuery(jpql, Persona.class);
+        query.setParameter("fechaNacimiento", "%" + fechaNacimientoStr + "%");
         return query.getResultList();
     }
+
 
     @Override
     public List<Object> consultarHistorialCURP(String curp) {
@@ -100,6 +104,18 @@ public class ConsultasDAO implements IConsultasDAO {
         String jpql = "SELECT p FROM Persona p WHERE p.nombre LIKE :nombre";
         TypedQuery<Persona> query = em.createQuery(jpql, Persona.class);
         query.setParameter("nombre", "%" + Nombre + "%");
+        return query.getResultList();
+    }
+    
+    @Override
+    public List<Persona> consultarPorCURP(String curp) {
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
+
+        em = emf.createEntityManager();
+        
+         String jpql = "SELECT p FROM Persona p WHERE p.RFC LIKE :rfc";
+        TypedQuery<Persona> query = em.createQuery(jpql, Persona.class);
+        query.setParameter("rfc", "%" + curp + "%");
         return query.getResultList();
     }
 

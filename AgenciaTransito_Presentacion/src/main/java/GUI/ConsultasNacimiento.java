@@ -1,12 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
+
 
 import entidadesJPA.Persona;
 import excepciones.ExcepcionAT;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,11 +15,16 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import negocio.ConsultarLicenciasBO;
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+
 /**
  *
  * @author crist
  */
-public class ConsultasCurp extends javax.swing.JFrame {
+public class ConsultasNacimiento extends javax.swing.JFrame {
 
     ConsultarLicenciasBO consultasBO = new ConsultarLicenciasBO();
     private JLabel tituloTablas = new JLabel();
@@ -28,9 +32,9 @@ public class ConsultasCurp extends javax.swing.JFrame {
     private JLabel tablePersonas = new JLabel();
     
     /**
-     * Creates new form ConsultasCurp
+     * Creates new form ConsultasNacimiento
      */
-    public ConsultasCurp() {
+    public ConsultasNacimiento() {
         initComponents();
     }
 
@@ -47,32 +51,31 @@ public class ConsultasCurp extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtCurp = new javax.swing.JTextField();
+        txtFechaNacimiento = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         buscarBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(518, 472));
 
         contenido.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setText("Ingrese su curp para verificar ");
+        jLabel1.setText("Ingrese su fecha de nacimiento para ");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel2.setText("su existencia en los registros");
+        jLabel2.setText("verificar su existencia en los registros");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel3.setText("CURP:");
+        jLabel3.setText("Fecha de nacimiento:");
 
-        txtCurp.setBackground(new java.awt.Color(182, 0, 0));
-        txtCurp.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        txtCurp.setForeground(new java.awt.Color(255, 255, 255));
-        txtCurp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        txtCurp.addActionListener(new java.awt.event.ActionListener() {
+        txtFechaNacimiento.setBackground(new java.awt.Color(182, 0, 0));
+        txtFechaNacimiento.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        txtFechaNacimiento.setForeground(new java.awt.Color(255, 255, 255));
+        txtFechaNacimiento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        txtFechaNacimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCurpActionPerformed(evt);
+                txtFechaNacimientoActionPerformed(evt);
             }
         });
 
@@ -103,42 +106,43 @@ public class ConsultasCurp extends javax.swing.JFrame {
         contenido.setLayout(contenidoLayout);
         contenidoLayout.setHorizontalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenidoLayout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCurp, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
                         .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(128, 128, 128))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(92, 92, 92))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
                         .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(186, 186, 186))))
+                        .addGap(206, 206, 206))))
+            .addGroup(contenidoLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(contenidoLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         contenidoLayout.setVerticalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenidoLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(26, 26, 26)
+                .addGap(41, 41, 41)
                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtCurp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buscarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,18 +160,26 @@ public class ConsultasCurp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBotonActionPerformed
-        // TODO add your handling code here:
          try {
-            consultasBO.consultarPorCURP(txtCurp.getText());
-            cargarDatosTabla( consultasBO.consultarPorCURP(txtCurp.getText()), jTable1);
-        } catch (ExcepcionAT ex) {
-            Logger.getLogger(ConsultasCurp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String fechaNacimientoStr = txtFechaNacimiento.getText();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = sdf.parse(fechaNacimientoStr);
+        Calendar fechaNacimiento = Calendar.getInstance();
+        fechaNacimiento.setTime(date);
+        
+        consultasBO.consultarHistorialFechaN(fechaNacimiento);
+        cargarDatosTabla(consultasBO.consultarHistorialFechaN(fechaNacimiento), jTable1);
+    } catch (ParseException ex) {
+        Logger.getLogger(ConsultasNacimiento.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ExcepcionAT ex) {
+        Logger.getLogger(ConsultasNacimiento.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_buscarBotonActionPerformed
 
-    private void txtCurpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCurpActionPerformed
+    private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCurpActionPerformed
+    }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
       public javax.swing.JPanel traerContenido(){
         return this.contenido;
@@ -206,6 +218,6 @@ public class ConsultasCurp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtCurp;
+    private javax.swing.JTextField txtFechaNacimiento;
     // End of variables declaration//GEN-END:variables
 }

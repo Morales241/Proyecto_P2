@@ -9,6 +9,7 @@ import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -78,10 +79,7 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
 
     @Override
     public List<Persona> consultarPorNombre(String Nombre) throws ExcepcionAT  {
-        if (consultasDAO == null) {
-    throw new IllegalStateException("El objeto consultasDAO no ha sido inicializado correctamente.");
-}
-
+        
         if (this.consultasDAO == null) {
             throw new IllegalStateException("El objeto consultasDAO no ha sido inicializado correctamente.");
         }
@@ -95,6 +93,41 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
              e.printStackTrace(); 
             throw new ExcepcionAT("Error al obtener la persona.", e);
         }  
+    }
+
+    @Override
+    public List<Persona> consultarHistorialFechaN(Calendar fechaNacimiento) throws ExcepcionAT {
+         
+        if (this.consultasDAO == null) {
+            throw new IllegalStateException("El objeto consultasDAO no ha sido inicializado correctamente.");
+        }
+        try {
+            List<Persona> persona = consultasDAO.consultarHistorialFechaN(fechaNacimiento);
+            if (persona.isEmpty()) {
+                throw new ExcepcionAT("La persona buscada no esta registradas.");
+            }
+            return persona;
+        } catch (Exception e) {
+             e.printStackTrace(); 
+            throw new ExcepcionAT("Error al obtener la persona.", e);
+        }   }
+
+    @Override
+    public List<Persona> consultarPorCURP(String curp) throws ExcepcionAT {
+       
+        if (this.consultasDAO == null) {
+            throw new IllegalStateException("El objeto consultasDAO no ha sido inicializado correctamente.");
+        }
+        try {
+            List<Persona> persona = consultasDAO.consultarPorCURP(curp);
+            if (persona.isEmpty()) {
+                throw new ExcepcionAT("La persona buscada no esta registradas.");
+            }
+            return persona;
+        } catch (Exception e) {
+             e.printStackTrace(); 
+            throw new ExcepcionAT("Error al obtener la persona.", e);
+        } 
     }
 
     
