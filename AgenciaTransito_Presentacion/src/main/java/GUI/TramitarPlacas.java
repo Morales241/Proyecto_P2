@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import dto.AutomovilDTO;
 import dto.PersonaDTO;
 import excepciones.ExcepcionAT;
 import javax.swing.JOptionPane;
@@ -17,7 +18,15 @@ import negocio.RegistroAutomovilBO;
  */
 public class TramitarPlacas extends javax.swing.JFrame {
 
-    private boolean LicenciaValida;
+    TramiteAutoNuevo autoN = new TramiteAutoNuevo();
+    
+    public AutomovilDTO auto;
+    
+    GenerarPlacas placas = new GenerarPlacas();
+    
+    private TramiteAutoNuevo tramiteAuto= new TramiteAutoNuevo();
+    
+    TramiteAutoUsado AutoU = new TramiteAutoUsado();
     
     RegistroAutomovilBO registroAuto = new RegistroAutomovilBO();
     
@@ -204,7 +213,6 @@ public class TramitarPlacas extends javax.swing.JFrame {
 
     private void botonAutoUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAutoUActionPerformed
         this.contenido.removeAll();
-        TramiteAutoUsado AutoU = new TramiteAutoUsado();
         this.contenido.add(AutoU.traerContenido());
         
         this.contenido.revalidate();
@@ -213,11 +221,12 @@ public class TramitarPlacas extends javax.swing.JFrame {
 
     private void botonAutoNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAutoNActionPerformed
         this.contenido.removeAll();
-        TramiteAutoNuevo autoN = new TramiteAutoNuevo();
         this.contenido.add(autoN.traerContenido());
-        
+        autoN.posicion(this);
         this.contenido.revalidate();
         this.contenido.repaint();
+        this.GenerarPlacas.setVisible(false);
+        
     }//GEN-LAST:event_botonAutoNActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
@@ -228,19 +237,19 @@ public class TramitarPlacas extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void GenerarPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarPlacasActionPerformed
-        TramiteAutoNuevo tramiteAuto= new TramiteAutoNuevo();
         
         //validadores
         try{
-        registroAuto.validarAuto( tramiteAuto.traerVehiculoNuevo());
+        registroAuto.validarAuto(auto);
         //generar placas 
-        registroAuto.registrarAutomovil(tramiteAuto.traerVehiculoNuevo(), persona);
+        String placasGeneradas = registroAuto.registrarAutomovil(auto, persona);
        
         //ver las placas generadas
         this.contenido.removeAll();
-        GenerarPlacas placas = new GenerarPlacas();
+        
         this.contenido.add(placas.traerContenido());
         placas.posicion(this);
+        placas.txtPlacas.setText(placasGeneradas);
         this.contenido.revalidate();
         this.contenido.repaint();
         }catch(ExcepcionAT ex){
@@ -289,7 +298,7 @@ public class TramitarPlacas extends javax.swing.JFrame {
      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton GenerarPlacas;
+    public javax.swing.JButton GenerarPlacas;
     private javax.swing.JButton botonAutoN;
     private javax.swing.JButton botonAutoU;
     private javax.swing.JButton botonRegresar;

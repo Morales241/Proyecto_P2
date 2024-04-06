@@ -9,6 +9,7 @@ import entidadesJPA.Persona;
 import entidadesJPA.Placas;
 import entidadesJPA.Vehiculo;
 import excepciones.ExcepcionAT;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -47,7 +48,12 @@ public class AutomovilDAO implements IAutomovilDAO {
         
         placa.setAutomovil(auto);
         
-        auto.getPlacas().add(placa);
+        List<Placas> placas = new ArrayList<>();
+        
+        
+        placas.add(placa);
+        
+        auto.setPlacas(placas);
         
         persona.getVehiculos().add(auto);
         

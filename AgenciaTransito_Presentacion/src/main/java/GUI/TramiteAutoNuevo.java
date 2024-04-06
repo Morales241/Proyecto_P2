@@ -15,8 +15,8 @@ import dto.VehiculoDTO;
  */
 public class TramiteAutoNuevo extends javax.swing.JFrame {
 
-    
-    VehiculoDTO vehiculoDTO;
+    private TramitarPlacas placas;
+    AutomovilDTO AutomovilDTO;
     
     
     /**
@@ -28,12 +28,12 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
     
     public TramiteAutoNuevo(VehiculoDTO vehiculoDTO) {
         initComponents();
-        this.vehiculoDTO = vehiculoDTO;
-        txtColor.setText(vehiculoDTO.getColor());
-        txtMarca.setText(vehiculoDTO.getMarca());
-        txtModelo.setText(vehiculoDTO.getModelo());
-        txtLinea.setText(vehiculoDTO.getLinea());
-        txtNSerie.setText(vehiculoDTO.getNumeroSerie());
+//        this.vehiculoDTO = vehiculoDTO;
+//        txtColor.setText(vehiculoDTO.getColor());
+//        txtMarca.setText(vehiculoDTO.getMarca());
+//        txtModelo.setText(vehiculoDTO.getModelo());
+//        txtLinea.setText(vehiculoDTO.getLinea());
+//        txtNSerie.setText(vehiculoDTO.getNumeroSerie());
        
     }
   
@@ -56,6 +56,7 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtLinea = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        GenerarPlacas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +73,11 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         txtColor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtColorActionPerformed(evt);
+            }
+        });
+        txtColor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtColorKeyPressed(evt);
             }
         });
 
@@ -127,12 +133,25 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel9.setText("Linea:");
 
+        GenerarPlacas.setBackground(new java.awt.Color(102, 102, 102));
+        GenerarPlacas.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        GenerarPlacas.setForeground(new java.awt.Color(255, 255, 255));
+        GenerarPlacas.setText("Aceptar");
+        GenerarPlacas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        GenerarPlacas.setBorderPainted(false);
+        GenerarPlacas.setFocusPainted(false);
+        GenerarPlacas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerarPlacasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelAutoNuevoLayout = new javax.swing.GroupLayout(panelAutoNuevo);
         panelAutoNuevo.setLayout(panelAutoNuevoLayout);
         panelAutoNuevoLayout.setHorizontalGroup(
             panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAutoNuevoLayout.createSequentialGroup()
-                .addGap(106, 106, 106)
+                .addGap(112, 112, 112)
                 .addGroup(panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelAutoNuevoLayout.createSequentialGroup()
                         .addComponent(jLabel9)
@@ -144,12 +163,12 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18))
                             .addGroup(panelAutoNuevoLayout.createSequentialGroup()
-                                .addGap(74, 74, 74)
+                                .addGap(71, 71, 71)
                                 .addComponent(jLabel7)
                                 .addGap(21, 21, 21)))
                         .addGroup(panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtModelo)
-                            .addComponent(txtNSerie, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
+                            .addComponent(txtNSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelAutoNuevoLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
@@ -158,12 +177,16 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAutoNuevoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(GenerarPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(229, 229, 229))
         );
         panelAutoNuevoLayout.setVerticalGroup(
             panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAutoNuevoLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addContainerGap()
                 .addGroup(panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
@@ -183,7 +206,9 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
                 .addGroup(panelAutoNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(GenerarPlacas)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -222,17 +247,32 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLineaActionPerformed
 
+    private void GenerarPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarPlacasActionPerformed
+
+        this.AutomovilDTO = new AutomovilDTO("Nuevo", this.txtNSerie.getText(), this.txtMarca.getText(),
+        this.txtLinea.getText(), this.txtModelo.getText(), this.txtColor.getText());
+        placas.auto = this.AutomovilDTO;
+        placas.GenerarPlacas.setVisible(true);
+    }//GEN-LAST:event_GenerarPlacasActionPerformed
+
+    private void txtColorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColorKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtColorKeyPressed
+
     public javax.swing.JPanel traerContenido(){
         return this.panelAutoNuevo;
     }
     
     public AutomovilDTO traerVehiculoNuevo(){
-        AutomovilDTO auto = new AutomovilDTO("Automovil", this.txtNSerie.getText(), this.txtMarca.getText(),
-        this.txtLinea.getText(), this.txtModelo.getText(), this.txtColor.getText());
-        return auto;
+        return this.AutomovilDTO;
+    }
+    
+    public void posicion(TramitarPlacas Placas){
+    this.placas = Placas;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton GenerarPlacas;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

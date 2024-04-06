@@ -13,6 +13,7 @@ import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +23,13 @@ public class RegistroPlacasBO implements IRegistroPlacas{
     
     PlacasDAO placasDAO;
     PersonaDAO personaDAO;
+
+    private static final Logger LOGGER = Logger.getLogger(RegistroPlacasBO.class.getName());
+    
+    public RegistroPlacasBO() {
+        placasDAO = new PlacasDAO();
+        personaDAO = new PersonaDAO();
+    }
 
     @Override
     public String generarPlacas() {
@@ -58,11 +66,13 @@ public class RegistroPlacasBO implements IRegistroPlacas{
     
     @Override
      public PersonaDTO buscarPersonaPorRFC(String RFC) throws ExcepcionAT {
+        LOGGER.severe("Error al inicializar DAOs: ");
         List<Persona> persona= personaDAO.buscarPersonaPorRFC(RFC);
         if(persona==null){
             throw new ExcepcionAT("La persona buscada no existe en nuestros registros");
         }
         PersonaDTO personaDTO= new PersonaDTO(persona.get(0));
+        
         return personaDTO;
     }
     

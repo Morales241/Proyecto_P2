@@ -5,6 +5,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,10 +19,12 @@ public class AutomovilDTO extends VehiculoDTO implements Serializable {
     private PersonaDTO persona;
 
     public AutomovilDTO() {
+        placas = new ArrayList<>();
     }
 
     public AutomovilDTO(String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
         super(tipo, numeroSerie, marca, linea, modelo, color);
+        placas = new ArrayList<>();
     }
 
     public AutomovilDTO(List<PlacasDTO> placas, PersonaDTO persona) {

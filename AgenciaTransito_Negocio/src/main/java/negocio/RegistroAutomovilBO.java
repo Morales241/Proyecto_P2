@@ -25,8 +25,14 @@ import java.util.regex.Pattern;
  */
 public class RegistroAutomovilBO implements IRegistroAutomovil{
 
+    
     AutomovilDAO automovilDAO;
     PersonaDAO personaDAO;
+
+    public RegistroAutomovilBO() {
+        this.automovilDAO = new AutomovilDAO();
+        this.personaDAO = new PersonaDAO();
+    }
     
     @Override
     public String registrarAutomovil(AutomovilDTO automovilDTO, PersonaDTO persona) {

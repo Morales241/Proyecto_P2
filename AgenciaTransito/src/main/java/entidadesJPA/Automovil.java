@@ -5,6 +5,7 @@
 package entidadesJPA;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -31,11 +32,14 @@ public class Automovil extends Vehiculo implements Serializable {
    private Persona persona;
     
     public Automovil() {
+        placas = new ArrayList<>();
     }
 
     public Automovil(String tipo, String numeroSerie, String marca, String linea, String modelo, String color) {
         super(tipo, numeroSerie, marca, linea, modelo, color);
+        placas = new ArrayList<>();
     }
+    
 
     public Automovil(List<Placas> placas, Persona persona) {
         this.placas = placas;

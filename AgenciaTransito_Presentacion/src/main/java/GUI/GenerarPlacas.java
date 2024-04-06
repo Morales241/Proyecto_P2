@@ -75,7 +75,7 @@ public class GenerarPlacas extends javax.swing.JFrame implements ClipboardOwner 
         panelPlacasLayout.setHorizontalGroup(
             panelPlacasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlacasLayout.createSequentialGroup()
-                .addContainerGap(192, Short.MAX_VALUE)
+                .addContainerGap(191, Short.MAX_VALUE)
                 .addGroup(panelPlacasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(botonCopiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -143,7 +143,7 @@ public class GenerarPlacas extends javax.swing.JFrame implements ClipboardOwner 
     private javax.swing.JButton botonCopiar;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel panelPlacas;
-    private javax.swing.JTextField txtPlacas;
+    public javax.swing.JTextField txtPlacas;
     // End of variables declaration//GEN-END:variables
 
     @Override

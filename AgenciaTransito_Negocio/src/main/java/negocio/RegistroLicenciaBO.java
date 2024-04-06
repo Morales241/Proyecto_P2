@@ -34,8 +34,6 @@ public class RegistroLicenciaBO implements IRegistroLicencia {
         licenciaDAO= new LicenciaDAO();
     }
     
-    
-    
     @Override
     public void registrarLicencia(LicenciaDTO licenciaDTO, PersonaDTO personaDTO) {
         try {
