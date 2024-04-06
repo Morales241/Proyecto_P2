@@ -20,4 +20,8 @@ public interface IRegistroAutomovil {
     
     public void validarAuto(AutomovilDTO auto)throws ExcepcionAT;
 
+    public AutomovilDTO buscarAuto(String placa)throws ExcepcionAT;
+    
+    public String registrarAutomovilUsado(AutomovilDTO automovilDTO, PersonaDTO dueñoN)throws ExcepcionAT;
+    
 }

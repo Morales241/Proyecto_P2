@@ -23,4 +23,5 @@ public interface IAutomovilDAO {
     
     public String registrarAutoUsado(Automovil auto, Persona persona, String placaAnterior) throws ExcepcionAT;
     
+    public Automovil consultarAutoPorPlaca(String placa);
 }

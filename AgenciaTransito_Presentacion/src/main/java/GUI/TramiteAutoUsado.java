@@ -4,7 +4,13 @@
  */
 package GUI;
 
+import dto.AutomovilDTO;
+import dto.PersonaDTO;
+import excepciones.ExcepcionAT;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import negocio.RegistroAutomovilBO;
 
 /**
  *
@@ -12,12 +18,22 @@ import javax.swing.JOptionPane;
  */
 public class TramiteAutoUsado extends javax.swing.JFrame {
 
+    RegistroAutomovilBO registroAutomovilBO;
+    private TramitarPlacas placas;
+    AutomovilDTO autoBucado;
+
     /**
      * Creates new form TramiteAutoUsado
      */
-    public TramiteAutoUsado() {
+    public TramiteAutoUsado(PersonaDTO personaDTO) {
+        registroAutomovilBO = new RegistroAutomovilBO();
         initComponents();
         this.PanelAutoEncontrado.setVisible(false);
+    }
+
+    public TramiteAutoUsado() {
+    initComponents();
+    registroAutomovilBO = new RegistroAutomovilBO();
     }
 
     /**
@@ -48,6 +64,7 @@ public class TramiteAutoUsado extends javax.swing.JFrame {
         txtColor = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtNSerie = new javax.swing.JTextField();
+        GenerarPlacas = new javax.swing.JButton();
 
         txtFieldRFC3.setBackground(new java.awt.Color(182, 0, 0));
         txtFieldRFC3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -206,6 +223,19 @@ public class TramiteAutoUsado extends javax.swing.JFrame {
             }
         });
 
+        GenerarPlacas.setBackground(new java.awt.Color(102, 102, 102));
+        GenerarPlacas.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        GenerarPlacas.setForeground(new java.awt.Color(255, 255, 255));
+        GenerarPlacas.setText("Aceptar");
+        GenerarPlacas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        GenerarPlacas.setBorderPainted(false);
+        GenerarPlacas.setFocusPainted(false);
+        GenerarPlacas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerarPlacasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelAutoEncontradoLayout = new javax.swing.GroupLayout(PanelAutoEncontrado);
         PanelAutoEncontrado.setLayout(PanelAutoEncontradoLayout);
         PanelAutoEncontradoLayout.setHorizontalGroup(
@@ -229,6 +259,10 @@ public class TramiteAutoUsado extends javax.swing.JFrame {
                             .addComponent(txtMarca)
                             .addComponent(txtColor))))
                 .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAutoEncontradoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(GenerarPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(142, 142, 142))
         );
         PanelAutoEncontradoLayout.setVerticalGroup(
             PanelAutoEncontradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,19 +271,21 @@ public class TramiteAutoUsado extends javax.swing.JFrame {
                 .addGroup(PanelAutoEncontradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelAutoEncontradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelAutoEncontradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelAutoEncontradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
-                .addGap(28, 28, 28))
+                .addGap(18, 18, 18)
+                .addComponent(GenerarPlacas)
+                .addGap(20, 20, 20))
         );
 
         panelAutoUsado.add(PanelAutoEncontrado);
@@ -274,9 +310,18 @@ public class TramiteAutoUsado extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPlacasAnterioresActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        JOptionPane.showMessageDialog(null, "Auto encontrado");
-        this.PanelAutoEncontrado.setVisible(true);
-        
+        try {
+            autoBucado = registroAutomovilBO.buscarAuto(this.txtPlacasAnteriores.getText());
+            this.PanelAutoEncontrado.setVisible(true);
+            this.txtColor.setText(autoBucado.getColor());
+            this.txtMarca.setText(autoBucado.getMarca());
+            this.txtModelo.setText(autoBucado.getModelo());
+            this.txtNSerie.setText(autoBucado.getNumeroSerie());
+        } catch (ExcepcionAT ex) {
+            Logger.getLogger(TramiteAutoUsado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void txtFieldRFC3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldRFC3ActionPerformed
@@ -311,11 +356,24 @@ public class TramiteAutoUsado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNSerieActionPerformed
 
-    public javax.swing.JPanel traerContenido(){
+    private void GenerarPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarPlacasActionPerformed
+        this.autoBucado.setTipo(this.txtPlacasAnteriores.getText());
+        placas.auto = this.autoBucado;
+        placas.GenerarPlacas.setVisible(true);
+        placas.GenerarPlacas.setText("Generar Placas");
+        placas.Opcion = 2;
+    }//GEN-LAST:event_GenerarPlacasActionPerformed
+
+    public javax.swing.JPanel traerContenido() {
         return this.panelAutoUsado;
     }
     
+    public void posicion(TramitarPlacas Placas){
+    this.placas = Placas;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton GenerarPlacas;
     private javax.swing.JPanel PanelAutoEncontrado;
     private javax.swing.JButton botonBuscar;
     private javax.swing.JLabel jLabel10;

@@ -25,4 +25,5 @@ public interface IPersonaDAO {
     
     public void registrarListaPersonas(List<Persona> personas) throws ExcepcionAT;
     
+    public Persona buscarPersona(String RFC);
 }

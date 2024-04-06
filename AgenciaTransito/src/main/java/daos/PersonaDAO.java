@@ -122,4 +122,27 @@ public class PersonaDAO implements IPersonaDAO {
         return !listaPersona.isEmpty();
     }
 
+    @Override
+    public Persona buscarPersona(String RFC) {
+        try {
+            em = emf.createEntityManager();
+            em.getTransaction().begin();
+
+            String jpql3 = "SELECT p FROM Persona p WHERE p.RFC = :rfc";
+
+            TypedQuery<Persona> query = em.createQuery(jpql3, Persona.class);
+            query.setParameter("rfc", RFC);
+            Persona persona = query.getSingleResult();
+
+            em.getTransaction().commit();
+            em.close();
+            
+            return persona;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            System.out.println(e.getLocalizedMessage());
+            return null;
+        }
+    }
+
 }

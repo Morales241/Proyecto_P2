@@ -24,7 +24,6 @@ public class RegistroPlacasBO implements IRegistroPlacas{
     PlacasDAO placasDAO;
     PersonaDAO personaDAO;
 
-    private static final Logger LOGGER = Logger.getLogger(RegistroPlacasBO.class.getName());
     
     public RegistroPlacasBO() {
         placasDAO = new PlacasDAO();
@@ -66,13 +65,14 @@ public class RegistroPlacasBO implements IRegistroPlacas{
     
     @Override
      public PersonaDTO buscarPersonaPorRFC(String RFC) throws ExcepcionAT {
-        LOGGER.severe("Error al inicializar DAOs: ");
         List<Persona> persona= personaDAO.buscarPersonaPorRFC(RFC);
         if(persona==null){
             throw new ExcepcionAT("La persona buscada no existe en nuestros registros");
         }
         PersonaDTO personaDTO= new PersonaDTO(persona.get(0));
-        
+        if(personaDTO.getLicencias()==null){
+            throw new ExcepcionAT("La persona buscada no cuenta con una licencia activa");
+        }
         return personaDTO;
     }
     

@@ -248,11 +248,13 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLineaActionPerformed
 
     private void GenerarPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarPlacasActionPerformed
-
+        
         this.AutomovilDTO = new AutomovilDTO("Nuevo", this.txtNSerie.getText(), this.txtMarca.getText(),
         this.txtLinea.getText(), this.txtModelo.getText(), this.txtColor.getText());
         placas.auto = this.AutomovilDTO;
         placas.GenerarPlacas.setVisible(true);
+        placas.GenerarPlacas.setText("Generar Placas");
+        placas.Opcion = 1;
     }//GEN-LAST:event_GenerarPlacasActionPerformed
 
     private void txtColorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColorKeyPressed
@@ -261,10 +263,6 @@ public class TramiteAutoNuevo extends javax.swing.JFrame {
 
     public javax.swing.JPanel traerContenido(){
         return this.panelAutoNuevo;
-    }
-    
-    public AutomovilDTO traerVehiculoNuevo(){
-        return this.AutomovilDTO;
     }
     
     public void posicion(TramitarPlacas Placas){

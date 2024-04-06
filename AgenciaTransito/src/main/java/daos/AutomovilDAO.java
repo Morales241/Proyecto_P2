@@ -68,7 +68,7 @@ public class AutomovilDAO implements IAutomovilDAO {
     @Override
     public List<Automovil> consultarAutos(Persona persona) {
 
-        List<Automovil> autos;
+        List<Automovil> autos = new ArrayList<>();
         
         CriteriaBuilder cb = em.getCriteriaBuilder();
         
@@ -76,7 +76,7 @@ public class AutomovilDAO implements IAutomovilDAO {
         
         Root<Automovil> autoRoot = cq.from(Automovil.class);
         
-        Predicate autoPredicate = cb.equal(autoRoot.get("idPersona"), persona.getId());
+        Predicate autoPredicate = cb.equal(autoRoot.get("persona").get("id"), persona.getId());
         
         cq.where(autoPredicate);
         
@@ -97,13 +97,19 @@ public class AutomovilDAO implements IAutomovilDAO {
         
         em.getTransaction().begin();
         
+        em.remove(auto);
+        
         auto.setPersona(persona);
         
         placa.setAutomovil(auto);
         
         auto.getPlacas().add(placa);
         
-        persona.getVehiculos().add(auto);
+        List<Automovil> autos =consultarAutos(persona);
+        
+        autos.add(auto);
+        
+        persona.setVehiculos(autos);
         
         em.merge(persona);
         
@@ -112,7 +118,36 @@ public class AutomovilDAO implements IAutomovilDAO {
         return placa.getNumero();
     }
 
-    
+    @Override
+    public Automovil consultarAutoPorPlaca(String placa) {
+        Automovil auto;
+        Placas placaAuto;
+        
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        
+        CriteriaQuery<Placas> query = cb.createQuery(Placas.class);
+        
+        Root<Placas> placaRoot = query.from(Placas.class);
+        
+        Predicate placaPre = cb.equal(placaRoot.get("numero"), placa);
+        
+        query.where(placaPre);
+        
+        placaAuto = em.createQuery(query).getSingleResult();
+        
+        CriteriaQuery<Automovil> cq = cb.createQuery(Automovil.class);
+        
+        Root<Automovil> autoRoot = cq.from(Automovil.class);
+        
+        Predicate autoPredicate = cb.equal(autoRoot.get("id"), placaAuto.getAutomovil().getId());
+        
+        cq.where(autoPredicate);
+        
+        
+        auto = em.createQuery(cq).getSingleResult();
+        
+        return auto;
+    }
 
 
 }

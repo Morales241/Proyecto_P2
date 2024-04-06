@@ -30,6 +30,7 @@ public class PlacasDAO implements IPlacasDAO{
 
     public PlacasDAO() {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
+        em = emf.createEntityManager();
     }
     
 
@@ -51,9 +52,6 @@ public class PlacasDAO implements IPlacasDAO{
 
         placas = em.createQuery(query).getResultList();
 
-        em.close();
-
-        emf.close();
 
         return placas;
     }
@@ -80,11 +78,6 @@ public class PlacasDAO implements IPlacasDAO{
 
         placa = em.createQuery(query).getSingleResult();
 
-        em.close();
-
-        emf.close();
-
-     
         return placa!=null;
     }
 
@@ -105,9 +98,6 @@ public class PlacasDAO implements IPlacasDAO{
 
         placa = em.createQuery(query).getSingleResult();
 
-        em.close();
-
-        emf.close();
 
         return placa==null;
     }
@@ -136,9 +126,6 @@ public class PlacasDAO implements IPlacasDAO{
         
         em.getTransaction().commit();
         
-        em.close();
-
-        emf.close();
     }
 
     @Override
