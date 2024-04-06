@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import excepciones.ExcepcionAT;
 import java.text.SimpleDateFormat;
@@ -51,6 +52,7 @@ public class ConsultasCurp extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         buscarBoton = new javax.swing.JButton();
+        verTramitesComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(518, 472));
@@ -99,29 +101,41 @@ public class ConsultasCurp extends javax.swing.JFrame {
             }
         });
 
+        verTramitesComboBox.setBackground(new java.awt.Color(102, 102, 102));
+        verTramitesComboBox.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        verTramitesComboBox.setForeground(new java.awt.Color(255, 255, 255));
+        verTramitesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VER TRAMITES", "Licencias", "Placas" }));
+        verTramitesComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verTramitesComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
         contenido.setLayout(contenidoLayout);
         contenidoLayout.setHorizontalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenidoLayout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCurp, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
                         .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addGap(128, 128, 128))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
+                        .addComponent(verTramitesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(191, 191, 191))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
-                        .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(186, 186, 186))))
+                        .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(contenidoLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCurp, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(118, 118, 118)
+                                .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34))))
         );
         contenidoLayout.setVerticalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,12 +147,13 @@ public class ConsultasCurp extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtCurp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCurp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(verTramitesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,6 +184,24 @@ public class ConsultasCurp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCurpActionPerformed
 
+    private void verTramitesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verTramitesComboBoxActionPerformed
+        // TODO add your handling code here:
+         int filaSeleccionada = jTable1.getSelectedRow();
+        String rfcSelected = jTable1.getValueAt(filaSeleccionada, 0).toString();
+        System.out.println(rfcSelected);
+        String consulta = verTramitesComboBox.getSelectedItem().toString();
+        System.out.println(consulta);
+        try {
+          Persona personaAux =  consultasBO.obtenerPersona(rfcSelected);
+          if( consulta == "Licencias"){
+              consultasBO.obtenerLicencias(personaAux);
+              cargarDatosTablaLicencias(consultasBO.obtenerLicencias(personaAux), jTable1);
+          }
+        } catch (ExcepcionAT ex) {
+            Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }//GEN-LAST:event_verTramitesComboBoxActionPerformed
+
       public javax.swing.JPanel traerContenido(){
         return this.contenido;
     }
@@ -198,6 +231,33 @@ public class ConsultasCurp extends javax.swing.JFrame {
 
     }  
 
+    public void cargarDatosTablaLicencias(List<Licencia> licencias, JTable JTable1) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Expedicion", "Vencimiento", "Tipo", "Vigencia", "Costo", "Estado", "Persona"});
+
+        if (licencias.isEmpty()) {
+            tituloTablas.setText("No se encontro ninguna persona");
+
+        } else {
+            tituloTablas.setText("Selecciona 1 de " + licencias.size() + " personas encontradas para continuar");
+
+            for (Licencia licencia : licencias) {
+                Date fechaE = licencia.getFechaExpedicion().getTime();
+                Date fechaV = licencia.getFechaVencimiento().getTime();
+                String fechaExString = (fechaE != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaE) : "NoDate";
+                String fechaVeString = (fechaV != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaV) : "NoDate";
+                model.addRow(new Object[]{fechaExString, fechaVeString, licencia.getTipo(), licencia.getVigencia(), licencia.getCosto(), licencia.getEstado(), licencia.getPersona()});
+            }
+            JTable1.setModel(model);
+
+            tablitaSP.setVisible(true);
+            tablePersonas.setVisible(true);
+
+        }
+        tituloTablas.setVisible(true);
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarBoton;
     private javax.swing.JPanel contenido;
@@ -207,5 +267,6 @@ public class ConsultasCurp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtCurp;
+    private javax.swing.JComboBox<String> verTramitesComboBox;
     // End of variables declaration//GEN-END:variables
 }

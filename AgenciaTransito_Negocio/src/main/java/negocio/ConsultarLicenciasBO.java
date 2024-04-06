@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -64,18 +65,22 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+        @Override
     public List<Licencia> obtenerLicencias(Persona persona) throws ExcepcionAT {
         try {
             List<Licencia> licencias = consultasDAO.obtenerLicencias(persona);
             if (licencias.isEmpty()) {
-                throw new ExcepcionAT("La persona buscada no tiene licencias registradas.");
+                throw new ExcepcionAT("La persona buscada no tiene licencias registradas: " + persona.getRFC());
             }
             return licencias;
+        } catch (NoResultException e) {
+            throw new ExcepcionAT("La persona buscada no tiene licencias registradas: " + persona.getRFC(), e);
         } catch (Exception e) {
-            throw new ExcepcionAT("Error al obtener las licencias de la persona.", e);
+            throw new ExcepcionAT("Error al obtener las licencias de la persona: " + persona.getRFC(), e);
         }
     }
+
+    
 
     @Override
     public List<Persona> consultarPorNombre(String Nombre) throws ExcepcionAT  {
