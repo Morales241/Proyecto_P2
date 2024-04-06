@@ -5,13 +5,17 @@
 package GUI;
 
 
+import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import excepciones.ExcepcionAT;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -57,6 +61,7 @@ public class ConsultasNombre extends javax.swing.JFrame {
         tablaPersonas = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         buscarBoton = new javax.swing.JButton();
+        verTramitesComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +112,16 @@ public class ConsultasNombre extends javax.swing.JFrame {
             }
         });
 
+        verTramitesComboBox.setBackground(new java.awt.Color(102, 102, 102));
+        verTramitesComboBox.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        verTramitesComboBox.setForeground(new java.awt.Color(255, 255, 255));
+        verTramitesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VER TRAMITES", "Licencias", "Placas" }));
+        verTramitesComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verTramitesComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
         contenido.setLayout(contenidoLayout);
         contenidoLayout.setHorizontalGroup(
@@ -123,12 +138,15 @@ public class ConsultasNombre extends javax.swing.JFrame {
                             .addGroup(contenidoLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(contenidoLayout.createSequentialGroup()
+                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(52, 52, 52))
             .addGroup(contenidoLayout.createSequentialGroup()
-                .addGap(205, 205, 205)
-                .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(190, 190, 190)
+                .addComponent(verTramitesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         contenidoLayout.setVerticalGroup(
@@ -138,15 +156,20 @@ public class ConsultasNombre extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(33, 33, 33)
-                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contenidoLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(tablaPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(verTramitesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,6 +202,24 @@ public class ConsultasNombre extends javax.swing.JFrame {
         
     }//GEN-LAST:event_buscarBotonActionPerformed
 
+    private void verTramitesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verTramitesComboBoxActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable1.getSelectedRow();
+        String rfcSelected = jTable1.getValueAt(filaSeleccionada, 0).toString();
+        System.out.println(rfcSelected);
+        String consulta = verTramitesComboBox.getSelectedItem().toString();
+        System.out.println(consulta);
+        try {
+          Persona personaAux =  consultasBO.obtenerPersona(rfcSelected);
+          if( consulta == "Licencias"){
+              consultasBO.obtenerLicencias(personaAux);
+              cargarDatosTablaLicencias(consultasBO.obtenerLicencias(personaAux), jTable1);
+          }
+        } catch (ExcepcionAT ex) {
+            Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_verTramitesComboBoxActionPerformed
+
     public javax.swing.JPanel traerContenido(){
         return this.contenido;
     }
@@ -207,6 +248,33 @@ public class ConsultasNombre extends javax.swing.JFrame {
         tituloTablas.setVisible(true);
 
     }
+    
+     public void cargarDatosTablaLicencias(List<Licencia> licencias, JTable JTable1) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Expedicion", "Vencimiento", "Tipo", "Vigencia", "Costo", "Estado", "Persona"});
+
+        if (licencias.isEmpty()) {
+            tituloTablas.setText("No se encontro ninguna persona");
+            
+        } else {
+            tituloTablas.setText("Selecciona 1 de " + licencias.size() + " personas encontradas para continuar");
+
+            for (Licencia licencia : licencias) {
+                Date fechaE = licencia.getFechaExpedicion().getTime();
+                Date fechaV = licencia.getFechaVencimiento().getTime();
+                String fechaExString = (fechaE != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaE) : "NoDate";
+                String fechaVeString = (fechaV != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaV) : "NoDate";
+                model.addRow(new Object[]{fechaExString, fechaVeString, licencia.getTipo(),licencia.getVigencia(),licencia.getCosto(), licencia.getEstado(), licencia.getPersona()});
+            }
+            JTable1.setModel(model);
+
+            tablitaSP.setVisible(true);
+            tablePersonas.setVisible(true);
+
+        }
+        tituloTablas.setVisible(true);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarBoton;
@@ -217,5 +285,6 @@ public class ConsultasNombre extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JScrollPane tablaPersonas;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JComboBox<String> verTramitesComboBox;
     // End of variables declaration//GEN-END:variables
 }

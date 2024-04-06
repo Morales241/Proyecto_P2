@@ -118,5 +118,18 @@ public class ConsultasDAO implements IConsultasDAO {
         query.setParameter("rfc", "%" + curp + "%");
         return query.getResultList();
     }
+    
+    @Override
+    public Persona obtenerPersona(String rfc) {
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
+
+        em = emf.createEntityManager();
+        
+        String jpql = "SELECT p FROM Persona p WHERE p.RFC = :rfc";
+        TypedQuery<Persona> query = em.createQuery(jpql, Persona.class);
+        query.setParameter("rfc", rfc);
+        return query.getSingleResult();
+
+    }
 
 }

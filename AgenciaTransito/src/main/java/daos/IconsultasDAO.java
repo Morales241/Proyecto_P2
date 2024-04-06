@@ -29,5 +29,5 @@ public interface IConsultasDAO {
     
     public List<Persona> consultarPorCURP(String curp);
     
-   
+    public Persona obtenerPersona(String rfc); 
 }

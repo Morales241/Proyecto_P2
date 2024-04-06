@@ -130,5 +130,19 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
         } 
     }
 
+    @Override
+    public Persona obtenerPersona(String rfc) throws ExcepcionAT {
+       
+        if (this.consultasDAO == null) {
+            throw new IllegalStateException("El objeto consultasDAO no ha sido inicializado correctamente.");
+        }
+        try {
+            return  consultasDAO.obtenerPersona(rfc);
+        } catch (Exception e) {
+             e.printStackTrace(); 
+            throw new ExcepcionAT("Error al obtener la persona.", e);
+        } 
+    }
+
     
 }

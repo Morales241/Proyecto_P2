@@ -29,4 +29,6 @@ public interface IconsultarLicencias {
     public List<Persona> consultarHistorialFechaN(Calendar fechaNacimiento) throws ExcepcionAT;
     
     public List<Persona> consultarPorCURP(String curp)throws ExcepcionAT;
+    
+     public Persona obtenerPersona(String rfc) throws ExcepcionAT;
 }
