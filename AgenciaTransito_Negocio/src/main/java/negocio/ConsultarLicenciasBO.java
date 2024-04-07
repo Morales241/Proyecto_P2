@@ -72,28 +72,20 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
     public List<Placas> obtenerPlacasDePersona(Persona persona) throws ExcepcionAT {
         try {
             List<Placas> placas = consultasDAO.obtenerPlacasDePersona(persona);
-            if (placas.isEmpty()) {
-                throw new ExcepcionAT("La persona buscada no tiene throws placas registradas: " + persona.getRFC());
-            }
+            
             return placas;
-        } catch (NoResultException e) {
-            throw new ExcepcionAT("La persona buscada no tiene placas registradas: " + persona.getRFC(), e);
         } catch (Exception e) {
-            throw new ExcepcionAT("Error al obtener las placas de la persona: " + persona.getRFC(), e);
+            throw new ExcepcionAT("La persona buscada no tiene placas registradas: " + persona.getRFC(), e);
         } }
 
         @Override
     public List<Licencia> obtenerLicencias(Persona persona) throws ExcepcionAT {
         try {
             List<Licencia> licencias = consultasDAO.obtenerLicencias(persona);
-            if (licencias.isEmpty()) {
-                throw new ExcepcionAT("La persona buscada no tiene licencias registradas: " + persona.getRFC());
-            }
+            
             return licencias;
-        } catch (NoResultException e) {
+         } catch (Exception e) {
             throw new ExcepcionAT("La persona buscada no tiene licencias registradas: " + persona.getRFC(), e);
-        } catch (Exception e) {
-            throw new ExcepcionAT("Error al obtener las licencias de la persona: " + persona.getRFC(), e);
         }
     }
 
@@ -113,7 +105,7 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
             return persona;
         } catch (Exception e) {
              e.printStackTrace(); 
-            throw new ExcepcionAT("Error al obtener la persona.", e);
+            throw new ExcepcionAT("La persona con el nombre buscado no esta registrada.", e);
         }  
     }
 
@@ -126,12 +118,12 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
         try {
             List<Persona> persona = consultasDAO.consultarHistorialFechaN(fechaNacimiento);
             if (persona.isEmpty()) {
-                throw new ExcepcionAT("La persona buscada no esta registradas.");
+                throw new ExcepcionAT("Error al obtener la persona.");
             }
             return persona;
         } catch (Exception e) {
              e.printStackTrace(); 
-            throw new ExcepcionAT("Error al obtener la persona.", e);
+            throw new ExcepcionAT("La persona con la fecha de nacimiento buscada no esta registrada.", e);
         }   }
 
     @Override
@@ -143,12 +135,12 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
         try {
             List<Persona> persona = consultasDAO.consultarPorCURP(curp);
             if (persona.isEmpty()) {
-                throw new ExcepcionAT("La persona buscada no esta registradas.");
+                throw new ExcepcionAT("Error al obtener la persona.");
             }
             return persona;
         } catch (Exception e) {
              e.printStackTrace(); 
-            throw new ExcepcionAT("Error al obtener la persona.", e);
+            throw new ExcepcionAT("La persona con el RFC buscado no esta registrada.", e);
         } 
     }
 
@@ -193,7 +185,7 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
 
     public void cargarDatosTablaLicencias(List<Licencia> licencias, JTable JTable1) {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"Expedicion", "Vencimiento", "Tipo", "Vigencia", "Costo", "Estado", "Persona"});
+        model.setColumnIdentifiers(new String[]{"Expedicion", "Vencimiento", "Tipo", "Vigencia", "Costo", "Estado"});
 
         if (licencias.isEmpty()) {
             tituloTablas.setText("No se encontro ninguna persona");
@@ -206,7 +198,7 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
                 Date fechaV = licencia.getFechaVencimiento().getTime();
                 String fechaExString = (fechaE != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaE) : "NoDate";
                 String fechaVeString = (fechaV != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaV) : "NoDate";
-                model.addRow(new Object[]{fechaExString, fechaVeString, licencia.getTipo(),licencia.getVigencia(),licencia.getCosto(), licencia.getEstado(), licencia.getPersona()});
+                model.addRow(new Object[]{fechaExString, fechaVeString, licencia.getTipo(),licencia.getVigencia(),licencia.getCosto(), licencia.getEstado()});
             }
             JTable1.setModel(model);
 

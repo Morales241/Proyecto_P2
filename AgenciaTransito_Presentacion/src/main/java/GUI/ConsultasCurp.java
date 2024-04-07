@@ -174,10 +174,12 @@ public class ConsultasCurp extends javax.swing.JFrame {
     private void buscarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBotonActionPerformed
         // TODO add your handling code here:
          try {
-            consultasBO.consultarPorCURP(txtCurp.getText());
+            
             consultasBO.cargarDatosTabla( consultasBO.consultarPorCURP(txtCurp.getText()), jTable1);
         } catch (ExcepcionAT ex) {
             Logger.getLogger(ConsultasCurp.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        
         }
     }//GEN-LAST:event_buscarBotonActionPerformed
 

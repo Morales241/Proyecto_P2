@@ -190,6 +190,8 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
         Logger.getLogger(ConsultasNacimiento.class.getName()).log(Level.SEVERE, null, ex);
     } catch (ExcepcionAT ex) {
         Logger.getLogger(ConsultasNacimiento.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        
     }
     }//GEN-LAST:event_buscarBotonActionPerformed
 

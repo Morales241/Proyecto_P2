@@ -180,14 +180,16 @@ public class ConsultasNombre extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void buscarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBotonActionPerformed
-            
         try {
-            // TODO add your handling code here:
-           
-            consultasBO.cargarDatosTabla( consultasBO.consultarPorNombre(txtNombre.getText()), jTable1);
-        } catch (ExcepcionAT ex) {
-            Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        List<Persona> personas = consultasBO.consultarPorNombre(txtNombre.getText());
+        
+            consultasBO.cargarDatosTabla(personas, jTable1);
+        
+    } catch (ExcepcionAT ex) {
+        Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+          
+    }
         
     }//GEN-LAST:event_buscarBotonActionPerformed
 
@@ -210,9 +212,11 @@ public class ConsultasNombre extends javax.swing.JFrame {
                 }
             } catch (ExcepcionAT ex) {
                 Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        
             } catch (NoResultException ex) {
                 Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(this, "La persona no tiene licencias registradas.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La persona no tiene licencias registradas.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
             }
             try {
                 Persona personaAux = consultasBO.obtenerPersona(rfcSelected);
