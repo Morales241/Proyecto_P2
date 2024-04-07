@@ -6,13 +6,16 @@ package GUI;
 
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
+import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.NoResultException;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import negocio.ConsultarLicenciasBO;
@@ -174,7 +177,7 @@ public class ConsultasCurp extends javax.swing.JFrame {
         // TODO add your handling code here:
          try {
             consultasBO.consultarPorCURP(txtCurp.getText());
-            cargarDatosTabla( consultasBO.consultarPorCURP(txtCurp.getText()), jTable1);
+            consultasBO.cargarDatosTabla( consultasBO.consultarPorCURP(txtCurp.getText()), jTable1);
         } catch (ExcepcionAT ex) {
             Logger.getLogger(ConsultasCurp.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -185,78 +188,53 @@ public class ConsultasCurp extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCurpActionPerformed
 
     private void verTramitesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verTramitesComboBoxActionPerformed
-        // TODO add your handling code here:
-         int filaSeleccionada = jTable1.getSelectedRow();
-        String rfcSelected = jTable1.getValueAt(filaSeleccionada, 0).toString();
-        System.out.println(rfcSelected);
-        String consulta = verTramitesComboBox.getSelectedItem().toString();
-        System.out.println(consulta);
-        try {
-          Persona personaAux =  consultasBO.obtenerPersona(rfcSelected);
-          if( consulta == "Licencias"){
-              consultasBO.obtenerLicencias(personaAux);
-              cargarDatosTablaLicencias(consultasBO.obtenerLicencias(personaAux), jTable1);
-          }
-        } catch (ExcepcionAT ex) {
-            Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+      int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            String rfcSelected = jTable1.getValueAt(filaSeleccionada, 0).toString();
+            System.out.println(rfcSelected);
+            String consulta = verTramitesComboBox.getSelectedItem().toString();
+            System.out.println(consulta);
+            try {
+                Persona personaAux = consultasBO.obtenerPersona(rfcSelected);
+                if (consulta.equals("Licencias")) {
+                    List<Licencia> licencias = consultasBO.obtenerLicencias(personaAux);
+                    if (licencias.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "La persona no tiene licencias registradas.", "Mensaje de Advertencia", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        consultasBO.cargarDatosTablaLicencias(licencias, jTable1);
+                    }
+                }
+            } catch (ExcepcionAT ex) {
+                Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoResultException ex) {
+                Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "La persona no tiene licencias registradas.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+            }
+            try {
+                Persona personaAux = consultasBO.obtenerPersona(rfcSelected);
+                if (consulta.equals("Placas")) {
+                    List<Placas> placas = consultasBO.obtenerPlacasDePersona(personaAux);
+                    if (placas.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "La persona no tiene placas registradas.", "Mensaje de Advertencia", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        consultasBO.cargarDatosTablaPlacas(placas, jTable1);
+                    }
+                }
+            } catch (ExcepcionAT ex) {
+                Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoResultException ex) {
+                Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "La persona no tiene placas registradas.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            System.out.println("No se ha seleccionado ninguna fila.");
+        }       
     }//GEN-LAST:event_verTramitesComboBoxActionPerformed
 
       public javax.swing.JPanel traerContenido(){
         return this.contenido;
     }
-      
-        public void cargarDatosTabla(List<Persona> personas, JTable tabla) {
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"RFC", "Nombre", "Birth", "Telefono"});
-
-        if (personas.isEmpty()) {
-            tituloTablas.setText("No se encontro ninguna persona");
-            
-        } else {
-            tituloTablas.setText("Selecciona 1 de " + personas.size() + " personas encontradas para continuar");
-
-            for (Persona persona : personas) {
-                Date fecha = persona.getFechaNacimiento().getTime();
-                String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
-                model.addRow(new Object[]{persona.getRFC(), persona.getNombre(), fechaString, persona.getTelefono()});
-            }
-            tabla.setModel(model);
-
-            tablitaSP.setVisible(true);
-            tablePersonas.setVisible(true);
-
-        }
-        tituloTablas.setVisible(true);
-
-    }  
-
-    public void cargarDatosTablaLicencias(List<Licencia> licencias, JTable JTable1) {
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"Expedicion", "Vencimiento", "Tipo", "Vigencia", "Costo", "Estado", "Persona"});
-
-        if (licencias.isEmpty()) {
-            tituloTablas.setText("No se encontro ninguna persona");
-
-        } else {
-            tituloTablas.setText("Selecciona 1 de " + licencias.size() + " personas encontradas para continuar");
-
-            for (Licencia licencia : licencias) {
-                Date fechaE = licencia.getFechaExpedicion().getTime();
-                Date fechaV = licencia.getFechaVencimiento().getTime();
-                String fechaExString = (fechaE != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaE) : "NoDate";
-                String fechaVeString = (fechaV != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaV) : "NoDate";
-                model.addRow(new Object[]{fechaExString, fechaVeString, licencia.getTipo(), licencia.getVigencia(), licencia.getCosto(), licencia.getEstado(), licencia.getPersona()});
-            }
-            JTable1.setModel(model);
-
-            tablitaSP.setVisible(true);
-            tablePersonas.setVisible(true);
-
-        }
-        tituloTablas.setVisible(true);
-
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarBoton;
