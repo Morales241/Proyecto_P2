@@ -27,9 +27,7 @@ import negocio.ConsultarLicenciasBO;
 public class ConsultasCurp extends javax.swing.JFrame {
 
     ConsultarLicenciasBO consultasBO = new ConsultarLicenciasBO();
-    private JLabel tituloTablas = new JLabel();
-    private JLabel tablitaSP = new JLabel();
-    private JLabel tablePersonas = new JLabel();
+
     
     /**
      * Creates new form ConsultasCurp

@@ -1,7 +1,9 @@
 package GUI;
 
 
+import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
+import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,7 +12,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.NoResultException;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import negocio.ConsultarLicenciasBO;
@@ -27,9 +31,7 @@ import negocio.ConsultarLicenciasBO;
 public class ConsultasNacimiento extends javax.swing.JFrame {
 
     ConsultarLicenciasBO consultasBO = new ConsultarLicenciasBO();
-    private JLabel tituloTablas = new JLabel();
-    private JLabel tablitaSP = new JLabel();
-    private JLabel tablePersonas = new JLabel();
+
     
     /**
      * Creates new form ConsultasNacimiento
@@ -107,6 +109,11 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
         verTramitesComboBox.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         verTramitesComboBox.setForeground(new java.awt.Color(255, 255, 255));
         verTramitesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VER TRAMITES", "Licencias", "Placas" }));
+        verTramitesComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verTramitesComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
         contenido.setLayout(contenidoLayout);
@@ -178,7 +185,7 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
         fechaNacimiento.setTime(date);
         
         consultasBO.consultarHistorialFechaN(fechaNacimiento);
-        cargarDatosTabla(consultasBO.consultarHistorialFechaN(fechaNacimiento), jTable1);
+        consultasBO.cargarDatosTabla(consultasBO.consultarHistorialFechaN(fechaNacimiento), jTable1);
     } catch (ParseException ex) {
         Logger.getLogger(ConsultasNacimiento.class.getName()).log(Level.SEVERE, null, ex);
     } catch (ExcepcionAT ex) {
@@ -190,34 +197,56 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
+    private void verTramitesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verTramitesComboBoxActionPerformed
+        // TODO add your handling code here:
+          int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            String rfcSelected = jTable1.getValueAt(filaSeleccionada, 0).toString();
+            System.out.println(rfcSelected);
+            String consulta = verTramitesComboBox.getSelectedItem().toString();
+            System.out.println(consulta);
+            try {
+                Persona personaAux = consultasBO.obtenerPersona(rfcSelected);
+                if (consulta.equals("Licencias")) {
+                    List<Licencia> licencias = consultasBO.obtenerLicencias(personaAux);
+                    if (licencias.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "La persona no tiene licencias registradas.", "Mensaje de Advertencia", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        consultasBO.cargarDatosTablaLicencias(licencias, jTable1);
+                    }
+                }
+            } catch (ExcepcionAT ex) {
+                Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoResultException ex) {
+                Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "La persona no tiene licencias registradas.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+            }
+            try {
+                Persona personaAux = consultasBO.obtenerPersona(rfcSelected);
+                if (consulta.equals("Placas")) {
+                    List<Placas> placas = consultasBO.obtenerPlacasDePersona(personaAux);
+                    if (placas.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "La persona no tiene placas registradas.", "Mensaje de Advertencia", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        consultasBO.cargarDatosTablaPlacas(placas, jTable1);
+                    }
+                }
+            } catch (ExcepcionAT ex) {
+                Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoResultException ex) {
+                Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "La persona no tiene placas registradas.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            System.out.println("No se ha seleccionado ninguna fila.");
+        }      
+    }//GEN-LAST:event_verTramitesComboBoxActionPerformed
+
       public javax.swing.JPanel traerContenido(){
         return this.contenido;
     }
       
-        public void cargarDatosTabla(List<Persona> personas, JTable tabla) {
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"RFC", "Nombre", "Birth", "Telefono"});
-
-        if (personas.isEmpty()) {
-            tituloTablas.setText("No se encontro ninguna persona");
-            
-        } else {
-            tituloTablas.setText("Selecciona 1 de " + personas.size() + " personas encontradas para continuar");
-
-            for (Persona persona : personas) {
-                Date fecha = persona.getFechaNacimiento().getTime();
-                String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
-                model.addRow(new Object[]{persona.getRFC(), persona.getNombre(), fechaString, persona.getTelefono()});
-            }
-            tabla.setModel(model);
-
-            tablitaSP.setVisible(true);
-            tablePersonas.setVisible(true);
-
-        }
-        tituloTablas.setVisible(true);
-
-    }  
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarBoton;
