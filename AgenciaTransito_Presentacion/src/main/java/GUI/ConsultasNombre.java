@@ -7,20 +7,14 @@ package GUI;
 
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
+import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.NoResultException;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import negocio.ConsultarLicenciasBO;
 
 
@@ -31,11 +25,8 @@ import negocio.ConsultarLicenciasBO;
  */
 public class ConsultasNombre extends javax.swing.JFrame {
 
-    
+    // cambiarlo por lo de interfaz
     ConsultarLicenciasBO consultasBO = new ConsultarLicenciasBO();
-    private JLabel tituloTablas = new JLabel();
-    private JLabel tablitaSP = new JLabel();
-    private JLabel tablePersonas = new JLabel();
 
     /**
      * Creates new form ConsultasNombre
@@ -192,8 +183,8 @@ public class ConsultasNombre extends javax.swing.JFrame {
             
         try {
             // TODO add your handling code here:
-            consultasBO.consultarPorNombre(txtNombre.getText());
-            cargarDatosTabla( consultasBO.consultarPorNombre(txtNombre.getText()), jTable1);
+           
+            consultasBO.cargarDatosTabla( consultasBO.consultarPorNombre(txtNombre.getText()), jTable1);
         } catch (ExcepcionAT ex) {
             Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -214,7 +205,7 @@ public class ConsultasNombre extends javax.swing.JFrame {
                     if (licencias.isEmpty()) {
                         JOptionPane.showMessageDialog(this, "La persona no tiene licencias registradas.", "Mensaje de Advertencia", JOptionPane.WARNING_MESSAGE);
                     } else {
-                        cargarDatosTablaLicencias(licencias, jTable1);
+                        consultasBO.cargarDatosTablaLicencias(licencias, jTable1);
                     }
                 }
             } catch (ExcepcionAT ex) {
@@ -222,6 +213,22 @@ public class ConsultasNombre extends javax.swing.JFrame {
             } catch (NoResultException ex) {
                 Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "La persona no tiene licencias registradas.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+            }
+            try {
+                Persona personaAux = consultasBO.obtenerPersona(rfcSelected);
+                if (consulta.equals("Placas")) {
+                    List<Placas> placas = consultasBO.obtenerPlacasDePersona(personaAux);
+                    if (placas.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "La persona no tiene placas registradas.", "Mensaje de Advertencia", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        consultasBO.cargarDatosTablaPlacas(placas, jTable1);
+                    }
+                }
+            } catch (ExcepcionAT ex) {
+                Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoResultException ex) {
+                Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "La persona no tiene placas registradas.", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             System.out.println("No se ha seleccionado ninguna fila.");
@@ -231,58 +238,7 @@ public class ConsultasNombre extends javax.swing.JFrame {
     public javax.swing.JPanel traerContenido(){
         return this.contenido;
     }
-    
-    public void cargarDatosTabla(List<Persona> personas, JTable JTable1) {
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"RFC", "Nombre", "Birth", "Telefono"});
-
-        if (personas.isEmpty()) {
-            tituloTablas.setText("No se encontro ninguna persona");
-            
-        } else {
-            tituloTablas.setText("Selecciona 1 de " + personas.size() + " personas encontradas para continuar");
-
-            for (Persona persona : personas) {
-                Date fecha = persona.getFechaNacimiento().getTime();
-                String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
-                model.addRow(new Object[]{persona.getRFC(), persona.getNombre(), fechaString, persona.getTelefono()});
-            }
-            JTable1.setModel(model);
-
-            tablitaSP.setVisible(true);
-            tablePersonas.setVisible(true);
-
-        }
-        tituloTablas.setVisible(true);
-
-    }
-    
-     public void cargarDatosTablaLicencias(List<Licencia> licencias, JTable JTable1) {
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"Expedicion", "Vencimiento", "Tipo", "Vigencia", "Costo", "Estado", "Persona"});
-
-        if (licencias.isEmpty()) {
-            tituloTablas.setText("No se encontro ninguna persona");
-            
-        } else {
-            tituloTablas.setText("Selecciona 1 de " + licencias.size() + " personas encontradas para continuar");
-
-            for (Licencia licencia : licencias) {
-                Date fechaE = licencia.getFechaExpedicion().getTime();
-                Date fechaV = licencia.getFechaVencimiento().getTime();
-                String fechaExString = (fechaE != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaE) : "NoDate";
-                String fechaVeString = (fechaV != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaV) : "NoDate";
-                model.addRow(new Object[]{fechaExString, fechaVeString, licencia.getTipo(),licencia.getVigencia(),licencia.getCosto(), licencia.getEstado(), licencia.getPersona()});
-            }
-            JTable1.setModel(model);
-
-            tablitaSP.setVisible(true);
-            tablePersonas.setVisible(true);
-
-        }
-        tituloTablas.setVisible(true);
-
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarBoton;

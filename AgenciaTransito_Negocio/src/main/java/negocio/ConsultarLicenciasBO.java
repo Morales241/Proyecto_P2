@@ -9,7 +9,9 @@ import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,6 +21,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,6 +32,9 @@ import javax.persistence.criteria.Root;
 public class ConsultarLicenciasBO implements IconsultarLicencias{
 
     ConsultasDAO consultasDAO;
+    private JLabel tituloTablas = new JLabel();
+    private JLabel tablitaSP = new JLabel();
+    private JLabel tablePersonas = new JLabel();
 
     public ConsultarLicenciasBO() {
        consultasDAO = new ConsultasDAO();
@@ -61,9 +69,18 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
     }
 
     @Override
-    public List<Placas> obtenerPlacasDePersona(Persona persona) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public List<Placas> obtenerPlacasDePersona(Persona persona) throws ExcepcionAT {
+        try {
+            List<Placas> placas = consultasDAO.obtenerPlacasDePersona(persona);
+            if (placas.isEmpty()) {
+                throw new ExcepcionAT("La persona buscada no tiene throws placas registradas: " + persona.getRFC());
+            }
+            return placas;
+        } catch (NoResultException e) {
+            throw new ExcepcionAT("La persona buscada no tiene placas registradas: " + persona.getRFC(), e);
+        } catch (Exception e) {
+            throw new ExcepcionAT("Error al obtener las placas de la persona: " + persona.getRFC(), e);
+        } }
 
         @Override
     public List<Licencia> obtenerLicencias(Persona persona) throws ExcepcionAT {
@@ -149,5 +166,83 @@ public class ConsultarLicenciasBO implements IconsultarLicencias{
         } 
     }
 
+    @Override
+    public void cargarDatosTabla(List<Persona> personas, JTable JTable1) {
+         DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"RFC", "Nombre", "Birth", "Telefono"});
+
+        if (personas.isEmpty()) {
+            tituloTablas.setText("No se encontro ninguna persona");
+            
+        } else {
+            tituloTablas.setText("Selecciona 1 de " + personas.size() + " personas encontradas para continuar");
+
+            for (Persona persona : personas) {
+                Date fecha = persona.getFechaNacimiento().getTime();
+                String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
+                model.addRow(new Object[]{persona.getRFC(), persona.getNombre(), fechaString, persona.getTelefono()});
+            }
+            JTable1.setModel(model);
+
+            tablitaSP.setVisible(true);
+            tablePersonas.setVisible(true);
+
+        }
+        tituloTablas.setVisible(true);
+    }
+
+    public void cargarDatosTablaLicencias(List<Licencia> licencias, JTable JTable1) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Expedicion", "Vencimiento", "Tipo", "Vigencia", "Costo", "Estado", "Persona"});
+
+        if (licencias.isEmpty()) {
+            tituloTablas.setText("No se encontro ninguna persona");
+            
+        } else {
+            tituloTablas.setText("Selecciona 1 de " + licencias.size() + " personas encontradas para continuar");
+
+            for (Licencia licencia : licencias) {
+                Date fechaE = licencia.getFechaExpedicion().getTime();
+                Date fechaV = licencia.getFechaVencimiento().getTime();
+                String fechaExString = (fechaE != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaE) : "NoDate";
+                String fechaVeString = (fechaV != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaV) : "NoDate";
+                model.addRow(new Object[]{fechaExString, fechaVeString, licencia.getTipo(),licencia.getVigencia(),licencia.getCosto(), licencia.getEstado(), licencia.getPersona()});
+            }
+            JTable1.setModel(model);
+
+            tablitaSP.setVisible(true);
+            tablePersonas.setVisible(true);
+
+        }
+        tituloTablas.setVisible(true);
+
+    }
     
+      public void cargarDatosTablaPlacas(List<Placas> placas, JTable JTable1) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Placas", "Expedicion", "Recepcion", "Vigencia"});
+
+        if (placas.isEmpty()) {
+            tituloTablas.setText("No se encontro ninguna persona");
+            
+        } else {
+            tituloTablas.setText("Selecciona 1 de " + placas.size() + " personas encontradas para continuar");
+
+            for (Placas placa : placas) {
+                Date fechaE = placa.getFechaExpedicion().getTime();
+                Date fechaR = placa.getFechaRecepcion().getTime();
+                String fechaExString = (fechaE != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaE) : "NoDate";
+                String fechaReString = (fechaR != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaR) : "NoDate";
+                model.addRow(new Object[]{placa.getNumero(), fechaExString, fechaReString, placa.getVigencia()});
+            }
+            JTable1.setModel(model);
+
+            tablitaSP.setVisible(true);
+            tablePersonas.setVisible(true);
+
+        }
+        tituloTablas.setVisible(true);
+
+    }
+
 }

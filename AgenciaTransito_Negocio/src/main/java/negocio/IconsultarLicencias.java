@@ -12,6 +12,7 @@ import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
 import java.util.Calendar;
 import java.util.List;
+import javax.swing.JTable;
 
 /**
  *
@@ -20,7 +21,7 @@ import java.util.List;
 public interface IconsultarLicencias {
     public List<Licencia> cunsltarLicencias(Long ID);
     
-    public List<Placas> obtenerPlacasDePersona(Persona persona);
+    public List<Placas> obtenerPlacasDePersona(Persona persona)throws ExcepcionAT ;
     
     public List<Licencia> obtenerLicencias(Persona persona)throws ExcepcionAT;
     
@@ -30,5 +31,9 @@ public interface IconsultarLicencias {
     
     public List<Persona> consultarPorCURP(String curp)throws ExcepcionAT;
     
-     public Persona obtenerPersona(String rfc) throws ExcepcionAT;
+    public Persona obtenerPersona(String rfc) throws ExcepcionAT;
+     
+    public void cargarDatosTabla(List<Persona> personas, JTable JTable1);
+    
+    public void cargarDatosTablaLicencias(List<Licencia> licencias, JTable JTable1);
 }

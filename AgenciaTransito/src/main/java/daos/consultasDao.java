@@ -76,7 +76,7 @@ public class ConsultasDAO implements IConsultasDAO {
 
         em = emf.createEntityManager();
         
-        String jpql = "SELECT p FROM Placas p WHERE p.automovil.propietario = :persona";
+        String jpql = "SELECT p FROM Placas p WHERE p.automovil.persona = :persona";
         TypedQuery<Placas> query = em.createQuery(jpql, Placas.class);
         query.setParameter("persona", persona);
         return query.getResultList();
