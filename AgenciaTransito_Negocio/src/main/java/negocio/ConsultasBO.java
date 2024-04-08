@@ -29,14 +29,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author crist
  */
-public class ConsultarLicenciasBO implements IconsultarLicencias{
+public class ConsultasBO implements IConsultas{
 
     ConsultasDAO consultasDAO;
     private JLabel tituloTablas = new JLabel();
     private JLabel tablitaSP = new JLabel();
     private JLabel tablePersonas = new JLabel();
 
-    public ConsultarLicenciasBO() {
+    public ConsultasBO() {
        consultasDAO = new ConsultasDAO();
     }
     

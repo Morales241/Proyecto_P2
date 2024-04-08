@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import negocio.ConsultarLicenciasBO;
+import negocio.ConsultasBO;
 
 /**
  *
@@ -26,7 +26,7 @@ import negocio.ConsultarLicenciasBO;
  */
 public class ConsultasCurp extends javax.swing.JFrame {
 
-    ConsultarLicenciasBO consultasBO = new ConsultarLicenciasBO();
+    ConsultasBO consultasBO = new ConsultasBO();
 
     
     /**

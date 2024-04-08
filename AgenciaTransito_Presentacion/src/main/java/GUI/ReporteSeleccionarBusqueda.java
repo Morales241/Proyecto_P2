@@ -38,7 +38,7 @@ public class ReporteSeleccionarBusqueda extends javax.swing.JFrame {
         botonBcurp.setBackground(new java.awt.Color(102, 102, 102));
         botonBcurp.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         botonBcurp.setForeground(new java.awt.Color(255, 255, 255));
-        botonBcurp.setText("Buscar por curp");
+        botonBcurp.setText("Buscar por periodo");
         botonBcurp.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonBcurp.setBorderPainted(false);
         botonBcurp.setFocusPainted(false);
@@ -51,7 +51,7 @@ public class ReporteSeleccionarBusqueda extends javax.swing.JFrame {
         botonBfechaN.setBackground(new java.awt.Color(102, 102, 102));
         botonBfechaN.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         botonBfechaN.setForeground(new java.awt.Color(255, 255, 255));
-        botonBfechaN.setText("Buscar por fecha N");
+        botonBfechaN.setText("Buscar por tipo ");
         botonBfechaN.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonBfechaN.setBorderPainted(false);
         botonBfechaN.setFocusPainted(false);
@@ -114,7 +114,7 @@ public class ReporteSeleccionarBusqueda extends javax.swing.JFrame {
 
     private void botonBcurpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBcurpActionPerformed
         principal.contenido.removeAll();
-        ReporteConsultaCurp busquedaCurp = new ReporteConsultaCurp();
+        ReporteConsultaTipo busquedaCurp = new ReporteConsultaTipo();
         principal.contenido.add(busquedaCurp.traerContenido());
         
         principal.contenido.revalidate();
@@ -123,7 +123,7 @@ public class ReporteSeleccionarBusqueda extends javax.swing.JFrame {
 
     private void botonBfechaNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBfechaNActionPerformed
         principal.contenido.removeAll();
-        ReporteConsultaFN busquedaFN = new ReporteConsultaFN();
+        ReporteConsultaPeriodo busquedaFN = new ReporteConsultaPeriodo();
         principal.contenido.add(busquedaFN.traerContenido());
         
         principal.contenido.revalidate();

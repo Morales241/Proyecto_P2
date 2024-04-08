@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import negocio.ConsultarLicenciasBO;
+import negocio.ConsultasBO;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -30,7 +30,7 @@ import negocio.ConsultarLicenciasBO;
  */
 public class ConsultasNacimiento extends javax.swing.JFrame {
 
-    ConsultarLicenciasBO consultasBO = new ConsultarLicenciasBO();
+    ConsultasBO consultasBO = new ConsultasBO();
 
     
     /**

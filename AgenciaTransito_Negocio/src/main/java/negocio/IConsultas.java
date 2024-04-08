@@ -5,7 +5,6 @@
 package negocio;
 
 
-import dto.PersonaDTO;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
@@ -18,7 +17,7 @@ import javax.swing.JTable;
  *
  * @author tacot
  */
-public interface IconsultarLicencias {
+public interface IConsultas {
     public List<Licencia> cunsltarLicencias(Long ID);
     
     public List<Placas> obtenerPlacasDePersona(Persona persona)throws ExcepcionAT ;

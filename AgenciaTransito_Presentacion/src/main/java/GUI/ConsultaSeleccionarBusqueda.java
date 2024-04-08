@@ -123,7 +123,7 @@ public class ConsultaSeleccionarBusqueda extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarCurpBotonActionPerformed
 
     private void buscarNombreBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNombreBotonActionPerformed
-       principal.contenido.removeAll();
+        principal.contenido.removeAll();
         ConsultasNombre busquedaNombre = new ConsultasNombre();
         principal.contenido.add(busquedaNombre.traerContenido());
         

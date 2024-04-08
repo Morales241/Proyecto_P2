@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import javax.persistence.NoResultException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import negocio.ConsultarLicenciasBO;
+import negocio.ConsultasBO;
 
 
 
@@ -26,7 +26,7 @@ import negocio.ConsultarLicenciasBO;
 public class ConsultasNombre extends javax.swing.JFrame {
 
     // cambiarlo por lo de interfaz
-    ConsultarLicenciasBO consultasBO = new ConsultarLicenciasBO();
+    ConsultasBO consultasBO = new ConsultasBO();
 
     /**
      * Creates new form ConsultasNombre
