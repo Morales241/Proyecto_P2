@@ -6,18 +6,30 @@
 package excepciones;
 
 /**
- *
+ * Clade que maneja las excepciones del proyecto
  * @author tacot
  */
 public class ExcepcionAT extends Exception{
 
+    /**
+     * Constructor vacio
+     */
     public ExcepcionAT() {
     }
 
+    /**
+     * Contructor de la excepcion con el mensaje
+     * @param message
+     */
     public ExcepcionAT(String message) {
         super(message);
     }
 
+    /**
+     * Contructor de la excepcion con el mensaje y la causa
+     * @param message
+     * @param cause
+     */
     public ExcepcionAT(String message, Throwable cause) {
         super(message, cause);
     }
