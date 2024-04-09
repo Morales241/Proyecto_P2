@@ -25,6 +25,7 @@ import negocio.ConsultasBO;
  */
 public class ConsultasNombre extends javax.swing.JFrame {
 
+    String rfcSelected="";
     // cambiarlo por lo de interfaz
     ConsultasBO consultasBO = new ConsultasBO();
 
@@ -33,6 +34,7 @@ public class ConsultasNombre extends javax.swing.JFrame {
      */
     public ConsultasNombre() {
         initComponents();
+        verTramitesComboBox.setVisible(false);
     }
 
     
@@ -62,7 +64,7 @@ public class ConsultasNombre extends javax.swing.JFrame {
         contenido.setPreferredSize(new java.awt.Dimension(540, 374));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setText("Ingrese su nombre para verificar ");
+        jLabel1.setText("Ingrese su primer nombre para verificar ");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel2.setText("su existencia en los registros");
@@ -134,13 +136,14 @@ public class ConsultasNombre extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
-                        .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(127, 127, 127))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
                         .addComponent(verTramitesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(191, 191, 191))))
+                        .addGap(191, 191, 191))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(99, 99, 99))))
         );
         contenidoLayout.setVerticalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,6 +188,7 @@ public class ConsultasNombre extends javax.swing.JFrame {
         
             consultasBO.cargarDatosTabla(personas, jTable1);
         
+            verTramitesComboBox.setVisible(true);
     } catch (ExcepcionAT ex) {
         Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
         JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -196,7 +200,13 @@ public class ConsultasNombre extends javax.swing.JFrame {
     private void verTramitesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verTramitesComboBoxActionPerformed
  int filaSeleccionada = jTable1.getSelectedRow();
         if (filaSeleccionada >= 0) {
-            String rfcSelected = jTable1.getValueAt(filaSeleccionada, 0).toString();
+            
+            
+            if (jTable1.getColumnName(0).equals("RFC")) {
+                rfcSelected = jTable1.getValueAt(filaSeleccionada, 0).toString();
+            }
+            
+            System.out.println(jTable1.getColumnName(0));
             System.out.println(rfcSelected);
             String consulta = verTramitesComboBox.getSelectedItem().toString();
             System.out.println(consulta);
