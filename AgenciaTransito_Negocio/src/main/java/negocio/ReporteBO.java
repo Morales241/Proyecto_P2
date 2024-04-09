@@ -7,7 +7,6 @@ package negocio;
 import daos.ConsultasDAO;
 import daos.ReporteDAO;
 import dto.ReporteDTO;
-import entidadesJPA.Placas;
 import entidadesJPA.Reporte;
 import excepciones.ExcepcionAT;
 import java.text.SimpleDateFormat;
@@ -146,6 +145,13 @@ public class ReporteBO implements IReportes{
         reportes.add(r);
         });
         
+        reportes.forEach(Reporte ->{
+            System.out.println(Reporte.getNombrePersona());
+        });
+        
+        
         reporteDAO.generarReporte(reportes);
+        
+        
     }
 }

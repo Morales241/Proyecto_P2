@@ -180,7 +180,13 @@ public class ReporteConsultaNombre extends javax.swing.JFrame {
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         try {
+            System.out.println(txtFieldNombre.getText());
             reportes = reportesBO.consultarLicenciasPlacasPorNombre(txtFieldNombre.getText());
+            
+            reportes.forEach(ReporteDTO -> {
+                System.out.println(ReporteDTO.getNombrePersona());
+            });
+            
             this.jTable1 = reportesBO.cargarDatosTablaReportes(reportes, jTable1);
         } catch (ExcepcionAT ex) {
             Logger.getLogger(ReporteConsultaNombre.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package daos;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import daos.IReporteDAO;
 import entidadesJPA.Reporte;
 import excepciones.ExcepcionAT;
 import java.io.FileNotFoundException;
@@ -27,26 +23,35 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
- * Clase que implementa la interfaz de IReporteDAO y contiene el codigo de todos sus metodos
+ * Clase ReporteDAO que implementa la interfaz IReporteDAO.
+ * Esta clase contiene métodos para interactuar con la base de datos.
  * @author galan
  */
 public class ReporteDAO implements IReporteDAO {
 
+    // EntityManagerFactory y EntityManager para interactuar con la base de datos.
     EntityManagerFactory emf;
     EntityManager em;
 
     /**
-     * Contructor que inicializa la conexion a la base de datos
+     * Constructor de ReporteDAO.
+     * Inicializa la conexión a la base de datos.
      */
     public ReporteDAO() {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
     }
 
+    /**
+     * Método para registrar un reporte en la base de datos.
+     * @param reporte El reporte a registrar.
+     * @throws ExcepcionAT si ocurre un error al registrar el reporte.
+     */
     public void registrarReporte(Reporte reporte) throws ExcepcionAT {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
 
+            // Persiste el reporte en la base de datos.
             em.persist(reporte);
 
             em.getTransaction().commit();
@@ -57,18 +62,30 @@ public class ReporteDAO implements IReporteDAO {
         }
     }
 
+    /**
+     * Método para consultar reportes por nombre.
+     * @param nombre El nombre a buscar.
+     * @return Una lista de reportes que coinciden con el nombre.
+     */
     @Override
     public List<Reporte> consultarLicenciasPlacasPorNombre(String nombre) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
 
         em = emf.createEntityManager();
 
+        // Consulta JPQL para seleccionar reportes donde el nombre de la persona coincide con el parámetro.
         String jpql = "SELECT r FROM Reporte r WHERE LOWER(r.nombrePersona) LIKE LOWER(:nombre)";
         TypedQuery<Reporte> query = em.createQuery(jpql, Reporte.class);
-        query.setParameter("nombre", nombre);
+        query.setParameter("nombre", "%" + nombre.toLowerCase() + "%");
+
         return query.getResultList();
     }
 
+    /**
+     * Método para consultar reportes por tipo de trámite.
+     * @param tipo El tipo de trámite a buscar.
+     * @return Una lista de reportes que coinciden con el tipo de trámite.
+     */
     @Override
     public List<Reporte> consultarLicenciasPlacasPorTipo(String tipo) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
@@ -85,9 +102,14 @@ public class ReporteDAO implements IReporteDAO {
 
         TypedQuery<Reporte> query = em.createQuery(jpql, Reporte.class);
         return query.getResultList();
-
     }
 
+    /**
+     * Método para consultar reportes por un periodo de tiempo.
+     * @param fechaInicio La fecha de inicio del periodo.
+     * @param fechaFin La fecha de fin del periodo.
+     * @return Una lista de reportes que están dentro del periodo de tiempo.
+     */
     @Override
     public List<Reporte> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
@@ -95,11 +117,10 @@ public class ReporteDAO implements IReporteDAO {
         em = emf.createEntityManager();
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
-
         CriteriaQuery<Reporte> cq = cb.createQuery(Reporte.class);
-
         Root<Reporte> reporte = cq.from(Reporte.class);
 
+        // Crea un predicado para la fecha de expedición entre la fecha de inicio y la fecha de fin.
         Predicate fechaPredicate = cb.and(cb.greaterThanOrEqualTo(reporte.get("fechaExpedicion"), fechaInicio),
                 cb.lessThanOrEqualTo(reporte.get("fechaExpedicion"), fechaFin));
 
@@ -110,6 +131,10 @@ public class ReporteDAO implements IReporteDAO {
         return query.getResultList();
     }
 
+    /**
+     * Método para generar un reporte en formato PDF.
+     * @param reportes La lista de reportes a incluir en el PDF.
+     */
     @Override
     public void generarReporte(List<Reporte> reportes) {
         Document doc = new Document();
@@ -145,5 +170,4 @@ public class ReporteDAO implements IReporteDAO {
             Logger.getLogger(ReporteDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }
