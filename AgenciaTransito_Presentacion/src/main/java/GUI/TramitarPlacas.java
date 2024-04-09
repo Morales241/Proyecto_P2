@@ -116,7 +116,7 @@ public class TramitarPlacas extends javax.swing.JFrame {
             }
         });
 
-        botonRegresar.setIcon(new javax.swing.ImageIcon("C:\\Users\\tacot\\Documents\\GitHub\\agenciaTransito\\Proyecto_P2\\AgenciaTransito_Presentacion\\src\\main\\java\\imagenes\\regresar.png")); // NOI18N
+        botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresar.png"))); // NOI18N
         botonRegresar.setBorderPainted(false);
         botonRegresar.setContentAreaFilled(false);
         botonRegresar.setFocusPainted(false);

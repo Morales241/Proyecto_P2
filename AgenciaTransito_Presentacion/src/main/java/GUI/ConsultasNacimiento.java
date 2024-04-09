@@ -126,6 +126,8 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
             }
         });
 
+        datePicker2.setBackground(new java.awt.Color(182, 0, 0));
+
         javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
         contenido.setLayout(contenidoLayout);
         contenidoLayout.setHorizontalGroup(
