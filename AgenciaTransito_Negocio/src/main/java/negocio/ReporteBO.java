@@ -143,7 +143,7 @@ public class ReporteBO implements IReportes{
     }
 
     @Override
-    public void generarReporte(List<ReporteDTO> reportesDTO) {
+    public void generarReporte(List<ReporteDTO> reportesDTO, int opcion) {
         List<Reporte> reportes = new ArrayList<>();
         
         reportesDTO.forEach(ReporteDTO->{
@@ -157,7 +157,7 @@ public class ReporteBO implements IReportes{
         });
         
         
-        reporteDAO.generarReporte(reportes);
+        reporteDAO.generarReporte(reportes,opcion);
         
         
     }

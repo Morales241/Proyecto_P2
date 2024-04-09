@@ -59,20 +59,21 @@ public class ConsultasCurp extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(518, 472));
 
         contenido.setBackground(new java.awt.Color(255, 255, 255));
+        contenido.setPreferredSize(new java.awt.Dimension(550, 379));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("Ingrese su curp para verificar ");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel2.setText("su existencia en los registros");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel3.setText("CURP:");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
 
-        txtCurp.setBackground(new java.awt.Color(182, 0, 0));
         txtCurp.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        txtCurp.setForeground(new java.awt.Color(255, 255, 255));
+        txtCurp.setBackground(new java.awt.Color(182, 0, 0));
         txtCurp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        txtCurp.setForeground(new java.awt.Color(255, 255, 255));
         txtCurp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCurpActionPerformed(evt);
@@ -92,20 +93,20 @@ public class ConsultasCurp extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        buscarBoton.setText("BUSCAR");
         buscarBoton.setBackground(new java.awt.Color(102, 102, 102));
         buscarBoton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         buscarBoton.setForeground(new java.awt.Color(255, 255, 255));
-        buscarBoton.setText("BUSCAR");
         buscarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBotonActionPerformed(evt);
             }
         });
 
+        verTramitesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VER TRAMITES", "Licencias", "Placas" }));
         verTramitesComboBox.setBackground(new java.awt.Color(102, 102, 102));
         verTramitesComboBox.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         verTramitesComboBox.setForeground(new java.awt.Color(255, 255, 255));
-        verTramitesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VER TRAMITES", "Licencias", "Placas" }));
         verTramitesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verTramitesComboBoxActionPerformed(evt);
@@ -117,44 +118,46 @@ public class ConsultasCurp extends javax.swing.JFrame {
         contenidoLayout.setHorizontalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenidoLayout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
-                        .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(128, 128, 128))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
-                        .addComponent(verTramitesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(191, 191, 191))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
-                        .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(contenidoLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtCurp, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(118, 118, 118)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(34, 34, 34))))
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
+                        .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(contenidoLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel2)))
+                        .addGap(141, 141, 141))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
+                        .addComponent(verTramitesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(199, 199, 199))))
         );
         contenidoLayout.setVerticalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenidoLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtCurp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(verTramitesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

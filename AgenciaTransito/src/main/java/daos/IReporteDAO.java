@@ -49,6 +49,6 @@ public interface IReporteDAO {
      *  Metodo que recibe una lista de reportes y genera el reporte en pdf
      * @param reportes
      */
-    public void generarReporte(List<Reporte> reportes);
+    public void generarReporte(List<Reporte> reportes, int opcion);
 
 }

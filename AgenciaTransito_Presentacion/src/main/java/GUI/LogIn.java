@@ -179,6 +179,9 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraActionPerformed
 
     private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
+
+        entrar.IniciarSecion(this.txtUsuario.getText(), this.txtContra.getText());
+
         Inicio ini = new Inicio();
         ini.setVisible(true);
         dispose();

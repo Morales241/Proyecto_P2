@@ -182,7 +182,7 @@ public class ReporteConsultaNombre extends javax.swing.JFrame {
 
     private void generarReporteBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarReporteBotonActionPerformed
         
-        reportesBO.generarReporte(reportes);
+        reportesBO.generarReporte(reportes, 1);
         JOptionPane.showMessageDialog(null, "Se ha exportado con exito el reporte", "Reporte", JOptionPane.INFORMATION_MESSAGE);
         
     }//GEN-LAST:event_generarReporteBotonActionPerformed

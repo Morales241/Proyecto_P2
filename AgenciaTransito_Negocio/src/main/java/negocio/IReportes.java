@@ -49,8 +49,9 @@ public interface IReportes {
     /**
      * Metodo que genera el reporte pdf
      * @param reportes
+     * @param op
      */
-    public void generarReporte(List<ReporteDTO> reportes);
+    public void generarReporte(List<ReporteDTO> reportes, int op);
     
     /**
      * Metodo que actualiza la tabla con la lista que regresa

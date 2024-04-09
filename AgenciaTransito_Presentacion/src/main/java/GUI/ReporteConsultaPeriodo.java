@@ -6,6 +6,8 @@ package GUI;
 
 import dto.ReporteDTO;
 import excepciones.ExcepcionAT;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
@@ -13,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import negocio.ReporteBO;
 
 /**
@@ -190,16 +193,29 @@ public class ReporteConsultaPeriodo extends javax.swing.JFrame {
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
 
-// Crear instancias de Calendar
-        Calendar inicioCalendar = Calendar.getInstance();
-        Calendar finCalendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date=null;
+        Date date2=null;
+        try {
+            date = sdf.parse(inicio.toString());
+            date2 = sdf.parse(fin.toString());
+        } catch (ParseException ex) {
+            Logger.getLogger(ReporteConsultaPeriodo.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-// Establecer las fechas de los Calendar a las fechas de los Date
-        inicioCalendar.setTime(inicio);
-        finCalendar.setTime(fin);
+// Crear un Calendar y establecer su tiempo a la fecha parseada
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
 
-// Ahora puedes llamar al método con los objetos Calendar
-        reportes = reportesBO.consultarLicenciasPlacasPorPeriodo(inicioCalendar, finCalendar);
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(date2);
+        
+
+        try {
+            reportes = reportesBO.consultarLicenciasPlacasPorPeriodo(calendar, calendar2);
+        } catch (ExcepcionAT ex) {
+            Logger.getLogger(ReporteConsultaPeriodo.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         reportes.forEach(ReporteDTO -> {
             System.out.println(ReporteDTO.getNombrePersona());
@@ -209,7 +225,9 @@ public class ReporteConsultaPeriodo extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void generarReporteBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarReporteBotonActionPerformed
-        // TODO add your handling code here:
+        reportesBO.generarReporte(reportes,2);
+        JOptionPane.showMessageDialog(null, "Se ha exportado con exito el reporte", "Reporte", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_generarReporteBotonActionPerformed
 
     public javax.swing.JPanel traerContenido() {
