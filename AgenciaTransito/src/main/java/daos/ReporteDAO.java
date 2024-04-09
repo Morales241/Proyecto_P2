@@ -27,7 +27,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
- *
+ * Clase que implementa la interfaz de IReporteDAO y contiene el codigo de todos sus metodos
  * @author galan
  */
 public class ReporteDAO implements IReporteDAO {
