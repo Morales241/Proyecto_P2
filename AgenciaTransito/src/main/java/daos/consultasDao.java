@@ -7,8 +7,7 @@ package daos;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,17 +42,16 @@ public class ConsultasDAO implements IConsultasDAO {
     }
 
     @Override
-    public List<Persona> consultarHistorialFechaN(Calendar fechaNacimiento) {
+    public List<Persona> consultarHistorialFechaN(LocalDate fechaNacimiento) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
         em = emf.createEntityManager();
 
-        // Convertir el Calendar a un String en el formato "yyyy-MM-dd"
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaNacimientoStr = sdf.format(fechaNacimiento.getTime());
+        // Convertir LocalDate a java.util.Date
+        java.util.Date date = java.sql.Date.valueOf(fechaNacimiento);
 
-        String jpql = "SELECT p FROM Persona p WHERE p.fechaNacimiento LIKE :fechaNacimiento";
+        String jpql = "SELECT p FROM Persona p WHERE p.fechaNacimiento = :fechaNacimiento";
         TypedQuery<Persona> query = em.createQuery(jpql, Persona.class);
-        query.setParameter("fechaNacimiento", "%" + fechaNacimientoStr + "%");
+        query.setParameter("fechaNacimiento", date);
         return query.getResultList();
     }
 

@@ -26,8 +26,8 @@ public class ReporteSeleccionarBusqueda extends javax.swing.JFrame {
     private void initComponents() {
 
         contenido = new javax.swing.JPanel();
-        botonBcurp = new javax.swing.JButton();
-        botonBfechaN = new javax.swing.JButton();
+        botonBperiodo = new javax.swing.JButton();
+        botonBtipo = new javax.swing.JButton();
         botonBnombre = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -35,29 +35,29 @@ public class ReporteSeleccionarBusqueda extends javax.swing.JFrame {
         contenido.setBackground(new java.awt.Color(255, 255, 255));
         contenido.setPreferredSize(new java.awt.Dimension(540, 55));
 
-        botonBcurp.setBackground(new java.awt.Color(102, 102, 102));
-        botonBcurp.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        botonBcurp.setForeground(new java.awt.Color(255, 255, 255));
-        botonBcurp.setText("Buscar por periodo");
-        botonBcurp.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        botonBcurp.setBorderPainted(false);
-        botonBcurp.setFocusPainted(false);
-        botonBcurp.addActionListener(new java.awt.event.ActionListener() {
+        botonBperiodo.setBackground(new java.awt.Color(102, 102, 102));
+        botonBperiodo.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        botonBperiodo.setForeground(new java.awt.Color(255, 255, 255));
+        botonBperiodo.setText("Buscar por periodo");
+        botonBperiodo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonBperiodo.setBorderPainted(false);
+        botonBperiodo.setFocusPainted(false);
+        botonBperiodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBcurpActionPerformed(evt);
+                botonBperiodoActionPerformed(evt);
             }
         });
 
-        botonBfechaN.setBackground(new java.awt.Color(102, 102, 102));
-        botonBfechaN.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        botonBfechaN.setForeground(new java.awt.Color(255, 255, 255));
-        botonBfechaN.setText("Buscar por tipo ");
-        botonBfechaN.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        botonBfechaN.setBorderPainted(false);
-        botonBfechaN.setFocusPainted(false);
-        botonBfechaN.addActionListener(new java.awt.event.ActionListener() {
+        botonBtipo.setBackground(new java.awt.Color(102, 102, 102));
+        botonBtipo.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        botonBtipo.setForeground(new java.awt.Color(255, 255, 255));
+        botonBtipo.setText("Buscar por tipo ");
+        botonBtipo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonBtipo.setBorderPainted(false);
+        botonBtipo.setFocusPainted(false);
+        botonBtipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBfechaNActionPerformed(evt);
+                botonBtipoActionPerformed(evt);
             }
         });
 
@@ -82,9 +82,9 @@ public class ReporteSeleccionarBusqueda extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(botonBnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(botonBcurp, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonBperiodo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(botonBfechaN, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonBtipo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         contenidoLayout.setVerticalGroup(
@@ -92,8 +92,8 @@ public class ReporteSeleccionarBusqueda extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonBcurp, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(botonBfechaN, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(botonBperiodo, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(botonBtipo, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                     .addComponent(botonBnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -112,23 +112,23 @@ public class ReporteSeleccionarBusqueda extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonBcurpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBcurpActionPerformed
+    private void botonBperiodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBperiodoActionPerformed
         principal.contenido.removeAll();
-        ReporteConsultaTipo busquedaCurp = new ReporteConsultaTipo();
-        principal.contenido.add(busquedaCurp.traerContenido());
+        ReporteConsultaPeriodo busquedaP = new ReporteConsultaPeriodo();
+        principal.contenido.add(busquedaP.traerContenido());
         
         principal.contenido.revalidate();
         principal.contenido.repaint();
-    }//GEN-LAST:event_botonBcurpActionPerformed
+    }//GEN-LAST:event_botonBperiodoActionPerformed
 
-    private void botonBfechaNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBfechaNActionPerformed
+    private void botonBtipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBtipoActionPerformed
         principal.contenido.removeAll();
-        ReporteConsultaPeriodo busquedaFN = new ReporteConsultaPeriodo();
-        principal.contenido.add(busquedaFN.traerContenido());
+        ReporteConsultaTipo busquedaT = new ReporteConsultaTipo();
+        principal.contenido.add(busquedaT.traerContenido());
         
         principal.contenido.revalidate();
         principal.contenido.repaint();
-    }//GEN-LAST:event_botonBfechaNActionPerformed
+    }//GEN-LAST:event_botonBtipoActionPerformed
 
     private void botonBnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBnombreActionPerformed
         principal.contenido.removeAll();
@@ -148,9 +148,9 @@ public class ReporteSeleccionarBusqueda extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonBcurp;
-    private javax.swing.JButton botonBfechaN;
     private javax.swing.JButton botonBnombre;
+    private javax.swing.JButton botonBperiodo;
+    private javax.swing.JButton botonBtipo;
     private javax.swing.JPanel contenido;
     // End of variables declaration//GEN-END:variables
 }

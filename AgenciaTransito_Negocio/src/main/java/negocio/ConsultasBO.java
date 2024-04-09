@@ -10,6 +10,7 @@ import entidadesJPA.Persona;
 import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -108,7 +109,7 @@ public class ConsultasBO implements IConsultas {
     }
 
     @Override
-    public List<Persona> consultarHistorialFechaN(Calendar fechaNacimiento) throws ExcepcionAT {
+    public List<Persona> consultarHistorialFechaN(LocalDate fechaNacimiento) throws ExcepcionAT {
 
         if (this.consultasDAO == null) {
             throw new IllegalStateException("El objeto consultasDAO no ha sido inicializado correctamente.");

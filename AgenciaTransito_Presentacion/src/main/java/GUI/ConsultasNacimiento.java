@@ -5,8 +5,11 @@ import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -32,12 +35,30 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
 
     ConsultasBO consultasBO = new ConsultasBO();
 
-    
+    private com.github.lgooddatepicker.components.DatePicker datePicker1;
     /**
      * Creates new form ConsultasNacimiento
      */
     public ConsultasNacimiento() {
         initComponents();
+      
+        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        
+       getContentPane().add(datePicker1);
+             
+        javax.swing.JButton btnObtenerFecha = new javax.swing.JButton();
+        btnObtenerFecha.setText("Obtener Fecha");
+        btnObtenerFecha.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LocalDate fechaSeleccionada = datePicker1.getDate();
+                System.out.println("Fecha seleccionada: " + fechaSeleccionada);
+            }
+        });
+        
+        getContentPane().add(btnObtenerFecha);
+        
+        pack();
     }
 
     /**
@@ -53,11 +74,11 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtFechaNacimiento = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         buscarBoton = new javax.swing.JButton();
         verTramitesComboBox = new javax.swing.JComboBox<>();
+        datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,16 +92,6 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel3.setText("Fecha de nacimiento:");
-
-        txtFechaNacimiento.setBackground(new java.awt.Color(182, 0, 0));
-        txtFechaNacimiento.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        txtFechaNacimiento.setForeground(new java.awt.Color(255, 255, 255));
-        txtFechaNacimiento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        txtFechaNacimiento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaNacimientoActionPerformed(evt);
-            }
-        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -122,9 +133,9 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
             .addGroup(contenidoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buscarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
@@ -149,16 +160,16 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(41, 41, 41)
+                .addGap(42, 42, 42)
                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(buscarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(verTramitesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,27 +188,18 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
 
     private void buscarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBotonActionPerformed
          try {
-        String fechaNacimientoStr = txtFechaNacimiento.getText();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = sdf.parse(fechaNacimientoStr);
-        Calendar fechaNacimiento = Calendar.getInstance();
-        fechaNacimiento.setTime(date);
+        LocalDate fechaNacimiento = datePicker2.getDate();
+       
         
         consultasBO.consultarHistorialFechaN(fechaNacimiento);
         consultasBO.cargarDatosTabla(consultasBO.consultarHistorialFechaN(fechaNacimiento), jTable1);
-    } catch (ParseException ex) {
-        Logger.getLogger(ConsultasNacimiento.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (ExcepcionAT ex) {
+         } catch (ExcepcionAT ex) {
         Logger.getLogger(ConsultasNacimiento.class.getName()).log(Level.SEVERE, null, ex);
         JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         
     }
     }//GEN-LAST:event_buscarBotonActionPerformed
-
-    private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
     private void verTramitesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verTramitesComboBoxActionPerformed
         // TODO add your handling code here:
@@ -253,12 +255,12 @@ public class ConsultasNacimiento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarBoton;
     private javax.swing.JPanel contenido;
+    private com.github.lgooddatepicker.components.DatePicker datePicker2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtFechaNacimiento;
     private javax.swing.JComboBox<String> verTramitesComboBox;
     // End of variables declaration//GEN-END:variables
 }

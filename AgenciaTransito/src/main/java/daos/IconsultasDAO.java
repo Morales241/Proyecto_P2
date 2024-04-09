@@ -7,7 +7,7 @@ package daos;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -17,7 +17,7 @@ import java.util.List;
 public interface IConsultasDAO {
     public List<Object> consultarHistorialNombre(String Nombre, String aP, String aM);
     
-    public List<Persona> consultarHistorialFechaN(Calendar fechaNacimiento);
+    public List<Persona> consultarHistorialFechaN(LocalDate fechaNacimiento);
     
     public List<Object> consultarHistorialCURP(String curp);
     

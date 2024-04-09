@@ -50,9 +50,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="botonBnombre" min="-2" pref="154" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="botonBcurp" min="-2" pref="155" max="-2" attributes="0"/>
+                  <Component id="botonBperiodo" min="-2" pref="155" max="-2" attributes="0"/>
                   <EmptySpace pref="32" max="32767" attributes="0"/>
-                  <Component id="botonBfechaN" min="-2" pref="154" max="-2" attributes="0"/>
+                  <Component id="botonBtipo" min="-2" pref="154" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -62,8 +62,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="botonBcurp" alignment="3" pref="43" max="32767" attributes="0"/>
-                      <Component id="botonBfechaN" alignment="3" pref="43" max="32767" attributes="0"/>
+                      <Component id="botonBperiodo" alignment="3" pref="43" max="32767" attributes="0"/>
+                      <Component id="botonBtipo" alignment="3" pref="43" max="32767" attributes="0"/>
                       <Component id="botonBnombre" alignment="3" pref="43" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -72,7 +72,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="botonBcurp">
+        <Component class="javax.swing.JButton" name="botonBperiodo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
@@ -93,10 +93,10 @@
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBcurpActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBperiodoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="botonBfechaN">
+        <Component class="javax.swing.JButton" name="botonBtipo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
@@ -117,7 +117,7 @@
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBfechaNActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBtipoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonBnombre">

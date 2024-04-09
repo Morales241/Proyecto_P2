@@ -9,6 +9,7 @@ import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
 import excepciones.ExcepcionAT;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JTable;
@@ -26,7 +27,7 @@ public interface IConsultas {
     
     public List<Persona> consultarPorNombre(String Nombre)throws ExcepcionAT ;
     
-    public List<Persona> consultarHistorialFechaN(Calendar fechaNacimiento) throws ExcepcionAT;
+    public List<Persona> consultarHistorialFechaN(LocalDate fechaNacimiento) throws ExcepcionAT;
     
     public List<Persona> consultarPorCURP(String curp)throws ExcepcionAT;
     
