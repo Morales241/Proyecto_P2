@@ -20,7 +20,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
- *
+ * Clase que implementa la interfaz de IPlacasDAO y contiene el codigo de sus metodos
  * @author tacot
  */
 public class PlacasDAO implements IPlacasDAO{
@@ -28,6 +28,9 @@ public class PlacasDAO implements IPlacasDAO{
     EntityManagerFactory emf;
     EntityManager em;
 
+    /**
+     * Constructor que inicializa la conexion a la base datos
+     */
     public PlacasDAO() {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
         em = emf.createEntityManager();

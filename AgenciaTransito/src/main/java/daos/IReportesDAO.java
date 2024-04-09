@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- *
+ * Interfaz de los reportes que define sus metodos abstractos
  * @author crist
  */
 public interface IReportesDAO {

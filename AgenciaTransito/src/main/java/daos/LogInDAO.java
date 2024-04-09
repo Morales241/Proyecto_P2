@@ -5,7 +5,7 @@
 package daos;
 
 /**
- *
+ * Clase que implementa la interfaz de ILogInDao y contiene el codigo de sus metodos
  * @author tacot
  */
 public class LogInDAO implements ILogInDAO{

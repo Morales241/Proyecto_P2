@@ -23,7 +23,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
- *
+ * Clase que implementa la interfaz IAutomovilDAO y contiene el codigo de todos sus metodos
  * @author crist
  */
 public class AutomovilDAO implements IAutomovilDAO {
@@ -33,6 +33,9 @@ public class AutomovilDAO implements IAutomovilDAO {
     EntityManagerFactory emf;
     EntityManager em;
 
+    /**
+     * Constructor que inicializa la conexion a la base de datos
+     */
     public AutomovilDAO() {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
         em = emf.createEntityManager();

@@ -15,7 +15,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Clase que implementa la interfaz de IConsultasDAO y contiene el codigo de todos sus metodos
  * @author tacot
  */
 public class ConsultasDAO implements IConsultasDAO {
@@ -24,29 +24,22 @@ public class ConsultasDAO implements IConsultasDAO {
 
     EntityManager em;
 
+    /**
+     * Constructor Vacio
+     */
     public ConsultasDAO() {
     }
 
-    @Override
-    public List<Object> consultarHistorialNombre(String Nombre, String aP, String aM) {
-        emf = Persistence.createEntityManagerFactory("ConexionPU");
-
-        em = emf.createEntityManager();
-        
-        String jpql = "SELECT l FROM Licencia l WHERE l.persona.nombre = :nombre AND l.persona.apellidoPaterno = :apellidoP AND l.persona.apellidoMaterno = :apellidoM";
-        TypedQuery<Object> query = em.createQuery(jpql, Object.class);
-        query.setParameter("nombre", Nombre);
-        query.setParameter("apellidoP", aP);
-        query.setParameter("apellidoM", aM);
-        return query.getResultList();
-    }
-
+    /**
+     * Metodo que contiene la consulta JPQL realizada al recibir la fecha de nacimiento
+     * @param fechaNacimiento
+     * @return
+     */
     @Override
     public List<Persona> consultarHistorialFechaN(LocalDate fechaNacimiento) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
         em = emf.createEntityManager();
 
-        // Convertir LocalDate a java.util.Date
         java.util.Date date = java.sql.Date.valueOf(fechaNacimiento);
 
         String jpql = "SELECT p FROM Persona p WHERE p.fechaNacimiento = :fechaNacimiento";
@@ -55,19 +48,11 @@ public class ConsultasDAO implements IConsultasDAO {
         return query.getResultList();
     }
 
-
-    @Override
-    public List<Object> consultarHistorialCURP(String curp) {
-        emf = Persistence.createEntityManagerFactory("ConexionPU");
-
-        em = emf.createEntityManager();
-        
-        String jpql = "SELECT l FROM Licencia l WHERE l.persona.rfc = :rfc";
-        TypedQuery<Object> query = em.createQuery(jpql, Object.class);
-        query.setParameter("rfc", curp);
-        return query.getResultList();
-    }
-
+    /**
+     * Metodo que contiene la consulta JPQL realizada al recibir una persona y regresa las placas de esa persona
+     * @param persona
+     * @return
+     */
     @Override
     public List<Placas> obtenerPlacasDePersona(Persona persona) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
@@ -81,6 +66,11 @@ public class ConsultasDAO implements IConsultasDAO {
 
     }
 
+    /**
+     * Metodo que contiene la consulta JPQL realizada al recibir una persona y regresa la lista de licencias de esa persona
+     * @param persona
+     * @return
+     */
     @Override
     public List<Licencia> obtenerLicencias(Persona persona) {
        emf = Persistence.createEntityManagerFactory("ConexionPU");
@@ -93,7 +83,12 @@ public class ConsultasDAO implements IConsultasDAO {
         return query.getResultList();
     }
     
-     @Override
+    /**
+     * Metodo que contiene la consulta JPQL realizada al recibir el nombre
+     * @param Nombre
+     * @return
+     */
+    @Override
     public List<Persona> consultarPorNombre(String Nombre) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
 
@@ -105,6 +100,11 @@ public class ConsultasDAO implements IConsultasDAO {
         return query.getResultList();
     }
     
+    /**
+     * Metodo que contiene la consulta JPQL realizada al recibir el rfc
+     * @param curp
+     * @return
+     */
     @Override
     public List<Persona> consultarPorCURP(String curp) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
@@ -117,6 +117,11 @@ public class ConsultasDAO implements IConsultasDAO {
         return query.getResultList();
     }
     
+    /**
+     * Metodo que contiene la consulta JPQL realizada al recibir el rfc de una persona y regresa esa persona
+     * @param rfc
+     * @return
+     */
     @Override
     public Persona obtenerPersona(String rfc) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");

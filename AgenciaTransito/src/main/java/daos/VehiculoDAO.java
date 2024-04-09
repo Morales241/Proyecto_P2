@@ -15,17 +15,24 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
- *
+ * Clase que implementa la interfaz de IVehiculoDAO y contiene el codigo de sus metodos
  * @author crist
  */
-public class VehiculoDAO {
+public class VehiculoDAO implements IVehiculoDAO{
     EntityManagerFactory emf;
     EntityManager em;
 
+    /**
+     * Constructor que inicializa la conexion a la base de datos
+     */
     public VehiculoDAO() {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
     }
 
+    /**
+     * Metodo de la interfaz que contiene el codigo para registrar un vehiculo a la base de datos
+     * @param vehiculo
+     */
     public void registrarVehiculo(Vehiculo vehiculo) {
         em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -37,6 +44,11 @@ public class VehiculoDAO {
         emf.close();
     }
 
+    /**
+     * Metodo de la interfaz que contiene el codigo para regresar la lista de los vehiculos
+     * @param vehiculo
+     * @return
+     */
     public List<Vehiculo> consultarVehiculos(Vehiculo vehiculo) {
         List<Vehiculo> vehiculos = null;
 
@@ -61,7 +73,12 @@ public class VehiculoDAO {
         return vehiculos;
     }
 
-   public boolean validarVehiculoExistente(Long id) {
+    /**
+     * Metodo de la interfaz que contiene el codigo para validar la existencia de un vehiculo
+     * @param id
+     * @return
+     */
+    public boolean validarVehiculoExistente(Long id) {
         Vehiculo vehiculo;
 
         emf = Persistence.createEntityManagerFactory("ConexionPU");

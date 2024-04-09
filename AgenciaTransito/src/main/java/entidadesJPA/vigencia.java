@@ -5,9 +5,18 @@
 package entidadesJPA;
 
 /**
- *
+ * Clase enum para el tipo de vigencia
  * @author tacot
  */
 public enum vigencia {
-    Vigente, Expirada
+
+    /**
+     * 0
+     */
+    Vigente,
+
+    /**
+     * 1
+     */
+    Expirada
 }

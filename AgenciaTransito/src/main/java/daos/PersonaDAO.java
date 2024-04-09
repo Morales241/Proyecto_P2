@@ -16,7 +16,7 @@ import javax.persistence.TypedQuery;
 
 
 /**
- *
+ * Clase que implementa la interfaz IPersonaDAO y contiene el codigo de sus metodos
  * @author crist
  */
 public class PersonaDAO implements IPersonaDAO {
@@ -24,6 +24,9 @@ public class PersonaDAO implements IPersonaDAO {
     EntityManagerFactory emf;
     EntityManager em;
 
+    /**
+     * Contructor que inicializa la conexion a la base de datos
+     */
     public PersonaDAO() {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
     }

@@ -7,9 +7,7 @@ package daos;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,7 +17,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
- *
+ * Clase que implementa la interfaz de ILicenciaDAO y contiene el codigo de todos sus metodos
  * @author crist
  */
 public class LicenciaDAO implements ILicenciaDAO {
@@ -27,6 +25,9 @@ public class LicenciaDAO implements ILicenciaDAO {
     EntityManagerFactory emf;
     EntityManager em;
 
+    /**
+     * Constructor que inicializa la conexion a la base de datos
+     */
     public LicenciaDAO() {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
     }
