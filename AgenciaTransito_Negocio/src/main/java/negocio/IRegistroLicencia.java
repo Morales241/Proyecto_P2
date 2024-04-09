@@ -14,5 +14,11 @@ import dto.PersonaDTO;
  * @author crist
  */
 public interface IRegistroLicencia {
-  public void registrarLicencia(LicenciaDTO licenciaDTO, PersonaDTO personaDTO);
+
+    /**
+     * Metodo que registra una licencia recibiendo una licenciaDTO y personaDTO
+     * @param licenciaDTO
+     * @param personaDTO
+     */
+    public void registrarLicencia(LicenciaDTO licenciaDTO, PersonaDTO personaDTO);
 }

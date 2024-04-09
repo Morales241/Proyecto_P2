@@ -13,11 +13,15 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
- *
+ * Clase que realiza la insercin de 20 personas requeridas en el proycto
  * @author galan
  */
 public class InsercionMasiva {
     
+    /**
+     * Metodo que registra las 20 personas
+     * @throws ExcepcionAT
+     */
     public void insertarPersonas() throws ExcepcionAT{
         
         //Crear lista de personas que será persistida
@@ -29,7 +33,7 @@ public class InsercionMasiva {
         Persona persona2= new Persona("Jesus", "Morales", "Rojas", 
                 new GregorianCalendar(2004, Calendar.FEBRUARY, 21), "MORJ040221SA3", "6447878784");
         Persona persona3= new Persona("Cristina", "Castro", "Noriega", 
-                new GregorianCalendar(2004, Calendar.AUGUST, 25), "CANC040825WE3", "644577544");
+                new GregorianCalendar(2004, Calendar.MAY, 28), "CANC040825WE3", "644577544");
         Persona persona4= new Persona("Juan", "Garcia", "Jimenez", 
                 new GregorianCalendar(1998, Calendar.JUNE, 1), "GAJJ980601ABC", "6442887744");
         Persona persona5= new Persona("Maria", "Garcia", "Muñoz", 
@@ -89,32 +93,11 @@ public class InsercionMasiva {
         
         PersonaDAO personaDAO= new PersonaDAO();
         
-//        personaDAO.registrarListaPersonas(personas);
+
 
         for (Persona p : personas) {
             personaDAO.registrarPersona(p);
         }
-//        
-//        personaDAO.registrarPersona(persona1);
-//        personaDAO.registrarPersona(persona2);
-//        personaDAO.registrarPersona(persona3);
-//        personaDAO.registrarPersona(persona4);
-//        personaDAO.registrarPersona(persona5);
-//        personaDAO.registrarPersona(persona6);
-//        personaDAO.registrarPersona(persona7);
-//        personaDAO.registrarPersona(persona8);
-//        personaDAO.registrarPersona(persona9);
-//        personaDAO.registrarPersona(persona10);
-//        personaDAO.registrarPersona(persona11);
-//        personaDAO.registrarPersona(persona12);
-//        personaDAO.registrarPersona(persona13);
-//        personaDAO.registrarPersona(persona14);
-//        personaDAO.registrarPersona(persona15);
-//        personaDAO.registrarPersona(persona16);
-//        personaDAO.registrarPersona(persona17);
-//        personaDAO.registrarPersona(persona18);
-//        personaDAO.registrarPersona(persona19);
-//        personaDAO.registrarPersona(persona20);
     }    
     
 }

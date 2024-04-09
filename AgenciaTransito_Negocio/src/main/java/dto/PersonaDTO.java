@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- *
+ * Clase que transfiere los datos de la persona
  * @author crist
  */
 public class PersonaDTO {
@@ -35,9 +35,22 @@ public class PersonaDTO {
     
     private List<VehiculoDTO> vehiculos;
 
+    /**
+     * Constructor vacio
+     */
     public PersonaDTO() {
     }
 
+    /**
+     * Constructor sin id
+     * @param fechaNacimiento
+     * @param RFC
+     * @param nombre
+     * @param apellidoPaterno
+     * @param apellidoMaterno
+     * @param telefono
+     * @param licencias
+     */
     public PersonaDTO(Calendar fechaNacimiento, String RFC, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, List<LicenciaDTO> licencias) {
         this.fechaNacimiento = fechaNacimiento;
         this.RFC = RFC;
@@ -48,6 +61,10 @@ public class PersonaDTO {
         this.licencias = licencias;
     }
 
+    /**
+     * Constructor que inicializa la persona
+     * @param persona
+     */
     public PersonaDTO(Persona persona) {
         this.fechaNacimiento = persona.getFechaNacimiento();
         this.RFC = persona.getRFC();
@@ -99,67 +116,130 @@ public class PersonaDTO {
         
     }
 
+    /**
+     * Metodo que regresa la lista de vehiculosDTO
+     * @return
+     */
     public List<VehiculoDTO> getVehiculos() {
         return vehiculos;
     }
 
+    /**
+     * Metodo que establece la lista de vehiculosDTO
+     * @param vehiculos
+     */
     public void setVehiculos(List<VehiculoDTO> vehiculos) {
         this.vehiculos = vehiculos;
     }
 
-    
+    /**
+     * Metodo que regresa la fecha de nacimiento
+     * @return
+     */
     public Calendar getFechaNacimiento() {
         return fechaNacimiento;
     }
 
+    /**
+     * Metodo que establece la fecha de nacimiento
+     * @param fechaNacimiento
+     */
     public void setFechaNacimiento(Calendar fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    /**
+     * Metodo que regresa el rfc
+     * @return
+     */
     public String getRFC() {
         return RFC;
     }
 
+    /**
+     * Metodo que establece el rfc
+     * @param RFC
+     */
     public void setRFC(String RFC) {
         this.RFC = RFC;
     }
 
+    /**
+     * Metodo que regresa el nombre
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /** 
+     * Metodo que establece el nombre
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Metodo que regresa el apellido paterno
+     * @return
+     */
     public String getApellidoPaterno() {
         return apellidoPaterno;
     }
 
+    /**
+     * Metodo que establece el apellido paterno
+     * @param apellidoPaterno
+     */
     public void setApellidoPaterno(String apellidoPaterno) {
         this.apellidoPaterno = apellidoPaterno;
     }
 
+    /**
+     * Metodo que regresa el apellido materno
+     * @return
+     */
     public String getApellidoMaterno() {
         return apellidoMaterno;
     }
 
+    /**
+     * Metodo que establece el apellido materno
+     * @param apellidoMaterno
+     */
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
     }
 
+    /**
+     * Metodo que regresa el telefono
+     * @return
+     */
     public String getTelefono() {
         return telefono;
     }
 
+    /**
+     * Metodo que establece el telefono
+     * @param telefono
+     */
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
+    /**
+     * Metodo que regresa la lista de licenciasDTP
+     * @return
+     */
     public List<LicenciaDTO> getLicencias() {
         return licencias;
     }
 
+    /**
+     * Metodo que establece la lista de licenciasDTO
+     * @param licencias
+     */
     public void setLicencias(List<LicenciaDTO> licencias) {
         this.licencias = licencias;
     }

@@ -5,9 +5,16 @@
 package LogIn;
 
 /**
- *
+ * Interfaz para iniciar sesion que define sus metodos abstractos
  * @author tacot
  */
 public interface ILogIn {
+
+    /**
+     * Metodo que regresa verdadero o falso si se pudo iniciar sesion
+     * @param usuario
+     * @param contra
+     * @return
+     */
     public boolean IniciarSecion(String usuario, String contra);
 }

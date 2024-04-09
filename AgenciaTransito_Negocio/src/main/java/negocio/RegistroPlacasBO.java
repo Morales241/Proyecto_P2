@@ -16,7 +16,7 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 /**
- *
+ * Clase que implementa la  interfaz de IRegistroPlacas
  * @author crist
  */
 public class RegistroPlacasBO implements IRegistroPlacas{
@@ -24,7 +24,9 @@ public class RegistroPlacasBO implements IRegistroPlacas{
     PlacasDAO placasDAO;
     PersonaDAO personaDAO;
 
-    
+    /**
+     *  Constructor que inicializa  personaDAO y placasBO
+     */
     public RegistroPlacasBO() {
         placasDAO = new PlacasDAO();
         personaDAO = new PersonaDAO();

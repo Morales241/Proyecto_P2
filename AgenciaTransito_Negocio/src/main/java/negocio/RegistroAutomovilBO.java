@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Clase que implementa la interfaz IRegistroAutomovil y contiene el codigo de todos sus metodos
  * @author crist
  */
 public class RegistroAutomovilBO implements IRegistroAutomovil {
@@ -31,6 +31,9 @@ public class RegistroAutomovilBO implements IRegistroAutomovil {
     PersonaDAO personaDAO;
     ReporteBO reporteBO;
 
+    /**
+     * Constructor que inicializa automovilDAO, personaDAO y reporteBO
+     */
     public RegistroAutomovilBO() {
         this.automovilDAO = new AutomovilDAO();
         this.personaDAO = new PersonaDAO();

@@ -31,6 +31,9 @@ public class RegistroLicenciaBO implements IRegistroLicencia {
     LicenciaDAO licenciaDAO;
     ReporteBO reporteBO;
 
+    /**
+     *  Constructor que inicializa licenciaDAO, personaDAO y reporteBO
+     */
     public RegistroLicenciaBO() {
         personaDAO=new PersonaDAO();
         licenciaDAO= new LicenciaDAO();
@@ -56,6 +59,12 @@ public class RegistroLicenciaBO implements IRegistroLicencia {
         }
     }
     
+    /**
+     * Metodo que busca a la persona mediante su RFC 
+     * @param RFC
+     * @return
+     * @throws ExcepcionAT
+     */
     public PersonaDTO buscarPersonaPorRFC(String RFC) throws ExcepcionAT {
         List<Persona> persona= personaDAO.buscarPersonaPorRFC(RFC);
         if(persona==null){
@@ -70,6 +79,13 @@ public class RegistroLicenciaBO implements IRegistroLicencia {
         return personaDTO;
     }
     
+    /**
+     * Metodo que calcula el precio de la licencia
+     * @param si
+     * @param no
+     * @param años
+     * @return
+     */
     public String CalcularPrecio(JRadioButton si, JRadioButton no, JComboBox años) {
 
         int op = años.getSelectedIndex();

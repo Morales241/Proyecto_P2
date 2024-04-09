@@ -16,18 +16,48 @@ import java.util.List;
 import javax.swing.JTable;
 
 /**
- *
+ * Interfaz del caso de uso de los reportes que define sus metodos abstractos
  * @author crist
  */
 public interface IReportes {
+
+    /**
+     * Metodo que regresa la lista de reportes por el nombre
+     * @param nombre
+     * @return
+     * @throws ExcepcionAT
+     */
     public List<ReporteDTO> consultarLicenciasPlacasPorNombre(String nombre)throws ExcepcionAT;
     
+    /**
+     * Metodo que regresa la lista de reportes por el periodo
+     * @param fechaInicio
+     * @param fechaFin
+     * @return
+     * @throws ExcepcionAT
+     */
     public List<ReporteDTO> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws ExcepcionAT;
     
+    /**
+     * Metodo que regresa la lista de reportes por el tipo de tramite
+     * @param tipo
+     * @return
+     * @throws ExcepcionAT
+     */
     public List<ReporteDTO> consultarLicenciasPlacasPorTipo(String tipo)throws ExcepcionAT;
     
+    /**
+     * Metodo que genera el reporte pdf
+     * @param reportes
+     */
     public void generarReporte(List<ReporteDTO> reportes);
     
+    /**
+     * Metodo que actualiza la tabla con la lista que regresa
+     * @param reportes
+     * @param JTable1
+     * @return
+     */
     public JTable cargarDatosTablaReportes(List<ReporteDTO> reportes, JTable JTable1);
     
 }

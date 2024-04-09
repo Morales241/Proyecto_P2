@@ -20,7 +20,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Clase que implementa la interfaz de IReportes y contiene el codigo de todos sus metodos
  * @author galan
  */
 public class ReporteBO implements IReportes{
@@ -31,11 +31,17 @@ public class ReporteBO implements IReportes{
     private JLabel tablitaSP = new JLabel();
     private JLabel tableReportes = new JLabel();
 
+    /**
+     * Constructor que inicializa reporteDAO
+     */
     public ReporteBO() {
         reporteDAO= new ReporteDAO();
     }
     
-    
+    /**
+     * Metodo que registra un reporte recibiendo reporteDTO llamando el metodo en reporteDAO
+     * @param reporteDTO
+     */
     public void registrarReporte(ReporteDTO reporteDTO){
         try {
             Reporte reporte= new Reporte(reporteDTO.getNombrePersona(), reporteDTO.getRFC(), reporteDTO.getTipoTramite(), 

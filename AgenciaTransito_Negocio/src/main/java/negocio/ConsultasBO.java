@@ -27,7 +27,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Clase que implementa la interfaz de IConsultas que contiene el codigo de todos sus metodos
  * @author crist
  */
 public class ConsultasBO implements IConsultas {
@@ -37,6 +37,9 @@ public class ConsultasBO implements IConsultas {
     private JLabel tablitaSP = new JLabel();
     private JLabel tablePersonas = new JLabel();
 
+    /**
+     * Consrtuctor que inicaliza la clase DAO de consultasDAO
+     */
     public ConsultasBO() {
         consultasDAO = new ConsultasDAO();
     }
@@ -210,6 +213,11 @@ public class ConsultasBO implements IConsultas {
 
     }
 
+    /**
+     * Metodo que actualiza la tabla con la lista de placas
+     * @param placas
+     * @param JTable1
+     */
     public void cargarDatosTablaPlacas(List<Placas> placas, JTable JTable1) {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"Placas", "Expedicion", "Recepcion", "Vigencia"});

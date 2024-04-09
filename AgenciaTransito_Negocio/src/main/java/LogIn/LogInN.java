@@ -8,7 +8,7 @@ import daos.ILogInDAO;
 import daos.LogInDAO;
 
 /**
- *
+ * Clase que implementa la interfaz de ILogIn y contiene el codigo de todos sus metodos
  * @author tacot
  */
 public class LogInN implements ILogIn {
