@@ -22,5 +22,7 @@ public interface IReporteDAO {
     public List<Reporte> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin);
 
     public List<Reporte> consultarLicenciasPlacasPorTipo(String tipo);
+    
+    public void generarReporte(List<Reporte> reportes);
 
 }

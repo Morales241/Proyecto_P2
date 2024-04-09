@@ -12,6 +12,7 @@ import entidadesJPA.Reporte;
 import excepciones.ExcepcionAT;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JLabel;
@@ -26,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 public class ReporteBO implements IReportes{
     
     ReporteDAO reporteDAO;
-     ConsultasDAO consultasDAO;
+    ConsultasDAO consultasDAO;
     private JLabel tituloTablas = new JLabel();
     private JLabel tablitaSP = new JLabel();
     private JLabel tableReportes = new JLabel();
@@ -47,40 +48,67 @@ public class ReporteBO implements IReportes{
     }
     
        @Override
-    public List<Reporte> consultarLicenciasPlacasPorNombre(String nombre) throws ExcepcionAT {
+    public List<ReporteDTO> consultarLicenciasPlacasPorNombre(String nombre) throws ExcepcionAT {
         try {
-            List<Reporte> reporte = reporteDAO.consultarLicenciasPlacasPorNombre(nombre);
+            List<Reporte> reportes = reporteDAO.consultarLicenciasPlacasPorNombre(nombre);
             
-            return reporte;
+            List<ReporteDTO> reportesDTO = new ArrayList<>();
+            reportes.forEach(Reporte->{
+            
+            ReporteDTO r = new ReporteDTO(Reporte.getNombrePersona(), Reporte.getRFC(), Reporte.getTipoTramite(), 
+            Reporte.getFechaExpedicion(),Reporte.getCosto());
+            reportesDTO.add(r);
+            });
+            
+            
+            return reportesDTO;
         } catch (Exception e) {
             throw new ExcepcionAT("La persona buscada no tiene placas ni licencias registradas " , e);
         } 
     }
 
     @Override
-    public List<Reporte> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws ExcepcionAT {
+    public List<ReporteDTO> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws ExcepcionAT {
          try {
-            List<Reporte> reporte = reporteDAO.consultarLicenciasPlacasPorPeriodo(fechaInicio, fechaFin);
+            List<Reporte> reportes = reporteDAO.consultarLicenciasPlacasPorPeriodo(fechaInicio, fechaFin);
             
-            return reporte;
+            List<ReporteDTO> reportesDTO = new ArrayList<>();
+            reportes.forEach(Reporte->{
+            
+            ReporteDTO r = new ReporteDTO(Reporte.getNombrePersona(), Reporte.getRFC(), Reporte.getTipoTramite(), 
+            Reporte.getFechaExpedicion(),Reporte.getCosto());
+            reportesDTO.add(r);
+            });
+            
+            
+            return reportesDTO;
         } catch (Exception e) {
             throw new ExcepcionAT("No se registraron placas ni licencias en el periodo seleccionado" , e);
         }   }
 
     @Override
-    public List<Reporte> consultarLicenciasPlacasPorTipo(String tipo) throws ExcepcionAT {
+    public List<ReporteDTO> consultarLicenciasPlacasPorTipo(String tipo) throws ExcepcionAT {
         try {
-            List<Reporte> reporte = reporteDAO.consultarLicenciasPlacasPorTipo(tipo);
+            List<Reporte> reportes = reporteDAO.consultarLicenciasPlacasPorTipo(tipo);
             
-            return reporte;
+            List<ReporteDTO> reportesDTO = new ArrayList<>();
+            reportes.forEach(Reporte->{
+            
+            ReporteDTO r = new ReporteDTO(Reporte.getNombrePersona(), Reporte.getRFC(), Reporte.getTipoTramite(), 
+            Reporte.getFechaExpedicion(),Reporte.getCosto());
+            reportesDTO.add(r);
+            });
+            
+            
+            return reportesDTO;
         } catch (Exception e) {
             throw new ExcepcionAT("No hay registros del tramite seleccionado" , e);
         }  
     }
     
  
-    
-    public void cargarDatosTablaReportes(List<Reporte> reportes, JTable JTable1) {
+    @Override
+    public JTable cargarDatosTablaReportes(List<ReporteDTO> reportes, JTable JTable1) {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"Placas", "Expedicion", "Recepcion", "Vigencia"});
 
@@ -90,7 +118,7 @@ public class ReporteBO implements IReportes{
         } else {
             tituloTablas.setText("Selecciona 1 de " + reportes.size() + " personas encontradas para continuar");
 
-            for (Reporte reporte : reportes) {
+            for (ReporteDTO reporte : reportes) {
                 Date fechaE = reporte.getFechaExpedicion().getTime();
                 String fechaExString = (fechaE != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaE) : "NoDate";
 
@@ -104,6 +132,20 @@ public class ReporteBO implements IReportes{
 
         }
         tituloTablas.setVisible(true);
+        
+        return JTable1;
+    }
 
+    @Override
+    public void generarReporte(List<ReporteDTO> reportesDTO) {
+        List<Reporte> reportes = new ArrayList<>();
+        
+        reportesDTO.forEach(ReporteDTO->{
+        Reporte r = new Reporte(ReporteDTO.getNombrePersona(), ReporteDTO.getRFC(), ReporteDTO.getTipoTramite(),
+        ReporteDTO.getCosto(), ReporteDTO.getFechaExpedicion());
+        reportes.add(r);
+        });
+        
+        reporteDAO.generarReporte(reportes);
     }
 }

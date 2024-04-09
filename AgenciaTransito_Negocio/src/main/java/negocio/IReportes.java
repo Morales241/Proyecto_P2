@@ -4,6 +4,7 @@
  */
 package negocio;
 
+import dto.ReporteDTO;
 import entidadesJPA.Automovil;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
@@ -12,19 +13,21 @@ import excepciones.ExcepcionAT;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
+import javax.swing.JTable;
 
 /**
  *
  * @author crist
  */
 public interface IReportes {
-    public List<Reporte> consultarLicenciasPlacasPorNombre(String nombre)throws ExcepcionAT;
+    public List<ReporteDTO> consultarLicenciasPlacasPorNombre(String nombre)throws ExcepcionAT;
     
-    public List<Reporte> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws ExcepcionAT;
+    public List<ReporteDTO> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws ExcepcionAT;
     
-    public List<Reporte> consultarLicenciasPlacasPorTipo(String tipo)throws ExcepcionAT;
+    public List<ReporteDTO> consultarLicenciasPlacasPorTipo(String tipo)throws ExcepcionAT;
     
+    public void generarReporte(List<ReporteDTO> reportes);
     
-    
+    public JTable cargarDatosTablaReportes(List<ReporteDTO> reportes, JTable JTable1);
     
 }

@@ -64,5 +64,10 @@
             <artifactId>protobuf-java</artifactId>
             <version>3.21.9</version>
         </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.12</version>
+        </dependency>
     </dependencies>
 </project>
