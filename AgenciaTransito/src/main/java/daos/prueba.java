@@ -14,12 +14,13 @@ public class prueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ReportesDAO c = new ReportesDAO();
+        //ReportesDAO c = new ReportesDAO();
         
         
-        for (Object o: c.consultarLicenciasPlacasPorNombre("Cristina")){
-            System.out.println(o.toString());
-        }
+       
+        //for (Object o: c.consultarLicenciasPlacasPorNombre("Cristina")){
+          //  System.out.println(o.toString());
+        //}
     
         
     }

@@ -4,10 +4,23 @@
  */
 package daos;
 
+import entidadesJPA.Reporte;
+import excepciones.ExcepcionAT;
+import java.time.LocalDate;
+import java.util.List;
+
 /**
  *
  * @author galan
  */
 public interface IReporteDAO {
-    
+
+    public void registrarReporte(Reporte reporte) throws ExcepcionAT;
+
+    public List<Reporte> consultarLicenciasPlacasPorNombre(String nombre);
+
+    public List<Reporte> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin);
+
+    public List<Reporte> consultarLicenciasPlacasPorTipo(String tipo);
+
 }

@@ -7,7 +7,9 @@ package negocio;
 import entidadesJPA.Automovil;
 import entidadesJPA.Persona;
 import entidadesJPA.Placas;
+import entidadesJPA.Reporte;
 import excepciones.ExcepcionAT;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
@@ -16,11 +18,11 @@ import java.util.List;
  * @author crist
  */
 public interface IReportes {
-    public List<Object[]> consultarLicenciasPlacasPorNombre(String nombre)throws ExcepcionAT;
+    public List<Reporte> consultarLicenciasPlacasPorNombre(String nombre)throws ExcepcionAT;
     
-    public List<Object[]> consultarLicenciasPlacasPorPeriodo(Calendar fechaInicio, Calendar fechaFin) throws ExcepcionAT;
+    public List<Reporte> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws ExcepcionAT;
     
-    public List<Object> consultarLicenciasPlacasPorTipo(String tipo)throws ExcepcionAT;
+    public List<Reporte> consultarLicenciasPlacasPorTipo(String tipo)throws ExcepcionAT;
     
     
     

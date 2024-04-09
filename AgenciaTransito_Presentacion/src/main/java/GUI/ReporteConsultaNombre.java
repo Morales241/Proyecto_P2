@@ -4,14 +4,21 @@
  */
 package GUI;
 
-import dto.PersonaDTO;
-import entidadesJPA.Persona;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import dto.ReporteDTO;
+import entidadesJPA.Reporte;
 import excepciones.ExcepcionAT;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import negocio.ReportesBO;
+import negocio.ReporteBO;
 
 /**
  *
@@ -19,7 +26,7 @@ import negocio.ReportesBO;
  */
 public class ReporteConsultaNombre extends javax.swing.JFrame {
 
-     ReportesBO reportesBO = new ReportesBO();
+     ReporteBO reportesBO = new ReporteBO();
      
     /**
      * Creates new form TramiteReporte
@@ -180,25 +187,63 @@ public class ReporteConsultaNombre extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-               try {
-        List<Object[]> registros = reportesBO.consultarLicenciasPlacasPorNombre(txtFieldNombre.getText());
-        
-            
-        
-    } catch (ExcepcionAT ex) {
-        Logger.getLogger(ConsultasNombre.class.getName()).log(Level.SEVERE, null, ex);
-        JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-          
-    }
+         try {
+             List<Reporte> reportes = reportesBO.consultarLicenciasPlacasPorNombre(txtFieldNombre.getText());
+             reportesBO.cargarDatosTablaReportes(reportes, jTable1);
+         } catch (ExcepcionAT ex) {
+             Logger.getLogger(ReporteConsultaNombre.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void generarReporteBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarReporteBotonActionPerformed
-        // TODO add your handling code here:
+         try {
+             // TODO add your handling code here:
+             List<Reporte> reportes = reportesBO.consultarLicenciasPlacasPorNombre(txtFieldNombre.getText());
+             generarReporteTramites(reportes);
+         } catch (ExcepcionAT ex) {
+             Logger.getLogger(ReporteConsultaNombre.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (DocumentException ex) {
+             Logger.getLogger(ReporteConsultaNombre.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (FileNotFoundException ex) {
+             Logger.getLogger(ReporteConsultaNombre.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }//GEN-LAST:event_generarReporteBotonActionPerformed
 
+    public void generarReporteTramites(List<Reporte> reportes) throws DocumentException, FileNotFoundException {
+    Document doc = new Document();
+        PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("Reporte.pdf"));
+
+        PdfPTable tabla = new PdfPTable(5);
+        tabla.addCell("columna 1");
+        tabla.addCell("columna 2");
+        tabla.addCell("columna 3");
+        tabla.addCell("columna 4");
+        tabla.addCell("columna 5");
+
+        for (Reporte reporte : reportes) {
+            tabla.addCell(reporte.getNombrePersona());
+            tabla.addCell(reporte.getRFC());
+            tabla.addCell(reporte.getTipoTramite());
+
+            // Convertir la fecha de Calendar a String
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            tabla.addCell(sdf.format(reporte.getFechaExpedicion().getTime()));
+
+            // Convertir el costo de double a String
+            tabla.addCell(String.valueOf(reporte.getCosto()));
+        }
+
+        doc.open();
+        doc.add(tabla);
+        doc.close();
+
+        JOptionPane.showMessageDialog(null, "Exportado con exito: Reporte.pdf", "Éxito", JOptionPane.INFORMATION_MESSAGE);   
+}
+    
     public javax.swing.JPanel traerContenido(){
         return this.contenido;
     }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
