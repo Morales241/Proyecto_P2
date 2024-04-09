@@ -69,10 +69,10 @@ public class LogIn extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Usuario:");
 
-        txtUsuario.setEditable(false);
         txtUsuario.setBackground(new java.awt.Color(182, 0, 0));
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsuario.setToolTipText("root");
         txtUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,10 +86,10 @@ public class LogIn extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Contraseña:");
 
-        txtContra.setEditable(false);
         txtContra.setBackground(new java.awt.Color(182, 0, 0));
         txtContra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtContra.setForeground(new java.awt.Color(255, 255, 255));
+        txtContra.setToolTipText("admin");
         txtContra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         txtContra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

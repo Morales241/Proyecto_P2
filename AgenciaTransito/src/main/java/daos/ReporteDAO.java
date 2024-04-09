@@ -18,6 +18,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
@@ -62,7 +64,7 @@ public class ReporteDAO implements IReporteDAO {
 
             // Persiste el reporte en la base de datos.
             em.persist(reporte);
-            
+
             em.getTransaction().commit();
             em.close();
         } catch (Exception e) {
@@ -80,14 +82,14 @@ public class ReporteDAO implements IReporteDAO {
     @Override
     public List<Reporte> consultarLicenciasPlacasPorNombre(String nombre) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
-        
+
         em = emf.createEntityManager();
 
         // Consulta JPQL para seleccionar reportes donde el nombre de la persona coincide con el parámetro.
         String jpql = "SELECT r FROM Reporte r WHERE LOWER(r.nombrePersona) LIKE LOWER(:nombre)";
         TypedQuery<Reporte> query = em.createQuery(jpql, Reporte.class);
         query.setParameter("nombre", "%" + nombre.toLowerCase() + "%");
-        
+
         return query.getResultList();
     }
 
@@ -101,7 +103,7 @@ public class ReporteDAO implements IReporteDAO {
     public List<Reporte> consultarLicenciasPlacasPorTipo(String tipo) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
         em = emf.createEntityManager();
-        
+
         String jpql;
         if ("Licencias".equals(tipo)) {
             jpql = "SELECT r FROM Reporte r WHERE r.tipoTramite = 'Registro Licencia'";
@@ -110,7 +112,7 @@ public class ReporteDAO implements IReporteDAO {
         } else {
             throw new IllegalArgumentException("Tipo de trámite no válido: " + tipo);
         }
-        
+
         TypedQuery<Reporte> query = em.createQuery(jpql, Reporte.class);
         return query.getResultList();
     }
@@ -125,9 +127,9 @@ public class ReporteDAO implements IReporteDAO {
     @Override
     public List<Reporte> consultarLicenciasPlacasPorPeriodo(Calendar fechaInicio, Calendar fechaFin) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
-        
+
         em = emf.createEntityManager();
-        
+
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Reporte> cq = cb.createQuery(Reporte.class);
         Root<Reporte> reporte = cq.from(Reporte.class);
@@ -135,11 +137,11 @@ public class ReporteDAO implements IReporteDAO {
         // Crea un predicado para la fecha de expedición entre la fecha de inicio y la fecha de fin.
         Predicate fechaPredicate = cb.and(cb.greaterThanOrEqualTo(reporte.get("fechaExpedicion"), fechaInicio),
                 cb.lessThanOrEqualTo(reporte.get("fechaExpedicion"), fechaFin));
-        
+
         cq.where(fechaPredicate);
-        
+
         TypedQuery<Reporte> query = em.createQuery(cq);
-        
+
         return query.getResultList();
     }
 
@@ -152,84 +154,92 @@ public class ReporteDAO implements IReporteDAO {
     public void generarReporte(List<Reporte> reportes, int opcion) {
         Document doc = new Document();
         try {
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("Reporte.pdf"));
+            LocalDateTime ahora = LocalDateTime.now();
+
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+
+            String ahorita = ahora.format(formato);
+            
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("Reporte_"+ahorita+".pdf"));
             doc.open();
 
             // Título del PDF
             // Fuente grande y en color rojo oscuro      
-                Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 24, Font.BOLD, new BaseColor(182, 0, 0)); 
-                Paragraph titulo = new Paragraph("Agencia Tránsito", fontTitulo);
-                // Alineación centrada
-                titulo.setAlignment(Element.ALIGN_CENTER); 
-                // Espacio después del título
-                titulo.setSpacingAfter(20); 
-                doc.add(titulo);
-                
-                
+            Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 24, Font.BOLD, new BaseColor(182, 0, 0));
+            Paragraph titulo = new Paragraph("Agencia Tránsito", fontTitulo);
+            // Alineación centrada
+            titulo.setAlignment(Element.ALIGN_CENTER);
+            // Espacio después del título
+            titulo.setSpacingAfter(20);
+            doc.add(titulo);
+
             if (opcion == 1) {
-                Font fontSubTitulo = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD, new BaseColor(182, 0, 0)); 
-                Paragraph Subtitulo = new Paragraph("Reporte de tramites de la persona: "+reportes.get(0).getNombrePersona(), fontSubTitulo);
+                Font fontSubTitulo = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD, new BaseColor(182, 0, 0));
+                Paragraph Subtitulo = new Paragraph("Reporte de tramites de la persona: " + reportes.get(0).getNombrePersona(), fontSubTitulo);
                 // Alineación a la izquierda
-                Subtitulo.setAlignment(Element.ALIGN_LEFT); 
+                Subtitulo.setAlignment(Element.ALIGN_LEFT);
                 // Espacio después del título
-                Subtitulo.setSpacingAfter(20); 
-                doc.add(Subtitulo);
-            }if (opcion == 2) {
-                Font fontSubTitulo = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD, new BaseColor(182, 0, 0)); 
-                Paragraph Subtitulo = new Paragraph("Reporte de tramites por periodo", fontSubTitulo);
-                // Alineación a la izquierda
-                Subtitulo.setAlignment(Element.ALIGN_LEFT); 
-                // Espacio después del título
-                Subtitulo.setSpacingAfter(20); 
-                doc.add(Subtitulo);
-            }if (opcion == 3) {
-                Font fontSubTitulo = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD, new BaseColor(182, 0, 0)); 
-                Paragraph Subtitulo = new Paragraph("Reporte de tramites por tipo: "+reportes.get(0).getTipoTramite(), fontSubTitulo);
-                // Alineación a la izquierda
-                Subtitulo.setAlignment(Element.ALIGN_LEFT); 
-                // Espacio después del título
-                Subtitulo.setSpacingAfter(20); 
+                Subtitulo.setSpacingAfter(20);
                 doc.add(Subtitulo);
             }
-            
+            if (opcion == 2) {
+                Font fontSubTitulo = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD, new BaseColor(182, 0, 0));
+                Paragraph Subtitulo = new Paragraph("Reporte de tramites por periodo", fontSubTitulo);
+                // Alineación a la izquierda
+                Subtitulo.setAlignment(Element.ALIGN_LEFT);
+                // Espacio después del título
+                Subtitulo.setSpacingAfter(20);
+                doc.add(Subtitulo);
+            }
+            if (opcion == 3) {
+                Font fontSubTitulo = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD, new BaseColor(182, 0, 0));
+                Paragraph Subtitulo = new Paragraph("Reporte de tramites por tipo: " + reportes.get(0).getTipoTramite(), fontSubTitulo);
+                // Alineación a la izquierda
+                Subtitulo.setAlignment(Element.ALIGN_LEFT);
+                // Espacio después del título
+                Subtitulo.setSpacingAfter(20);
+                doc.add(Subtitulo);
+            }
+
             PdfPTable tabla = new PdfPTable(5);
             // Ancho de la tabla al 100% de la página
-            tabla.setWidthPercentage(100); 
+            tabla.setWidthPercentage(100);
             // Espacio antes de la tabla
-            tabla.setSpacingBefore(10); 
+            tabla.setSpacingBefore(10);
 
             // Encabezados de la tabla
-            Font fontHeader = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD,  BaseColor.BLACK);
+            Font fontHeader = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.BLACK);
             PdfPCell cellHeader = new PdfPCell();
             // Color de fondo blanco
-            cellHeader.setBackgroundColor(new BaseColor(255, 255, 255)); 
+            cellHeader.setBackgroundColor(new BaseColor(255, 255, 255));
             // Alineación centrada
-            cellHeader.setHorizontalAlignment(Element.ALIGN_CENTER); 
+            cellHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
             // Alineación vertical centrada
-            cellHeader.setVerticalAlignment(Element.ALIGN_MIDDLE); 
+            cellHeader.setVerticalAlignment(Element.ALIGN_MIDDLE);
             // Color de borde rojo oscuro
-            cellHeader.setBorderColor(new BaseColor(182, 0, 0)); 
-             // Grosor del borde
+            cellHeader.setBorderColor(new BaseColor(182, 0, 0));
+            // Grosor del borde
             cellHeader.setBorderWidth(1);
             cellHeader.setPadding(5);
-            
+
             cellHeader.setPhrase(new Phrase("Nombre", fontHeader));
             tabla.addCell(cellHeader);
-            
+
             cellHeader.setPhrase(new Phrase("RFC", fontHeader));
             tabla.addCell(cellHeader);
-            
+
             cellHeader.setPhrase(new Phrase("Tipo de trámite", fontHeader));
             tabla.addCell(cellHeader);
-            
+
             cellHeader.setPhrase(new Phrase("Fecha de expedición", fontHeader));
             tabla.addCell(cellHeader);
-            
+
             cellHeader.setPhrase(new Phrase("Total", fontHeader));
             tabla.addCell(cellHeader);
 
             // Contenido de la tabla
-            Font fontContent = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.BLACK); 
+            double totalSum = 0;
+            Font fontContent = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.BLACK);
             for (Reporte reporte : reportes) {
                 tabla.addCell(new Phrase(reporte.getNombrePersona(), fontContent));
                 tabla.addCell(new Phrase(reporte.getRFC(), fontContent));
@@ -241,19 +251,26 @@ public class ReporteDAO implements IReporteDAO {
 
                 // Convertir el costo de double a String
                 tabla.addCell(new Phrase(String.valueOf(reporte.getCosto()), fontContent));
+                totalSum += reporte.getCosto();
             }
-            
+            // celda para el total
+            PdfPCell cellTotal = new PdfPCell(new Phrase(String.valueOf(totalSum), fontContent));
+            tabla.addCell(cellTotal);
 
             // Agregar caja alrededor de la tabla
             PdfContentByte cb = writer.getDirectContent();
             // Posición y tamaño de la caja
-            cb.rectangle(36, 50, 523, 700 - (reportes.size() * 20 + 40)); 
+            if (opcion == 1) {
+                cb.rectangle(36, 42, 523, 700 - (reportes.size() * 20 + 40));
+            } else {
+                cb.rectangle(36, 50, 523, 700 - (reportes.size() * 20 + 40));
+            }
             // Color del borde
-            cb.setColorStroke(new BaseColor(182, 0, 0)); 
+            cb.setColorStroke(new BaseColor(182, 0, 0));
             // Grosor del borde
-            cb.setLineWidth(3); 
+            cb.setLineWidth(3);
             cb.stroke();
-            
+
             doc.add(tabla);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ReporteDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -265,5 +282,5 @@ public class ReporteDAO implements IReporteDAO {
             }
         }
     }
-    
+
 }
