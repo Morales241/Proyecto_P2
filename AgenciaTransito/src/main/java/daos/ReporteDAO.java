@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,9 +93,9 @@ public class ReporteDAO implements IReporteDAO {
         em = emf.createEntityManager();
 
         String jpql;
-        if ("licencias".equals(tipo)) {
+        if ("Licencias".equals(tipo)) {
             jpql = "SELECT r FROM Reporte r WHERE r.tipoTramite = 'Registro Licencia'";
-        } else if ("placas".equals(tipo)) {
+        } else if ("Placas".equals(tipo)) {
             jpql = "SELECT r FROM Reporte r WHERE r.tipoTramite = 'Registro Placas'";
         } else {
             throw new IllegalArgumentException("Tipo de trámite no válido: " + tipo);
@@ -111,7 +112,7 @@ public class ReporteDAO implements IReporteDAO {
      * @return Una lista de reportes que están dentro del periodo de tiempo.
      */
     @Override
-    public List<Reporte> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) {
+    public List<Reporte> consultarLicenciasPlacasPorPeriodo(Calendar fechaInicio, Calendar fechaFin) {
         emf = Persistence.createEntityManagerFactory("ConexionPU");
 
         em = emf.createEntityManager();

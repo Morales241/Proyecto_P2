@@ -4,11 +4,25 @@
  */
 package GUI;
 
+import dto.ReporteDTO;
+import excepciones.ExcepcionAT;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.ReporteBO;
+
 /**
  *
  * @author tacot
  */
 public class ReporteConsultaPeriodo extends javax.swing.JFrame {
+
+    ReporteBO reportesBO = new ReporteBO();
+    List<ReporteDTO> reportes;
 
     /**
      * Creates new form ReporteConsultaFN
@@ -30,14 +44,13 @@ public class ReporteConsultaPeriodo extends javax.swing.JFrame {
         contenido = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
-        jPanel5 = new javax.swing.JPanel();
-        generarReporteBoton = new javax.swing.JButton();
+        inicio = new com.github.lgooddatepicker.components.DatePicker();
         jLabel15 = new javax.swing.JLabel();
-        datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
-        botonBuscar8 = new javax.swing.JButton();
+        fin = new com.github.lgooddatepicker.components.DatePicker();
+        botonBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        generarReporteBoton = new javax.swing.JButton();
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel9.setText("Fecha");
@@ -62,55 +75,24 @@ public class ReporteConsultaPeriodo extends javax.swing.JFrame {
         jLabel13.setText("Fecha inicio:");
         jLabel13.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
 
-        datePicker1.setBackground(new java.awt.Color(182, 0, 0));
-        datePicker1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        inicio.setBackground(new java.awt.Color(182, 0, 0));
+        inicio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-
-        generarReporteBoton.setText("GENERAR REPORTE");
-        generarReporteBoton.setBackground(new java.awt.Color(102, 102, 102));
-        generarReporteBoton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        generarReporteBoton.setBorderPainted(false);
-        generarReporteBoton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        generarReporteBoton.setForeground(new java.awt.Color(255, 255, 255));
-        generarReporteBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generarReporteBotonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(generarReporteBoton)
-                .addContainerGap(155, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(generarReporteBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel15.setText("Fecha fin:");
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
 
-        datePicker2.setBackground(new java.awt.Color(182, 0, 0));
-        datePicker2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        fin.setBackground(new java.awt.Color(182, 0, 0));
+        fin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        botonBuscar8.setText("BUSCAR");
-        botonBuscar8.setBackground(new java.awt.Color(102, 102, 102));
-        botonBuscar8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        botonBuscar8.setBorderPainted(false);
-        botonBuscar8.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        botonBuscar8.setForeground(new java.awt.Color(255, 255, 255));
-        botonBuscar8.addActionListener(new java.awt.event.ActionListener() {
+        botonBuscar.setText("BUSCAR");
+        botonBuscar.setBackground(new java.awt.Color(102, 102, 102));
+        botonBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonBuscar.setBorderPainted(false);
+        botonBuscar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscar8ActionPerformed(evt);
+                botonBuscarActionPerformed(evt);
             }
         });
 
@@ -127,112 +109,125 @@ public class ReporteConsultaPeriodo extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        generarReporteBoton.setText("GENERAR REPORTE");
+        generarReporteBoton.setBackground(new java.awt.Color(102, 102, 102));
+        generarReporteBoton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        generarReporteBoton.setBorderPainted(false);
+        generarReporteBoton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        generarReporteBoton.setForeground(new java.awt.Color(255, 255, 255));
+        generarReporteBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarReporteBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
         contenido.setLayout(contenidoLayout);
         contenidoLayout.setHorizontalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
             .addGroup(contenidoLayout.createSequentialGroup()
                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenidoLayout.createSequentialGroup()
-                        .addGap(84, 84, 84)
+                        .addGap(36, 36, 36)
                         .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(contenidoLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
                                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13)
                                     .addComponent(jLabel15))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel7)))
+                                .addGap(29, 29, 29)
+                                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(fin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(contenidoLayout.createSequentialGroup()
-                        .addGap(202, 202, 202)
-                        .addComponent(botonBuscar8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(84, 84, 84)
+                        .addComponent(jLabel7))
                     .addGroup(contenidoLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addGap(203, 203, 203)
+                        .addComponent(generarReporteBoton)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         contenidoLayout.setVerticalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenidoLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contenidoLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(contenidoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonBuscar8, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(generarReporteBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+            .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+            .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonBuscar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscar8ActionPerformed
-        //        try {
-            //            txtFieldNombre.setText("");
-            //            txtFieldTelefono.setText("");
-            //            txtFieldFecha.setText("");
-            //
-            //            personaDTO= registroLicenciaBO.buscarPersonaPorRFC(txtFieldRFC.getText());
-            //
-            //            txtFieldNombre.setText(personaDTO.getNombre());
-            //            txtFieldTelefono.setText(personaDTO.getTelefono());
-            //            txtFieldFecha.setText(personaDTO.getFechaNacimiento().getTime().toString());
-            //
-            //            botonSiguiente.setVisible(true);
-            //        } catch (Exception ex) {
-            //            botonSiguiente.setVisible(false);
-            //            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-            //        }
-    }//GEN-LAST:event_botonBuscar8ActionPerformed
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+
+// Crear instancias de Calendar
+        Calendar inicioCalendar = Calendar.getInstance();
+        Calendar finCalendar = Calendar.getInstance();
+
+// Establecer las fechas de los Calendar a las fechas de los Date
+        inicioCalendar.setTime(inicio);
+        finCalendar.setTime(fin);
+
+// Ahora puedes llamar al método con los objetos Calendar
+        reportes = reportesBO.consultarLicenciasPlacasPorPeriodo(inicioCalendar, finCalendar);
+
+        reportes.forEach(ReporteDTO -> {
+            System.out.println(ReporteDTO.getNombrePersona());
+        });
+
+        this.jTable1 = reportesBO.cargarDatosTablaReportes(reportes, jTable1);
+    }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void generarReporteBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarReporteBotonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_generarReporteBotonActionPerformed
 
-    public javax.swing.JPanel traerContenido(){
+    public javax.swing.JPanel traerContenido() {
         return this.contenido;
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonBuscar8;
+    private javax.swing.JButton botonBuscar;
     private javax.swing.JPanel contenido;
-    private com.github.lgooddatepicker.components.DatePicker datePicker1;
-    private com.github.lgooddatepicker.components.DatePicker datePicker2;
+    private com.github.lgooddatepicker.components.DatePicker fin;
     private javax.swing.JButton generarReporteBoton;
+    private com.github.lgooddatepicker.components.DatePicker inicio;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtFieldFecha;

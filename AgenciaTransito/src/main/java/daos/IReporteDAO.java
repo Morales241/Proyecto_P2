@@ -7,6 +7,7 @@ package daos;
 import entidadesJPA.Reporte;
 import excepciones.ExcepcionAT;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ public interface IReporteDAO {
      * @param fechaFin
      * @return
      */
-    public List<Reporte> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin);
+    public List<Reporte> consultarLicenciasPlacasPorPeriodo(Calendar fechaInicio, Calendar fechaFin);
 
     /**
      * Metodo que regresa una lista de reportes del tipo que recibe

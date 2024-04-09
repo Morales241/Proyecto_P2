@@ -36,7 +36,7 @@ public interface IReportes {
      * @return
      * @throws ExcepcionAT
      */
-    public List<ReporteDTO> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws ExcepcionAT;
+    public List<ReporteDTO> consultarLicenciasPlacasPorPeriodo(Calendar fechaInicio, Calendar fechaFin) throws ExcepcionAT;
     
     /**
      * Metodo que regresa la lista de reportes por el tipo de tramite

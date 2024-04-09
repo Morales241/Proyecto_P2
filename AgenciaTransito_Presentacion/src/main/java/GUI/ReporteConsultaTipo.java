@@ -4,11 +4,22 @@
  */
 package GUI;
 
+import dto.ReporteDTO;
+import excepciones.ExcepcionAT;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import negocio.ReporteBO;
+
 /**
  *
  * @author tacot
  */
 public class ReporteConsultaTipo extends javax.swing.JFrame {
+
+    ReporteBO reportesBO = new ReporteBO();
+    List<ReporteDTO> reportes;
 
     /**
      * Creates new form ReporteConsultaCurp
@@ -28,69 +39,32 @@ public class ReporteConsultaTipo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtFieldTipo = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        generarReporteBoton = new javax.swing.JButton();
         botonBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        Tipo = new javax.swing.JComboBox<>();
+        generarReporteBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         contenido.setBackground(new java.awt.Color(255, 255, 255));
         contenido.setPreferredSize(new java.awt.Dimension(540, 374));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel7.setText("Ingrese el tipo de tramite para ");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel11.setText("realizar el reporte");
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel5.setText("Tipo: ");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
 
-        txtFieldTipo.setBackground(new java.awt.Color(182, 0, 0));
-        txtFieldTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtFieldTipo.setForeground(new java.awt.Color(255, 255, 255));
-        txtFieldTipo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        generarReporteBoton.setBackground(new java.awt.Color(102, 102, 102));
-        generarReporteBoton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        generarReporteBoton.setForeground(new java.awt.Color(255, 255, 255));
-        generarReporteBoton.setText("GENERAR REPORTE");
-        generarReporteBoton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        generarReporteBoton.setBorderPainted(false);
-        generarReporteBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generarReporteBotonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(generarReporteBoton)
-                .addContainerGap(202, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(generarReporteBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        botonBuscar.setBackground(new java.awt.Color(102, 102, 102));
-        botonBuscar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         botonBuscar.setText("BUSCAR");
+        botonBuscar.setBackground(new java.awt.Color(102, 102, 102));
         botonBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonBuscar.setBorderPainted(false);
+        botonBuscar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         botonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBuscarActionPerformed(evt);
@@ -110,33 +84,47 @@ public class ReporteConsultaTipo extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Licencias", "Placas" }));
+        Tipo.setBackground(new java.awt.Color(182, 0, 0));
+
+        generarReporteBoton.setText("GENERAR REPORTE");
+        generarReporteBoton.setBackground(new java.awt.Color(102, 102, 102));
+        generarReporteBoton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        generarReporteBoton.setBorderPainted(false);
+        generarReporteBoton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        generarReporteBoton.setForeground(new java.awt.Color(255, 255, 255));
+        generarReporteBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarReporteBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
         contenido.setLayout(contenidoLayout);
         contenidoLayout.setHorizontalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenidoLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenidoLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))
-                    .addGroup(contenidoLayout.createSequentialGroup()
-                        .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(contenidoLayout.createSequentialGroup()
-                                .addGap(59, 59, 59)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(contenidoLayout.createSequentialGroup()
                 .addGap(133, 133, 133)
                 .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jLabel11))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(contenidoLayout.createSequentialGroup()
+                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contenidoLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(contenidoLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(157, 157, 157)
+                                .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(contenidoLayout.createSequentialGroup()
+                        .addGap(204, 204, 204)
+                        .addComponent(generarReporteBoton)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         contenidoLayout.setVerticalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,71 +134,69 @@ public class ReporteConsultaTipo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addGap(18, 18, 18)
-                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5)
-                    .addComponent(botonBuscar))
+                    .addGroup(contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Tipo, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                        .addComponent(botonBuscar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(generarReporteBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+            .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void generarReporteBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarReporteBotonActionPerformed
-        // TODO add your handling code here:
+        reportesBO.generarReporte(reportes);
+        JOptionPane.showMessageDialog(null, "Se ha exportado con exito el reporte", "Reporte", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_generarReporteBotonActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        //        try {
-            //            txtFieldNombre.setText("");
-            //            txtFieldTelefono.setText("");
-            //            txtFieldFecha.setText("");
-            //
-            //            personaDTO= registroLicenciaBO.buscarPersonaPorRFC(txtFieldRFC.getText());
-            //
-            //            txtFieldNombre.setText(personaDTO.getNombre());
-            //            txtFieldTelefono.setText(personaDTO.getTelefono());
-            //            txtFieldFecha.setText(personaDTO.getFechaNacimiento().getTime().toString());
-            //
-            //            botonSiguiente.setVisible(true);
-            //        } catch (Exception ex) {
-            //            botonSiguiente.setVisible(false);
-            //            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-            //        }
+        
+        String tipo= String.valueOf(this.Tipo.getSelectedItem());
+        
+        try {
+            reportes = reportesBO.consultarLicenciasPlacasPorTipo(tipo);
+        } catch (ExcepcionAT ex) {
+            Logger.getLogger(ReporteConsultaTipo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        reportes.forEach(ReporteDTO -> {
+            System.out.println(ReporteDTO.getNombrePersona());
+        });
+        
+        this.jTable1 = reportesBO.cargarDatosTablaReportes(reportes, jTable1);
     }//GEN-LAST:event_botonBuscarActionPerformed
 
-    public javax.swing.JPanel traerContenido(){
+    public javax.swing.JPanel traerContenido() {
         return this.contenido;
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Tipo;
     private javax.swing.JButton botonBuscar;
     private javax.swing.JPanel contenido;
     private javax.swing.JButton generarReporteBoton;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtFieldTipo;
     // End of variables declaration//GEN-END:variables
 }

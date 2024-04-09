@@ -12,6 +12,7 @@ import excepciones.ExcepcionAT;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JLabel;
@@ -73,7 +74,7 @@ public class ReporteBO implements IReportes{
     }
 
     @Override
-    public List<ReporteDTO> consultarLicenciasPlacasPorPeriodo(LocalDate fechaInicio, LocalDate fechaFin) throws ExcepcionAT {
+    public List<ReporteDTO> consultarLicenciasPlacasPorPeriodo( Calendar fechaInicio, Calendar fechaFin) throws ExcepcionAT {
          try {
             List<Reporte> reportes = reporteDAO.consultarLicenciasPlacasPorPeriodo(fechaInicio, fechaFin);
             

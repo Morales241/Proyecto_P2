@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  * Clase entidad de reportes
@@ -36,6 +37,7 @@ public class Reporte implements Serializable {
     private double costo;
     
     @Column(name = "fechaExpedicion", nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar fechaExpedicion;
 
     /**
