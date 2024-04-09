@@ -1,6 +1,13 @@
 package daos;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import daos.IReporteDAO;
@@ -134,6 +141,7 @@ public class ReporteDAO implements IReporteDAO {
 
     /**
      * Método para generar un reporte en formato PDF.
+     *
      * @param reportes La lista de reportes a incluir en el PDF.
      */
     @Override
@@ -141,34 +149,77 @@ public class ReporteDAO implements IReporteDAO {
         Document doc = new Document();
         try {
             PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("Reporte.pdf"));
+            doc.open();
+
+            // Título del PDF
+            Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 24, Font.BOLD, new BaseColor(182, 0, 0)); // Fuente grande y en color rojo oscuro
+            Paragraph titulo = new Paragraph("Agencia Tránsito", fontTitulo);
+            titulo.setAlignment(Element.ALIGN_CENTER); // Alineación centrada
+            titulo.setSpacingAfter(20); // Espacio después del título
+            doc.add(titulo);
 
             PdfPTable tabla = new PdfPTable(5);
-            tabla.addCell("Nombre");
-            tabla.addCell("RFC");
-            tabla.addCell("tipo de tramite");
-            tabla.addCell("fecha de expedición");
-            tabla.addCell("Total");
+            tabla.setWidthPercentage(100); // Ancho de la tabla al 100% de la página
+            tabla.setSpacingBefore(10); // Espacio antes de la tabla
 
+            // Encabezados de la tabla
+            Font fontHeader = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, new BaseColor(70, 70, 70)); // Fuente grande y en color gris oscuro
+            PdfPCell cellHeader = new PdfPCell();
+            cellHeader.setBackgroundColor(new BaseColor(255, 255, 255)); // Color de fondo blanco
+            cellHeader.setHorizontalAlignment(Element.ALIGN_CENTER); // Alineación centrada
+            cellHeader.setVerticalAlignment(Element.ALIGN_MIDDLE); // Alineación vertical centrada
+            cellHeader.setBorderColor(new BaseColor(182, 0, 0)); // Color de borde rojo oscuro
+            cellHeader.setBorderWidth(3); // Grosor del borde
+            cellHeader.setPadding(5);
+
+            cellHeader.setPhrase(new Phrase("Nombre", fontHeader));
+            tabla.addCell(cellHeader);
+
+            cellHeader.setPhrase(new Phrase("RFC", fontHeader));
+            tabla.addCell(cellHeader);
+
+            cellHeader.setPhrase(new Phrase("Tipo de trámite", fontHeader));
+            tabla.addCell(cellHeader);
+
+            cellHeader.setPhrase(new Phrase("Fecha de expedición", fontHeader));
+            tabla.addCell(cellHeader);
+
+            cellHeader.setPhrase(new Phrase("Total", fontHeader));
+            tabla.addCell(cellHeader);
+
+            // Contenido de la tabla
+            Font fontContent = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.BLACK); // Fuente normal
             for (Reporte reporte : reportes) {
-                tabla.addCell(reporte.getNombrePersona());
-                tabla.addCell(reporte.getRFC());
-                tabla.addCell(reporte.getTipoTramite());
+                tabla.addCell(new Phrase(reporte.getNombrePersona(), fontContent));
+                tabla.addCell(new Phrase(reporte.getRFC(), fontContent));
+                tabla.addCell(new Phrase(reporte.getTipoTramite(), fontContent));
 
                 // Convertir la fecha de Calendar a String
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                tabla.addCell(sdf.format(reporte.getFechaExpedicion().getTime()));
+                tabla.addCell(new Phrase(sdf.format(reporte.getFechaExpedicion().getTime()), fontContent));
 
-                // Convertir el costo de double a String 
-                tabla.addCell(String.valueOf(reporte.getCosto()));
+                // Convertir el costo de double a String
+                tabla.addCell(new Phrase(String.valueOf(reporte.getCosto()), fontContent));
             }
 
-            doc.open();
+            // Agregar caja alrededor de la tabla
+            PdfContentByte cb = writer.getDirectContent();
+            cb.rectangle(36, 36, 523, 700 - (reportes.size() * 20 + 40)); // Posición y tamaño de la caja
+            cb.setColorStroke(new BaseColor(182, 0, 0)); // Color del borde
+            cb.setLineWidth(3); // Grosor del borde
+            cb.stroke();
+
             doc.add(tabla);
-            doc.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ReporteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
             Logger.getLogger(ReporteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (doc.isOpen()) {
+                doc.close();
+            }
         }
     }
+
+
 }
