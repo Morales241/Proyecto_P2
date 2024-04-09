@@ -8,6 +8,7 @@ import daos.LicenciaDAO;
 import daos.PersonaDAO;
 import dto.LicenciaDTO;
 import dto.PersonaDTO;
+import dto.ReporteDTO;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import excepciones.ExcepcionAT;
@@ -28,10 +29,12 @@ public class RegistroLicenciaBO implements IRegistroLicencia {
 
     PersonaDAO personaDAO;
     LicenciaDAO licenciaDAO;
+    ReporteBO reporteBO;
 
     public RegistroLicenciaBO() {
         personaDAO=new PersonaDAO();
         licenciaDAO= new LicenciaDAO();
+        reporteBO= new ReporteBO();
     }
     
     @Override
@@ -44,6 +47,10 @@ public class RegistroLicenciaBO implements IRegistroLicencia {
             persona.agregarLicencia(licencia);
             licenciaDAO.registrarLicencia(licencia);
             personaDAO.actualizarPersona(persona);
+            
+            ReporteDTO reporteDTO= new ReporteDTO(personaDTO.getNombre(), persona.getRFC(), "Registro Licencia", 
+                    licenciaDTO.getFechaExpedicion(), licenciaDTO.getCosto());
+            reporteBO.registrarReporte(reporteDTO);
         } catch (ExcepcionAT ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
